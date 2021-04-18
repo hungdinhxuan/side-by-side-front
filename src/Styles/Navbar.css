@@ -1,0 +1,69 @@
+.menu-wrap {
+    background-image: url(../img/main_header_bg.png);
+    background-position: center;
+    background-size: cover;
+    border-radius: 3px;
+    margin-top: 7px;
+    box-shadow: 0px 3px 7px 0px rgb(128 18 40 / 15%);
+}
+
+.menu-wrap .col-sm-8 {
+    display: flex;
+    color: #fff;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-wrap .col-sm-8 .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.menu-wrap .col-sm-8 .logo .menu-text{
+    color: #fff;
+    font-size: 30px;
+    line-height: 30px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+.menu-wrap .col-sm-8 .logo .menu-text span{
+    color: #EA7C69;
+}
+
+.menu-wrap .col-sm-8 ul {
+    display: flex;
+}
+
+.menu-wrap .col-sm-8 ul li {
+    padding-right: 12px;
+}
+
+.menu-wrap .col-sm-8 ul li a {
+    color: #cfcdcd;
+    text-transform: uppercase;
+    display: block;
+    position: relative;
+    z-index: 1;
+}
+
+.menu-wrap .col-sm-8 ul li a::before {
+    content: "";
+    position: absolute;
+    left: -2px;
+    top: 50%;
+    height: 36px;
+    width: 107%;
+    transform: translateY(-50%) skewX(-17deg);
+    background: #ff5917;
+    z-index: -1 ;
+    opacity: 0;
+}
+
+.menu-wrap .col-sm-8 ul li:active a::before, .menu-wrap .col-sm-8 ul li:hover a::before{
+    opacity: 1;
+}
+
+.menu-wrap .col-sm-8 ul li a:hover {
+    text-decoration: none;
+}

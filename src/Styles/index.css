@@ -1,0 +1,23 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 1920px;
+  font-weight: 500;
+  font-size: 16px;
+  font-style: normal;
+}
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+ul li {
+  list-style: none;
+}
+p{
+  margin: 0px;
+  padding: 0px;
+}
