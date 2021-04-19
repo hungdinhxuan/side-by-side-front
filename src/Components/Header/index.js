@@ -4,10 +4,10 @@ import "../../Styles/header.css";
 
 //Test useSticky
 import Navbar from "../Header/Navbar";
-import StickyHeader from "../Header/StickyHeader";
+// import StickyHeader from "../Header/StickyHeader"; 
 
 export default function Header() {
-  const { isSticky, element } = StickyHeader();
+  // const { isSticky, element } = StickyHeader();
   return (
     <div className="header-bg">
       <div className="header-top-wrap">
@@ -73,7 +73,7 @@ export default function Header() {
           </div>
         </div>
       </div>
-      <Navbar sticky={isSticky}></Navbar>
+      <Navbar></Navbar>
     </div>
   );
 }

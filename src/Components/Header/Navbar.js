@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Navbar = ({ sticky }) => (
   <div
     id="sticky-header"
-    styleclassName={sticky ? "navbar navbar-sticky" : "navbar"}
+    // styleclassName={sticky ? "navbar navbar-sticky" : "navbar"} 
   >
     <div className="container">
       <div className="row menu-wrap">

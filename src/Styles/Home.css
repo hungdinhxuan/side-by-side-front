@@ -1,0 +1,11 @@
+.Home-main {
+    background-color: #271A24;
+}
+
+.carousel .carousel-inner .carousel-item img {
+    width: 1200px;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

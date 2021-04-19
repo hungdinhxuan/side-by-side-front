@@ -1,0 +1,109 @@
+.footer-arena {
+  background-image: url(../img/footer_bg.jpg);
+  background-position: top center;
+  background-size: cover;
+  padding: 70px 0 20px;
+}
+
+.footer-arena .container .row .col-lg-3 .footer-widget {
+  margin-bottom: 50px;
+  color: #fff;
+}
+.footer-widget .fw-title {
+  margin-bottom: 30px;
+}
+
+.fw-title h6 {
+  font-size: 16px;
+  color: #d9d5d5;
+  margin-bottom: 0;
+  padding-bottom: 15px;
+  position: relative;
+  margin-top: 0px;
+  font-style: normal;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.fw-title h6::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 31px;
+  height: 5px;
+  background: #ff5917;
+  border-radius: 0px 0px 4px 4px;
+}
+
+.footer-contact-info ul li {
+  font-size: 14px;
+  color: #b1b1b1;
+}
+.footer-contact-info ul li p {
+  font-size: 14px;
+  color: #b1b1b1;
+  margin-bottom: 15px;
+  line-height: 24px;
+}
+
+.footer-contact-info ul li span {
+  color: #d8d8d8;
+}
+
+.fw-link ul li {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px dashed #414348;
+}
+
+.fw-link ul li a {
+  font-size: 14px;
+  color: #b1b1b1;
+  display: inline-block;
+  transition: all .5s;
+}
+
+.footer-social a:hover,
+.fw-link ul li a:hover,
+.rc-comments ul li a:hover {
+  color: #ff5917;
+  text-decoration: none;
+}
+
+.rc-comments ul li {
+    font-size: 14px;
+    color: #b1b1b1;
+}
+
+.rc-comments ul li span {
+    margin-right: 5px;
+}
+
+.rc-comments ul li a {
+    color: #d7d7d7;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.copyright-wrap {
+  background: #191c23;
+  padding: 35px 0;
+}
+
+.copyright-text p {
+  font-size: 14px;
+  color: #b1b1b1;
+  margin-bottom: 0;
+  line-height: 26px;
+}
+
+.copyright-text p a {
+  font-weight: 500;
+  color: #ff5917;
+}
+
+.payment-method-img img {
+  max-width: 100%;
+}
+

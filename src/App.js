@@ -9,13 +9,15 @@ function App() {
   return (
     <BrowserRouter>
       {/* Route Main */}
-      <Route path="/">
-        <AppLayout>
-          <Route path="/" exact>
-              <Home/>
-          </Route>
-        </AppLayout>
-      </Route>
+      <Switch>
+        <Route path="/">
+          <AppLayout>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+          </AppLayout>
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 }
