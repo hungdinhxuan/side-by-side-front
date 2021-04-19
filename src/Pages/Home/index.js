@@ -12,7 +12,7 @@ import "../../Styles/Home.css";
 const items = [
   {
     src:
-      "https://playerduo.com/api/upload-service/images/a48c649e-8fa3-4ff3-b3e6-275fc298aed3__2ced2e60-5d8f-11eb-a34e-dd03c3a22289__player_album.jpg",
+      "https://img.ibxk.com.br///2019/08/05/05163458021048-t1200x480.jpg",
     altText: "Slide 1",
     caption: "Slide 1",
   },
