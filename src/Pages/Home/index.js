@@ -8,31 +8,32 @@ import {
 } from "reactstrap";
 
 import "../../Styles/Home.css";
+import ShowHome from '../../Hooks/ShowHome';
 
 const items = [
   {
     src:
       "https://img.ibxk.com.br///2019/08/05/05163458021048-t1200x480.jpg",
-    altText: "Slide 1",
-    caption: "Slide 1",
+    // altText: "Slide 1",
+    // caption: "Slide 1",
   },
   {
     src:
       "https://dl.lolwallpapers.net/?id=8887",
-    altText: "Slide 2",
-    caption: "Slide 2",
+    // altText: "Slide 2",
+    // caption: "Slide 2",
   },
   {
     src:
       "https://preview.redd.it/46vbxutg18561.png?width=1920&format=png&auto=webp&s=3a9cf233b1ac6647baa7dd7324b6b0f36e37d057",
-    altText: "Slide 3",
-    caption: "Slide 3",
+    // altText: "Slide 3",
+    // caption: "Slide 3",
   },
   {
     src:
       "https://preview.redd.it/46vbxutg18561.png?width=1920&format=png&auto=webp&s=3a9cf233b1ac6647baa7dd7324b6b0f36e37d057",
-    altText: "Slide 4",
-    caption: "Slide 4",
+    // altText: "Slide 4",
+    // caption: "Slide 4",
   },
 ];
 
@@ -94,6 +95,9 @@ const Home = (props) => {
               onClickHandler={next}
             />
           </Carousel>
+
+          <ShowHome></ShowHome>
+
         </div>
     </div>
   );
