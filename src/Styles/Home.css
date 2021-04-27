@@ -42,11 +42,11 @@
     margin-top: 5%;
 }
 
-#show-home .show-more .show-more-header{
+#show-home .show-more-header{
     display: flex;
     align-items: center;
 }
-.show-more .show-more-header h3 {
+.show-more-header h3 {
     padding: 0 20px;
     color: #cfcdcd;
     margin: 0;
@@ -56,7 +56,7 @@
     
 }
 
-.show-more .show-more-header h3::after{
+.show-more-header h3::after{
     content: "";
     position: absolute;
     left: 0;
@@ -92,7 +92,7 @@
 #show-home .show-more-game .line-middle{
     flex: 1;
     height: 3px;
-    background-color: #cfcdcd;
+    background-color: #393C49;
 }
 
 .show-more-list {
