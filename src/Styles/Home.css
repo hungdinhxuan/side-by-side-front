@@ -77,14 +77,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 10px 0;
 }
 
 #show-home .show-more-game button {
     background: #271a24;
     border: none;
-    color: #ABBBC2;
     text-transform: uppercase;
-    font-size: 25px;
+    font-size: 15px;
     font-weight: 700;
     padding: 0 20px;
 }
@@ -109,6 +109,14 @@
 
 .show-more-game-items img {
     width: 100%;
+}
+
+.show-more-game .text-show-more{
+    color: #ABBBC2;
+}
+
+.show-more-game .text-show-more:hover{
+    transform:scale(1.2,1.2);
 }
 
 .show-more-list .show-more-game-items p {

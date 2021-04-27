@@ -23,7 +23,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -37,7 +37,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -51,7 +51,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -65,7 +65,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -79,7 +79,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -93,7 +93,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -107,7 +107,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -121,7 +121,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -138,7 +138,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -152,7 +152,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -166,7 +166,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -180,7 +180,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -194,7 +194,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -208,7 +208,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -222,7 +222,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -236,7 +236,7 @@ export default function ShowHome() {
             <img src={Anh}></img>
             <p>50k+ Views</p>
             <span className="text-game-items" style={{ display: "block" }}>
-              Leaguage of Legends
+              League of Legends
             </span>
             <a
               href="https://youtube.com"
@@ -252,15 +252,15 @@ export default function ShowHome() {
         <div className="line-middle"></div>
         <button onClick={handleShowmore}>
           {show ? (
-            <div>
+            <div className="text-show-more">
               Show Less <i class="fa fa-arrow-up"></i>
             </div>
           ) : (
-            <div>
+            <div className="text-show-more">
               Show more <i class="fa fa-arrow-down"></i>
             </div>
           )}
-        </button>
+        </button >
         <div className="line-middle"></div>
       </div>
     </div>
