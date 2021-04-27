@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "../../Styles/header.css";
+import PopupLogin from '../../Hooks/PopupLogin'
 
 //Test useSticky
 import Navbar from "../Header/Navbar";
@@ -60,12 +61,10 @@ export default function Header() {
                   </li>
                   <li className="or">or</li>
                   <li>
-                    <Link to="/login">
-                      <a>
-                        <i className="far fa-edit" />
-                        sign in
-                      </a>
-                    </Link>
+                      <PopupLogin>
+                        <Redirect to='/'>
+                        </Redirect>
+                      </PopupLogin>
                   </li>
                 </ul>
               </div>

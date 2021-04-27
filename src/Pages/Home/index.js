@@ -104,10 +104,4 @@ const Home = (props) => {
 };
 
 export default Home;
-// export default function Home() {
-//     return (
-//         <div style={{height: '400px'}}>
-//             <h1>Home page</h1>
-//         </div>
-//     )
-// }
+

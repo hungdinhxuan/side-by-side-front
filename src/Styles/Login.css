@@ -1,0 +1,15 @@
+.modal-content .modal-header{
+    width: 100%;
+    text-align: center 
+}
+
+.modal-header .modal-title{
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.modal-header .modal-title img{
+    height: 100px;
+}
