@@ -17,7 +17,7 @@ const initialState = {
 //Xử lý login và register
 
 function authReducer(state = initialState, action) {
-  switch (action) {
+  switch (action.type) {
     case LOGIN_REQUEST: {
       return { ...state, isLoading: true, error: null };
     }

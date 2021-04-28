@@ -44,10 +44,10 @@ const PopupLogin = (props) => {
     const { redirectTo } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    if (redirectTo) {
-      return <Redirect to={redirectTo} />;
-    }
-    return <Redirect to="/" />;
+    // if (redirectTo) {
+    //   return <Redirect to={redirectTo} />;
+    // }
+    return <Redirect to="/streamer" />;
   }
 
   return (
@@ -111,12 +111,12 @@ const PopupLogin = (props) => {
             {errors.matKhau && (
               <Alert color="danger">{errors.matKhau.message}</Alert>
             )}
-
+            {error && <Alert color="danger">{error}</Alert>}
             <button class="btn btn-primary">Đăng Nhập</button>
           </form>
         </ModalBody>
         <ModalFooter>
-          <button class="btn btn-primary">Đăng Ký</button>
+          <button class="btn btn-primary">Hủy bỏ</button>
         </ModalFooter>
       </Modal>
     </div>
