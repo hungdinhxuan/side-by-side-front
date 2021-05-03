@@ -3,10 +3,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
 } from "../../constants/auth";
+import { getCookie } from "../../Services/handleCookie";
 
-const userInfo = localStorage.getItem("userInfo")
-  ? JSON.parse(localStorage.getItem("userInfo"))
-  : null;
+
+// const userInfo = getCookie('token') ? getCookie('token') : null;
+
+const userInfo = localStorage.getItem('token') ? localStorage.getItem('token') : null;
+
 
 const initialState = {
   userInfo,
@@ -25,7 +28,7 @@ function authReducer(state = initialState, action) {
       return { ...state, isLoading: false, userInfo: action.payload.data };
     }
     case LOGIN_FAILURE: {
-      return { ...state, isLoading: false, error: action.payload.error };
+      return { ...state, isLoading: false, error: action.payload.error};
     }
     default:
       return state;

@@ -13,8 +13,8 @@ import logo1 from "../img/player-dou-a.jpg";
 import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import login  from "../actions/auth";
-import { Redirect, useLocation } from "react-router-dom";
+import login from "../actions/auth";
+import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
 const PopupLogin = (props) => {
@@ -44,10 +44,12 @@ const PopupLogin = (props) => {
     const { redirectTo } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
-    // if (redirectTo) {
-    //   return <Redirect to={redirectTo} />;
-    // }
+    if (redirectTo) {
+      return <Redirect to={redirectTo} />;
+    }
     return <Redirect to="/streamer" />;
+  } else {
+    console.log(userInfo);
   }
 
   return (
@@ -74,7 +76,7 @@ const PopupLogin = (props) => {
                 className="form-control"
                 placeholder="Tài khoản"
                 defaultValue=""
-                {...register("taiKhoan", {
+                {...register("username", {
                   required: {
                     value: true,
                     message: "Tài khoản không được để trống",
@@ -90,8 +92,8 @@ const PopupLogin = (props) => {
                 })}
               />
             </div>
-            {errors.taiKhoan && (
-              <Alert color="danger">{errors.taiKhoan.message}</Alert>
+            {errors.username && (
+              <Alert color="danger">{errors.username.message}</Alert>
             )}
             <div className="form-group">
               <label>Mật khẩu</label>
@@ -100,7 +102,7 @@ const PopupLogin = (props) => {
                 className="form-control"
                 placeholder="Mật khẩu"
                 defaultValue=""
-                {...register("matKhau", {
+                {...register("password", {
                   required: {
                     value: true,
                     message: "Mật khẩu không được để trống",
@@ -108,14 +110,19 @@ const PopupLogin = (props) => {
                 })}
               />
             </div>
-            {errors.matKhau && (
-              <Alert color="danger">{errors.matKhau.message}</Alert>
+            {errors.password && (
+              <Alert color="danger">{errors.password.message}</Alert>
             )}
             {error && <Alert color="danger">{error}</Alert>}
             <button class="btn btn-primary">Đăng Nhập</button>
           </form>
         </ModalBody>
         <ModalFooter>
+          <a href="https://side-by-side-back.vercel.app/auth/google">
+            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
+              Đăng nhập GMAIL{" "}
+            </button>
+          </a>
           <button class="btn btn-primary">Hủy bỏ</button>
         </ModalFooter>
       </Modal>

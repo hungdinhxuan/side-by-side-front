@@ -2,10 +2,10 @@ import axiosClient from "./axiosClient";
 
 const authAPI = {
   login: (values) => {
-    return axiosClient.post("/QuanLyNguoiDung/DangNhap", values);
+    return axiosClient.post("/renter/login", values);
   },
   register: (values) => {
-    return axiosClient.post("/QuanLyNguoiDung/DangKy", values);
+    return axiosClient.post("/renter/register", values);
   },
 };
 

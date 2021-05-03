@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useState, useEffect, } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../../Styles/header.css";
-import PopupLogin from '../../Hooks/PopupLogin'
+import PopupLogin from "../../Hooks/PopupLogin";
+import {useSelector, useDispatch} from 'react-redux';
 
 //Test useSticky
 import Navbar from "../Header/Navbar";
-// import StickyHeader from "../Header/StickyHeader"; 
+import { getCookie } from "../../Services/handleCookie";
+// import StickyHeader from "../Header/StickyHeader";
 
 export default function Header() {
-  // const { isSticky, element } = StickyHeader();
+  
+  const {userInfo} = useSelector(state => state.auth);
+  const data = localStorage.getItem('token');
+  const [logout, setLogout] = useState(false);
+  
+  useEffect(() => {
+    console.log('Hello world');
+    if(data){
+      setLogout(true)
+      console.log(data);
+    }
+  },[data])
+
+  const handleLocalStore = () => {
+    localStorage.clear();
+    setLogout(false);
+  }
   return (
     <div className="header-bg">
       <div className="header-top-wrap">
@@ -50,22 +68,31 @@ export default function Header() {
             </div>
             <div className="col-sm-6">
               <div className="header-top-login">
-                <ul>
-                  <li>
-                    <Link to="/register">
-                      <a>
-                        <i className="far fa-edit" />
-                        Register
-                      </a>
-                    </Link>
-                  </li>
-                  <li className="or">or</li>
-                  <li>
-                      <PopupLogin>
-                        <Redirect to='/'>
-                        </Redirect>
-                      </PopupLogin>
-                  </li>
+                <ul className="list-dang-nhap">
+                  {logout ? (
+                    <>
+                      <Link path="/">
+                        <button onClick={handleLocalStore} >Log out</button>
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link to="/register">
+                          <a>
+                            <i className="far fa-edit" />
+                            Register
+                          </a>
+                        </Link>
+                      </li>
+                      <li className="or">or</li>
+                      <li>
+                        <PopupLogin>
+                          <Redirect to="/"></Redirect>
+                        </PopupLogin>
+                      </li>
+                    </>
+                  )}
                 </ul>
               </div>
             </div>
