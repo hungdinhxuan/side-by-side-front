@@ -5,11 +5,17 @@ import {
 } from "../../constants/auth";
 import { getCookie } from "../../Services/handleCookie";
 
+import {
+  REGISTER_REQUEST,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+} from "../../constants/auth";
 
 // const userInfo = getCookie('token') ? getCookie('token') : null;
 
-const userInfo = localStorage.getItem('token') ? localStorage.getItem('token') : null;
-
+const userInfo = localStorage.getItem("token")
+  ? localStorage.getItem("token")
+  : null;
 
 const initialState = {
   userInfo,
@@ -28,7 +34,16 @@ function authReducer(state = initialState, action) {
       return { ...state, isLoading: false, userInfo: action.payload.data };
     }
     case LOGIN_FAILURE: {
-      return { ...state, isLoading: false, error: action.payload.error};
+      return { ...state, isLoading: false, error: action.payload.error };
+    }
+    case REGISTER_REQUEST: {
+      return { ...state, isLoading: true, error: null };
+    }
+    case REGISTER_SUCCESS: {
+      return { ...state, isLoading: false, userInfo: action.payload.data };
+    }
+    case REGISTER_FAILURE: {
+      return { ...state, isLoading: false, error: action.payload.error };
     }
     default:
       return state;

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../../Styles/header.css";
 import PopupLogin from "../../Hooks/PopupLogin";
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from "react-redux";
 
 //Test useSticky
 import Navbar from "../Header/Navbar";
@@ -10,23 +10,28 @@ import { getCookie } from "../../Services/handleCookie";
 // import StickyHeader from "../Header/StickyHeader";
 
 export default function Header() {
-  
-  const {userInfo} = useSelector(state => state.auth);
-  const data = localStorage.getItem('token');
-  const [logout, setLogout] = useState(false);
-  
-  useEffect(() => {
-    console.log('Hello world');
-    if(data){
-      setLogout(true)
-      console.log(data);
-    }
-  },[data])
+  const { userInfo } = useSelector((state) => state.auth);
+  const data = localStorage.getItem("token");
+  const [logout, setLogout] = useState(null);
+
 
   const handleLocalStore = () => {
     localStorage.clear();
     setLogout(false);
-  }
+  };
+
+  useEffect(() => {
+    console.log("Hello world");
+    if (data) {
+      setLogout(true);
+      console.log(data);
+    }
+  }, [data]);
+
+
+  
+
+  
   return (
     <div className="header-bg">
       <div className="header-top-wrap">
@@ -72,7 +77,7 @@ export default function Header() {
                   {logout ? (
                     <>
                       <Link path="/">
-                        <button onClick={handleLocalStore} >Log out</button>
+                        <button onClick={handleLocalStore}>Log out</button>
                       </Link>
                     </>
                   ) : (
@@ -85,7 +90,9 @@ export default function Header() {
                           </a>
                         </Link>
                       </li>
-                      <li className="or">or</li>
+                      <li className="or" style={{ color: "orange" }}>
+                        or
+                      </li>
                       <li>
                         <PopupLogin>
                           <Redirect to="/"></Redirect>

@@ -27,7 +27,7 @@ const PopupLogin = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({shouldUnregister: false});
 
   const toggle = () => setModal(!modal);
   const [loginState, setLogin] = useState(false);
@@ -40,17 +40,20 @@ const PopupLogin = (props) => {
     dispatch(login(values));
   };
 
-  if (userInfo) {
-    const { redirectTo } = qs.parse(location.search, {
-      ignoreQueryPrefix: true,
-    });
-    if (redirectTo) {
-      return <Redirect to={redirectTo} />;
-    }
-    return <Redirect to="/streamer" />;
-  } else {
-    console.log(userInfo);
-  }
+  //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/> 
+
+    // if (userInfo) {
+    //   const { redirectTo } = qs.parse(location.search, {
+    //     ignoreQueryPrefix: true,
+    //   });
+    //   if (redirectTo) {
+    //     return <Redirect to={redirectTo} />;
+    //   }
+    //   return <Redirect to="/streamer" />;
+    // } else {
+    //   return <Redirect to=
+    // }
+    
 
   return (
     <div>
@@ -61,7 +64,7 @@ const PopupLogin = (props) => {
           handleSetLogin();
         }}
       >
-        <i className="far fa-edit" /> Sign in
+        <i className="far fa-edit" /> Đăng nhập
       </Button>
       <Modal isOpen={modal} toggle={toggle} className="custom-login">
         <ModalHeader toggle={toggle}>
@@ -123,7 +126,13 @@ const PopupLogin = (props) => {
               Đăng nhập GMAIL{" "}
             </button>
           </a>
+          <a href="https://side-by-side-back.vercel.app/auth/facebook">
+            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
+              Đăng nhập FB{" "}
+            </button>
+          </a>
           <button class="btn btn-primary">Hủy bỏ</button>
+          
         </ModalFooter>
       </Modal>
     </div>
