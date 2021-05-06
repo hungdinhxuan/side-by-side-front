@@ -13,3 +13,13 @@
 .modal-header .modal-title img{
     height: 100px;
 }
+
+
+.modal-content{
+    width: 75%;
+    margin: 0 auto;
+}
+
+.custom-login-body button {
+    width: 100%;
+}

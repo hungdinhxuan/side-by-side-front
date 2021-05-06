@@ -9,16 +9,16 @@ import {
   Alert,
   FormGroup,
 } from "reactstrap";
+
 import logo1 from "../img/player-dou-a.jpg";
 import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import {login} from "../actions/auth";
+import {Register} from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
-const PopupLogin = (props) => {
-  const { buttonLabel, className } = props;
+const PopupRegister = () => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
@@ -27,33 +27,29 @@ const PopupLogin = (props) => {
     register,
     handleSubmit,
     formState: { errors },
+    getValues,
+    watch,
   } = useForm();
 
   const toggle = () => setModal(!modal);
-  const [loginState, setLogin] = useState(false);
-  const handleSetLogin = () => {
-    setLogin(true);
+  const [registerState, setRegister] = useState(false);
+  const handleSetRegister = () => {
+    setRegister(true);
   };
 
-  const handleLogin = (values) => {
+  const handleRegister = (values) => {
     console.log(values);
-    dispatch(login(values));
+    dispatch(Register(values));
   };
+  if (userInfo) {
+    const { redirectTo } = qs.parse(location.search, {
+      ignoreQueryPrefix: true,
+    });
+  }
 
-  //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/> 
-
-    if (userInfo) {
-      const { redirectTo } = qs.parse(location.search, {
-        ignoreQueryPrefix: true,
-      })};
-    //   if (redirectTo) {
-    //     return <Redirect to={redirectTo} />;
-    //   }
-    //   return <Redirect to="/streamer" />;
-    // } else {
-    //   return <Redirect to=
-    // }
-    
+  // Kiểm tra mật khẩu
+  const password = watch("password"); //Kiểm tra giá trị password
+  const password_repeat = watch("password_repeat");
 
   return (
     <div>
@@ -61,24 +57,23 @@ const PopupLogin = (props) => {
         color="danger"
         onClick={() => {
           toggle();
-          handleSetLogin();
+          handleSetRegister();
         }}
       >
-        <i className="far fa-edit" /> Đăng nhập
+        <i className="far fa-edit" /> Đăng ký
       </Button>
-      <Modal isOpen={modal} toggle={toggle} className="custom-login">
+      <Modal isOpen={modal} toggle={toggle} className="custom-register">
         <ModalHeader toggle={toggle}>
           <img src={logo1} alt="Anh logo" />
         </ModalHeader>
-        <ModalBody className="custom-login-body">
-          <form onSubmit={handleSubmit(handleLogin)}>
+        <ModalBody className="custom-register-body">
+          <form onSubmit={handleSubmit(handleRegister)}>
             <div className="form-group">
               <label>Tài khoản</label>
               <input
                 type="text"
                 className="form-control"
                 placeholder="Tài khoản"
-                defaultValue=""
                 {...register("username", {
                   required: {
                     value: true,
@@ -104,43 +99,50 @@ const PopupLogin = (props) => {
                 type="password"
                 className="form-control"
                 placeholder="Mật khẩu"
+                defaultValue=""
                 {...register("password", {
                   required: {
                     value: true,
-                    message: "Mật khẩu không được để trống",
+                    message: "Mật khẩu không được để trống"
                   },
+                  minLength: {
+                    value: 5,
+                    message: "Mật khẩu phải từ 5 ký tự trở lên",  
+                  }
                 })}
               />
             </div>
             {errors.password && (
               <Alert color="danger">{errors.password.message}</Alert>
             )}
+            <div className="form-group">
+              <label>Nhập lại mật khẩu</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Nhập lại mật khẩu"
+                {...register("password_repeat", {
+                  required: {
+                    value: true,
+                  },
+                  validate: (value) =>
+                    value === password || "Mật khẩu không trùng khớp",
+                })}
+              />
+            </div>
+            {errors.password_repeat && (
+              <Alert color="danger">{errors.password_repeat.message}</Alert>
+            )}
             {error && <Alert color="danger">{error}</Alert>}
-            <button class="btn btn-primary">Đăng Nhập</button>
+            <button class="btn btn-primary">Đăng ký</button>
           </form>
         </ModalBody>
         <ModalFooter>
-          <a href="https://side-by-side-back.vercel.app/auth/google">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
-              Đăng nhập Google{" "}
-            </button>
-          </a>
-          <a href="https://side-by-side-back.vercel.app/auth/facebook">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
-              Đăng nhập Facebook{" "}
-            </button>
-          </a>
-          <a href="https://side-by-side-back.vercel.app/auth/facebook">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
-              Đăng nhập FB{" "}
-            </button>
-          </a>
           <button class="btn btn-primary">Hủy bỏ</button>
-          
         </ModalFooter>
       </Modal>
     </div>
   );
 };
 
-export default PopupLogin;
+export default PopupRegister;
