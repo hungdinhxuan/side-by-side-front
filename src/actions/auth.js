@@ -10,7 +10,9 @@ export function login(values) {
     dispatch({ type: LOGIN_REQUEST });
     try {
       const { data } = await authAPI.login(values);
-      localStorage.setItem("token", JSON.stringify(data.token));
+      if(data) {
+        localStorage.setItem("token", JSON.stringify(data.token));
+      }
       // setCookie("token", data.token, 0.00138888889); 
       dispatch({ type: LOGIN_SUCCESS, payload: { data } });
     } catch (error) {
@@ -29,7 +31,6 @@ export function Register(values) {
     dispatch({ type: REGISTER_REQUEST });
     try {
       const { data } = await authAPI.register(values);
-      localStorage.setItem("token", JSON.stringify(data.token));
       // setCookie("token", data.token, 0.00138888889); 
       dispatch({ type: REGISTER_SUCCESS, payload: { data } });
     } catch (error) {

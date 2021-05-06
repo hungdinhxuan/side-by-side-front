@@ -15,7 +15,6 @@ export default function Header() {
   const data = localStorage.getItem("token");
   const [logout, setLogout] = useState(null);
 
-
   const handleLocalStore = () => {
     localStorage.clear();
     setLogout(false);
@@ -23,16 +22,12 @@ export default function Header() {
 
   useEffect(() => {
     // console.log("Hello world");
-    if (data && data !== "undefined") {
+    if (data && data !== 'undefined') {
       setLogout(true);
       console.log(data);
     }
-    if(data === "undefined")
-    {
-      alert("Đăng ký thất bại vui lòng chờ")
-      localStorage.clear();
-    }
   }, [data]);
+
 
   return (
     <div className="header-bg">

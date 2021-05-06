@@ -14,7 +14,7 @@ import logo1 from "../img/player-dou-a.jpg";
 import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import {Register} from "../actions/auth";
+import { Register } from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
@@ -29,18 +29,24 @@ const PopupRegister = () => {
     formState: { errors },
     getValues,
     watch,
+    reset
   } = useForm();
 
   const toggle = () => setModal(!modal);
-  const [registerState, setRegister] = useState(false);
+  
+
   const handleSetRegister = () => {
-    setRegister(true);
+    setModal(!modal);
   };
+
 
   const handleRegister = (values) => {
     console.log(values);
     dispatch(Register(values));
+    handleSetRegister();
+    reset();
   };
+
   if (userInfo) {
     const { redirectTo } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
@@ -57,7 +63,6 @@ const PopupRegister = () => {
         color="danger"
         onClick={() => {
           toggle();
-          handleSetRegister();
         }}
       >
         <i className="far fa-edit" /> Đăng ký
@@ -74,6 +79,7 @@ const PopupRegister = () => {
                 type="text"
                 className="form-control"
                 placeholder="Tài khoản"
+                defaultValue=""
                 {...register("username", {
                   required: {
                     value: true,
@@ -103,12 +109,12 @@ const PopupRegister = () => {
                 {...register("password", {
                   required: {
                     value: true,
-                    message: "Mật khẩu không được để trống"
+                    message: "Mật khẩu không được để trống",
                   },
                   minLength: {
                     value: 5,
-                    message: "Mật khẩu phải từ 5 ký tự trở lên",  
-                  }
+                    message: "Mật khẩu phải từ 5 ký tự trở lên",
+                  },
                 })}
               />
             </div>
@@ -121,6 +127,7 @@ const PopupRegister = () => {
                 type="password"
                 className="form-control"
                 placeholder="Nhập lại mật khẩu"
+                defaultValue=""
                 {...register("password_repeat", {
                   required: {
                     value: true,
