@@ -8,18 +8,17 @@ import {
 } from "reactstrap";
 
 import "../../Styles/Home.css";
-import ShowHome from '../../Hooks/ShowHome';
+import ShowHome from "../../Hooks/ShowHome";
+import {useLocation} from 'react-router-dom';
 
 const items = [
   {
-    src:
-      "https://img.ibxk.com.br///2019/08/05/05163458021048-t1200x480.jpg",
+    src: "https://img.ibxk.com.br///2019/08/05/05163458021048-t1200x480.jpg",
     // altText: "Slide 1",
     // caption: "Slide 1",
   },
   {
-    src:
-      "https://dl.lolwallpapers.net/?id=8887",
+    src: "https://dl.lolwallpapers.net/?id=8887",
     // altText: "Slide 2",
     // caption: "Slide 2",
   },
@@ -73,35 +72,41 @@ const Home = (props) => {
       </CarouselItem>
     );
   });
+  const useQuery = () => {
+    return new URLSearchParams(useLocation().search);
+  };
+  const query = useQuery();
+  const handleGetToken = () => {
+    const name = query.get("token");
+    return name;
+  };
 
   return (
-    <div className='Home-main'>
-        <div className="container">
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-            <CarouselIndicators
-              items={items}
-              activeIndex={activeIndex}
-              onClickHandler={goToIndex}
-            />
-            {slides}
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={previous}
-            />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={next}
-            />
-          </Carousel>
+    <div className="Home-main">
+      <div className="container">
+        <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+          <CarouselIndicators
+            items={items}
+            activeIndex={activeIndex}
+            onClickHandler={goToIndex}
+          />
+          {slides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={previous}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={next}
+          />
+        </Carousel>
 
-          <ShowHome></ShowHome>
-
-        </div>
+        <ShowHome></ShowHome>
+      </div>
     </div>
   );
 };
 
 export default Home;
-

@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Navbar from "../Header/Navbar";
 import { getCookie } from "../../Services/handleCookie";
 // import StickyHeader from "../Header/StickyHeader";
+import Home from '../../Pages/Home';
 
 export default function Header() {
   const { userInfo } = useSelector((state) => state.auth);
@@ -19,6 +20,7 @@ export default function Header() {
     localStorage.clear();
     setLogout(false);
   };
+  const {handleGetToken} = Home();
 
   useEffect(() => {
     // console.log("Hello world");
@@ -26,7 +28,10 @@ export default function Header() {
       setLogout(true);
       console.log(data);
     }
+    console.log(handleGetToken);
   }, [data]);
+
+  
 
 
   return (

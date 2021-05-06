@@ -17,6 +17,8 @@ import {login} from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
+
+
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
   const dispatch = useDispatch();
@@ -45,8 +47,13 @@ const PopupLogin = (props) => {
     if (userInfo) {
       const { redirectTo } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
-      })};
+      })
+    };
     
+    
+    
+    
+
     
 
   return (
@@ -115,12 +122,12 @@ const PopupLogin = (props) => {
         </ModalBody>
         <ModalFooter>
           <a href="https://side-by-side-back.vercel.app/auth/google">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
+            <button class="btn btn-primary mt-2" style={{ display: "block" }} >
               Đăng nhập GMAIL{" "}
             </button>
           </a>
           <a href="https://side-by-side-back.vercel.app/auth/facebook">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
+            <button class="btn btn-primary mt-2" style={{ display: "block" }} >
               Đăng nhập FB{" "}
             </button>
           </a>
