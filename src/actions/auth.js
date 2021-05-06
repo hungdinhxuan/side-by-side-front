@@ -5,6 +5,7 @@ import authAPI from "../Services/authAPI";
 import React from "react";
 import { setCookie } from "../Services/handleCookie";
 
+
 export default function login(values) {
   return async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
@@ -17,7 +18,7 @@ export default function login(values) {
       console.log(error);
       dispatch({
         type: LOGIN_FAILURE,
-        payload: { error: error.response.data },
+        payload: { error: error.response.error },
       });
     }
   };

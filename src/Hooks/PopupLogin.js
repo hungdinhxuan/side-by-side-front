@@ -120,7 +120,12 @@ const PopupLogin = (props) => {
         <ModalFooter>
           <a href="https://side-by-side-back.vercel.app/auth/google">
             <button class="btn btn-primary mt-2" style={{ display: "block" }}>
-              Đăng nhập GMAIL{" "}
+              Đăng nhập Google{" "}
+            </button>
+          </a>
+          <a href="https://side-by-side-back.vercel.app/auth/facebook">
+            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
+              Đăng nhập Facebook{" "}
             </button>
           </a>
           <button class="btn btn-primary">Hủy bỏ</button>
