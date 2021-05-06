@@ -46,13 +46,7 @@ const PopupLogin = (props) => {
       const { redirectTo } = qs.parse(location.search, {
         ignoreQueryPrefix: true,
       })};
-    //   if (redirectTo) {
-    //     return <Redirect to={redirectTo} />;
-    //   }
-    //   return <Redirect to="/streamer" />;
-    // } else {
-    //   return <Redirect to=
-    // }
+    
     
 
   return (
