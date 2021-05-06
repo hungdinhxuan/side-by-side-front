@@ -5,12 +5,8 @@ import authAPI from "../Services/authAPI";
 import React from "react";
 import { setCookie } from "../Services/handleCookie";
 
-<<<<<<< HEAD
-
-export default function login(values) {
-=======
 export function login(values) {
->>>>>>> c427cbf2584528c5f6767375a07bc54e433af692
+
   return async (dispatch) => {
     dispatch({ type: LOGIN_REQUEST });
     try {
