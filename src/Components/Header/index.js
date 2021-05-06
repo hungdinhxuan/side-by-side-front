@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../../Styles/header.css";
 import PopupLogin from "../../Hooks/PopupLogin";
+import PopupRegister from '../../Hooks/PopupRegister';
 import { useSelector, useDispatch } from "react-redux";
 
 //Test useSticky
@@ -21,17 +22,18 @@ export default function Header() {
   };
 
   useEffect(() => {
-    console.log("Hello world");
-    if (data) {
+    // console.log("Hello world");
+    if (data && data !== "undefined") {
       setLogout(true);
       console.log(data);
     }
+    if(data === "undefined")
+    {
+      alert("Đăng ký thất bại vui lòng chờ")
+      localStorage.clear();
+    }
   }, [data]);
 
-
-  
-
-  
   return (
     <div className="header-bg">
       <div className="header-top-wrap">
@@ -83,12 +85,9 @@ export default function Header() {
                   ) : (
                     <>
                       <li>
-                        <Link to="/register">
-                          <a>
-                            <i className="far fa-edit" />
-                            Register
-                          </a>
-                        </Link>
+                        <PopupRegister>
+                          <Redirect to="/"/>
+                        </PopupRegister>
                       </li>
                       <li className="or" style={{ color: "orange" }}>
                         or

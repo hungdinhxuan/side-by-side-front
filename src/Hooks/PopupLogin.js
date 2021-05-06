@@ -13,7 +13,7 @@ import logo1 from "../img/player-dou-a.jpg";
 import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import login from "../actions/auth";
+import {login} from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
@@ -27,7 +27,7 @@ const PopupLogin = (props) => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({shouldUnregister: false});
+  } = useForm();
 
   const toggle = () => setModal(!modal);
   const [loginState, setLogin] = useState(false);
@@ -36,16 +36,16 @@ const PopupLogin = (props) => {
   };
 
   const handleLogin = (values) => {
-    // console.log(values);
+    console.log(values);
     dispatch(login(values));
   };
 
   //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/> 
 
-    // if (userInfo) {
-    //   const { redirectTo } = qs.parse(location.search, {
-    //     ignoreQueryPrefix: true,
-    //   });
+    if (userInfo) {
+      const { redirectTo } = qs.parse(location.search, {
+        ignoreQueryPrefix: true,
+      })};
     //   if (redirectTo) {
     //     return <Redirect to={redirectTo} />;
     //   }
@@ -104,7 +104,6 @@ const PopupLogin = (props) => {
                 type="password"
                 className="form-control"
                 placeholder="Mật khẩu"
-                defaultValue=""
                 {...register("password", {
                   required: {
                     value: true,
