@@ -1,0 +1,41 @@
+.streamer{
+    background: #271a24;
+}
+
+.container{
+    justify-content: center;
+    align-items: center;
+}
+
+.container .streamer-search{
+    display: block;
+    margin: 20px;
+    position: relative;
+}
+
+.streamer-search input {
+    display: block;
+    width: 552px;
+    margin: 0 auto;
+    text-align: center;
+    border: 1px solid #000;
+    border-radius: 15px;
+    outline: none;
+}
+
+.streamer-search input {
+    position: relative;
+    background: #b1b1b1;
+
+}
+.streamer-search input:focus{
+    background: #b1b1b1;
+}
+
+.streamer-search .fa-search {
+    position: absolute;
+    top: 6px;
+    right: 4%;
+}
+
+

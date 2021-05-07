@@ -19,114 +19,114 @@ export default function ShowHome() {
         {/* <div className="line-middle"></div> */}
       </div>
       <div className="show-more-list">
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
@@ -134,121 +134,121 @@ export default function ShowHome() {
         </div>
       <div className={show ? "show-more mt-4" : "show-less d-none"}>
         <div className="show-more-list">
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
-          <div className="show-more-game-items">
+          <div className="show-more-streamer-items">
             <img src={Anh}></img>
             <p>50k+ Views</p>
-            <span className="text-game-items" style={{ display: "block" }}>
+            <span className="text-streamer-items" style={{ display: "block" }}>
               League of Legends
             </span>
             <a
               href="https://youtube.com"
               target="_blank"
-              className="game-items"
+              className="streamer-items"
             >
               MOBA
             </a>
           </div>
         </div>
       </div>
-      <div className="show-more-game">
+      <div className="show-more-streamer">
         <div className="line-middle"></div>
         <button onClick={handleShowmore}>
           {show ? (

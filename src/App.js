@@ -4,6 +4,8 @@ import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 //Pages
 import AppLayout from "./Components/LayoutApp";
 import Home from "./Pages/Home";
+import Streamer from './Pages/Streamer'
+
 
 function App() {
   return (
@@ -14,6 +16,9 @@ function App() {
           <AppLayout>
             <Route path="/" exact>
               <Home />
+            </Route>
+            <Route path="/streamer">
+              <Streamer />
             </Route>
           </AppLayout>
         </Route>
