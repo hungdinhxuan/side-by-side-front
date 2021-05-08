@@ -2,32 +2,31 @@ import React, { useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import "../../Styles/header.css";
 import PopupLogin from "../../Hooks/PopupLogin";
-import PopupRegister from '../../Hooks/PopupRegister';
+import PopupRegister from "../../Hooks/PopupRegister";
 import { useSelector, useDispatch } from "react-redux";
 
 //Test useSticky
 import Navbar from "../Header/Navbar";
-import { getCookie } from "../../Services/handleCookie";
+
 // import StickyHeader from "../Header/StickyHeader";
+
+import { deleteCookie } from "../../Services/handleCookie";
 
 export default function Header() {
   const { userInfo } = useSelector((state) => state.auth);
-  const data = localStorage.getItem("token");
+  const data = userInfo;
   const [logout, setLogout] = useState(null);
 
   const handleLocalStore = () => {
-    localStorage.clear();
+    deleteCookie("token");
     setLogout(false);
   };
 
   useEffect(() => {
-    // console.log("Hello world");
-    if (data && data !== 'undefined') {
+    if (data && data !== "undefined") {
       setLogout(true);
-      console.log(data);
     }
   }, [data]);
-
 
   return (
     <div className="header-bg">
@@ -81,7 +80,7 @@ export default function Header() {
                     <>
                       <li>
                         <PopupRegister>
-                          <Redirect to="/"/>
+                          <Redirect to="/" />
                         </PopupRegister>
                       </li>
                       <li className="or" style={{ color: "orange" }}>

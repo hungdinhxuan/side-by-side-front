@@ -11,11 +11,7 @@ import {
   REGISTER_FAILURE,
 } from "../../constants/auth";
 
-// const userInfo = getCookie('token') ? getCookie('token') : null;
-
-const userInfo = localStorage.getItem("token")
-  ? localStorage.getItem("token")
-  : null;
+const userInfo = getCookie('token');
 
 const initialState = {
   userInfo,

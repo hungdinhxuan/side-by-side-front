@@ -9,11 +9,11 @@ import {
 
 import "../../Styles/Home.css";
 import ShowHome from '../../Hooks/ShowHome';
+import lolImg from "../../img/Carousel/league-of-legends.jpg"
 
 const items = [
   {
-    src:
-      "https://img.ibxk.com.br///2019/08/05/05163458021048-t1200x480.jpg",
+    src: lolImg,
     // altText: "Slide 1",
     // caption: "Slide 1",
   },
