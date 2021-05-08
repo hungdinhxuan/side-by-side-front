@@ -1,0 +1,1 @@
+export const serverHost = "https://side-by-side-back.vercel.app/api"

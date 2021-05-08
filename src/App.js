@@ -1,5 +1,5 @@
 import "./Styles";
-import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
+import { BrowserRouter, Switch, Route} from "react-router-dom";
 
 //Pages
 import AppLayout from "./Components/LayoutApp";

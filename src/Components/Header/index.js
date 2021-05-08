@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import "../../Styles/header.css";
 import PopupLogin from "../../Hooks/PopupLogin";
 import PopupRegister from "../../Hooks/PopupRegister";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 //Test useSticky
 import Navbar from "../Header/Navbar";

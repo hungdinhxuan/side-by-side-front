@@ -1,10 +1,10 @@
 import axios from 'axios';
 import qs from 'qs';
 import { getCookie } from './handleCookie';
-
+import {serverHost} from '../config'
 
 const axiosClient = axios.create({
-    baseURL: "https://side-by-side-back.vercel.app/api",
+    baseURL: serverHost,
     paramsSerializer: (params) => {
         return qs.stringify(params, {skipNulls: true});
     }
@@ -12,9 +12,6 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
     (config) => {
-        //Xử lý trước khi gửi lên server
-        // const userInfo = getCookie('token'); 
-        // const userInfo = localStorage.getItem('token');
         const userInfo = getCookie('token')
         if(userInfo){
             // const {accessToken} = JSON.parse(userInfo); 
