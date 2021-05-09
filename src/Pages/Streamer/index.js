@@ -16,7 +16,7 @@ const Streamer = () => {
   useEffect(() => {
     const getPlayers = async () => {
       try {
-        const res = await axiosClient.get(`${serverHost}/player`);
+        const res = await axiosClient.get(`${serverHost}/player?page=1`);
         setPlayersState(res.data);
       } catch (error) {
         console.log(error.message);
