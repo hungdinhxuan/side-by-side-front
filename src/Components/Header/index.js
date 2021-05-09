@@ -75,6 +75,9 @@ export default function Header() {
                       <Link path="/">
                         <button onClick={handleLocalStore}>Log out</button>
                       </Link>
+                      <Link path = "/">
+                        
+                      </Link>
                     </>
                   ) : (
                     <>
