@@ -11,7 +11,9 @@ import {
   CardBody,
 } from "reactstrap";
 
+import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
+
 
 import { useDispatch, useSelector } from "react-redux";
 import { getStreamerByPage } from "../../actions/streamer";
@@ -38,6 +40,13 @@ export default function Streamer() {
     setPage(value);
   }
   
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
 
   return (
     <div className="streamer">

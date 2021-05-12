@@ -6,9 +6,9 @@ import AppLayout from "./Components/LayoutApp";
 import Home from "./Pages/Home";
 import Streamer from './Pages/Streamer'
 
-function App() {
-  
 
+function App(props) {
+  
   return (
     <BrowserRouter>
       {/* Route Main */}

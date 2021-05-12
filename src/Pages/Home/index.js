@@ -10,6 +10,8 @@ import {
 import "../../Styles/Home.css";
 import ShowHome from '../../Hooks/ShowHome';
 import lolImg from "../../img/Carousel/league-of-legends.jpg"
+import {useLocation} from 'react-router-dom'
+import { setCookie } from  '../../Services/handleCookie'
 
 const items = [
   {
@@ -73,6 +75,15 @@ const Home = (props) => {
       </CarouselItem>
     );
   });
+
+  
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+let query = useQuery();
+if(query.get('token')){
+  setCookie('token', query.get('token'))
+}
 
   return (
     <div className='Home-main'>
