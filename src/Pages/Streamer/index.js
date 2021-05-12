@@ -74,7 +74,7 @@ export default function Streamer() {
           })}
       </div>
       <div style={{width: "22%", margin: "10px auto"}}>
-      <Pagination count={10} page={page} size="large" color="secondary" onChange={handleChange} />
+      <Pagination count={10} page={page} size="large" color="secondary" />
       </div>
     </div>
   );
