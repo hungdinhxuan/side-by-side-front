@@ -18,7 +18,7 @@ function App() {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/streamer" exact>
+            <Route path="/streamer">
               <Streamer />
             </Route>
           </AppLayout>

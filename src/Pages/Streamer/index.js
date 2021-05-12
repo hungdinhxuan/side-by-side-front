@@ -1,6 +1,5 @@
-import axiosClient from "../../Services/axiosClient";
 import React, { useState, useEffect } from "react";
-import { serverHost } from "../../config";
+
 import {
   Card,
   Button,
@@ -11,50 +10,72 @@ import {
   CardSubtitle,
   CardBody,
 } from "reactstrap";
-const Streamer = () => {
-  const [playerState, setPlayersState] = useState([]);
+
+import Pagination from '@material-ui/lab/Pagination';
+
+import { useDispatch, useSelector } from "react-redux";
+import { getStreamerByPage } from "../../actions/streamer";
+import { useParams } from "react-router-dom";
+import Anhmau from '../../img/header_bg.jpg';
+
+export default function Streamer() {
+  const dispatch = useDispatch();
+  const { dulieu, isLoading, error } = useSelector((state) => state.streamer);
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
-    const getPlayers = async () => {
-      try {
-        const res = await axiosClient.get(`${serverHost}/player?page=1`);
-        setPlayersState(res.data);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    getPlayers();
-    console.log(playerState)
+    dispatch(getStreamerByPage(page));
   }, []);
 
-  return (
-    <CardColumns>
-      {playerState &&
-        playerState.map(player => {
-            return (
-          <Card>
-            <CardImg
-              top
-              width="100%"
-              src={player.avatar}
-              alt="Card image cap"
-            />
-            <CardBody>
-              <CardTitle tag="h5">{player.renterId}</CardTitle>
-              <CardSubtitle tag="h6" className="mb-2 text-muted" style={{h6: 'red'}}>
-                {player.price}đ/1h
-              </CardSubtitle>
-              <CardText>
-                This is a wider card with supporting text below as a natural
-                lead-in to additional content. This content is a little bit
-                longer.
-              </CardText>
-              <Button>Thuê ngay</Button>
-            </CardBody>
-          </Card>
-            )
-        })}
-    </CardColumns>
-  );
-};
+  if (isLoading) {
+    console.log(dulieu);
+  }
 
-export default Streamer;
+  if (error) {
+    console.log(error);
+  }
+  const handleChange = (value) => {
+    setPage(value);
+  }
+  
+
+  return (
+    <div className="streamer">
+      <div className="container row" style={{backgroundImage: {Anhmau}}}>
+        {dulieu &&
+          dulieu.map((item) => {
+            return (
+              <div className="col-3">
+                <CardColumns>
+                  <Card style={{width: "270px", height: "380px"}}>
+                    <CardImg
+                      top
+                      width="100%"
+                      height="50%"
+                      src={item.avatar}
+                      alt="Card image cap"
+                    />
+                    <CardBody>
+                      <CardTitle tag="h5">{item._id}</CardTitle>
+                      <CardSubtitle
+                        tag="h6"
+                        className="mb-2 text-muted"
+                        style={{ h6: "red" }}
+                      >
+                        {item.price}đ/1h
+                      </CardSubtitle>
+                      <CardText>hùng gà</CardText>
+                      <Button>Thuê ngay</Button>
+                    </CardBody>
+                  </Card>
+                </CardColumns>
+              </div>
+            );
+          })}
+      </div>
+      <div style={{width: "22%", margin: "10px auto"}}>
+      <Pagination count={10} page={page} size="large" color="secondary" onChange={handleChange} />
+      </div>
+    </div>
+  );
+}
