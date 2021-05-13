@@ -87,7 +87,7 @@ export default function Streamer() {
       t={10} color="primary" size="large" />
       </div> */}
       <div style={{width: "22%", margin: "10px auto"}}>
-      <Pagination count={10} size="large" color="primary" />
+      <Pagination count={10}  size="large" color="primary" />
       </div>
     </div>
   );
