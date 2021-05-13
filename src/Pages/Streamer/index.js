@@ -13,7 +13,7 @@ import {
 
 import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-
+import Typography from '@material-ui/core/Typography';
 
 import { useDispatch, useSelector } from "react-redux";
 import { getStreamerByPage } from "../../actions/streamer";
@@ -36,17 +36,10 @@ export default function Streamer() {
   if (error) {
     console.log(error);
   }
-  const handleChange = (value) => {
+  const handleChange = (event, value) => {
     setPage(value);
   }
   
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      '& > * + *': {
-        marginTop: theme.spacing(2),
-      },
-    },
-  }));
 
   return (
     <div className="streamer">
@@ -87,7 +80,8 @@ export default function Streamer() {
       t={10} color="primary" size="large" />
       </div> */}
       <div style={{width: "22%", margin: "10px auto"}}>
-      <Pagination count={10}  size="large" color="primary" />
+      <Typography>Page: {page}</Typography>
+      <Pagination count={10} page={page} size="large" color="primary" onChange={handleChange}/>
       </div>
     </div>
   );
