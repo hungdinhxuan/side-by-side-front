@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import AppLayout from "./Components/LayoutApp";
 import Home from "./Pages/Home";
 import Streamer from './Pages/Streamer'
+import BackToTop from "./Hooks/BackToTop";
 
 
 function App(props) {
@@ -20,6 +21,7 @@ function App(props) {
             </Route>
             <Route path="/streamer">
               <Streamer />
+              <BackToTop/>
             </Route>
           </AppLayout>
         </Route>

@@ -7,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getStreamerByPage } from "../../actions/streamer";
 
 import Anhmau from "../../img/header_bg.jpg";
+import Loading from "../../Components/Loading";
 
 import StreamerCard from "../../Components/StreamerCard";
 
 export default function Streamer() {
   const dispatch = useDispatch();
-  let { dulieu } = useSelector((state) => state.streamer);
+  let { dulieu, isLoading, error } = useSelector((state) => state.streamer);
   const [page, setPage] = useState(1);
 
   const handleChange = (event, value) => {
@@ -21,7 +22,20 @@ export default function Streamer() {
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
-  }, []);
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, [page]);
+
+  if (isLoading) {
+    return (
+      <div style={{background: '#24272e'}}>
+        <Loading></Loading>
+      </div>
+    );
+  }
+
   return (
     <div className="streamer">
       <div className="container row" style={{ backgroundImage: { Anhmau } }}>
@@ -32,7 +46,6 @@ export default function Streamer() {
       t={10} color="primary" size="large" />
       </div> */}
       <div style={{ width: "22%", margin: "10px auto" }}>
-        <Typography>Page: {page}</Typography>
         <Pagination
           count={10}
           page={page}
