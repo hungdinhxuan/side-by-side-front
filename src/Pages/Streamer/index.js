@@ -10,6 +10,7 @@ import Anhmau from "../../img/header_bg.jpg";
 import Loading from "../../Components/Loading";
 
 import StreamerCard from "../../Components/StreamerCard";
+import BackToTop from "../../Hooks/BackToTop";
 
 export default function Streamer() {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ export default function Streamer() {
           onChange={handleChange}
         />
       </div>
+      <BackToTop/>
     </div>
   );
 }
