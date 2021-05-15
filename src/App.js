@@ -22,7 +22,7 @@ function App(props) {
             </Route>
             <Route path="/streamer">
               <Streamer />
-              <BackToTop/>
+              {/* <BackToTop/> */}
             </Route>
           </AppLayout>
         </Route>

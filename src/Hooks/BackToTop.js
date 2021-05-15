@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import '../Styles/BackToTop.css';
 
 export default function BackToTop() {
   const [isVisible, setIsVisible] = useState(false);
   const toggleVisibility = () => {
-    if (window.pageYOffset > 1200 ) {
+    if (window.pageYOffset > 200) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -20,13 +21,10 @@ export default function BackToTop() {
   }, [isVisible]);
 
   return (
-    <div className="scroll-to-top" style={{ textAlign: "right"}}>
+    <div className="scroll-to-top" style={{ textAlign: "right", display: isVisible ? "block" : "none"}}>
       {isVisible && (
-        <div onClick={scrollToTop} style={{zIndex: "10"}}>
-          <img
-            src="https://i.postimg.cc/44Ytsk8Z/top-arrow-emoj.png"
-            alt="Go to top"
-          />
+        <div onClick={scrollToTop}>
+          <i class="fa fa-arrow-alt-circle-up" style={{fontSize: "50px"}}></i>
         </div>
       )}
     </div>
