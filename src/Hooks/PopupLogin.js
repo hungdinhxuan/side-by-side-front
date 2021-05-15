@@ -17,6 +17,8 @@ import {login} from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 
+import loadingGif from "../img/Infinity-1s-200px.gif"
+
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
   const dispatch = useDispatch();
@@ -28,6 +30,8 @@ const PopupLogin = (props) => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  
 
   const toggle = () => setModal(!modal);
   const [loginState, setLogin] = useState(false);
@@ -47,7 +51,11 @@ const PopupLogin = (props) => {
         ignoreQueryPrefix: true,
       })};
     
-    
+  if(isLoading){
+    return (
+      <img src={loadingGif}></img>
+    )
+  }
 
   return (
     <div>

@@ -14,6 +14,7 @@ function App(props) {
     <BrowserRouter>
       {/* Route Main */}
       <Switch>
+        
         <Route path="/">
           <AppLayout>
             <Route path="/" exact>
