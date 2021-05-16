@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Register } from "../actions/auth";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
+import Loading from "../Components/Loading";
 
 const PopupRegister = () => {
   const dispatch = useDispatch();
@@ -29,33 +30,29 @@ const PopupRegister = () => {
     formState: { errors },
     getValues,
     watch,
-    reset
+    reset,
   } = useForm();
 
   const toggle = () => setModal(!modal);
-  
 
   const handleSetRegister = () => {
     setModal(!modal);
   };
 
-
   const handleRegister = (values) => {
     console.log(values);
     dispatch(Register(values));
-    handleSetRegister();
     reset();
+    if(userInfo){
+      alert('Đăng ký thành côgn');
+      handleSetRegister();
+    }
   };
+  
 
-  if (userInfo) {
-    const { redirectTo } = qs.parse(location.search, {
-      ignoreQueryPrefix: true,
-    });
-  }
 
   // Kiểm tra mật khẩu
   const password = watch("password"); //Kiểm tra giá trị password
-  const password_repeat = watch("password_repeat");
 
   return (
     <div>
@@ -72,80 +69,121 @@ const PopupRegister = () => {
           <img src={logo1} alt="Anh logo" />
         </ModalHeader>
         <ModalBody className="custom-register-body">
-          <form onSubmit={handleSubmit(handleRegister)}>
-            <div className="form-group">
-              <label>Tài khoản</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Tài khoản"
-                defaultValue=""
-                {...register("username", {
-                  required: {
-                    value: true,
-                    message: "Tài khoản không được để trống",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Tài khoản phải từ 5 đến 20 kí tự",
-                  },
-                  maxLength: {
-                    value: 20,
-                    message: "Tài khoản phải từ 5 đến 20 kí tự",
-                  },
-                })}
-              />
-            </div>
-            {errors.username && (
-              <Alert color="danger">{errors.username.message}</Alert>
-            )}
-            <div className="form-group">
-              <label>Mật khẩu</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Mật khẩu"
-                defaultValue=""
-                {...register("password", {
-                  required: {
-                    value: true,
-                    message: "Mật khẩu không được để trống",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Mật khẩu phải từ 5 ký tự trở lên",
-                  },
-                })}
-              />
-            </div>
-            {errors.password && (
-              <Alert color="danger">{errors.password.message}</Alert>
-            )}
-            <div className="form-group">
-              <label>Nhập lại mật khẩu</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Nhập lại mật khẩu"
-                defaultValue=""
-                {...register("password_repeat", {
-                  required: {
-                    value: true,
-                  },
-                  validate: (value) =>
-                    value === password || "Mật khẩu không trùng khớp",
-                })}
-              />
-            </div>
-            {errors.password_repeat && (
-              <Alert color="danger">{errors.password_repeat.message}</Alert>
-            )}
-            {error && <Alert color="danger">{error}</Alert>}
-            <button class="btn btn-primary">Đăng ký</button>
-          </form>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <form onSubmit={handleSubmit(handleRegister)}>
+                <div className="form-group">
+                  <label>Tài khoản</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Tài khoản"
+                    defaultValue=""
+                    {...register("username", {
+                      required: {
+                        value: true,
+                        message: "Tài khoản không được để trống",
+                      },
+                      minLength: {
+                        value: 5,
+                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.username && (
+                  <Alert color="danger">{errors.username.message}</Alert>
+                )}
+                <div className="form-group">
+                  <label>Mật khẩu</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Mật khẩu"
+                    defaultValue=""
+                    {...register("password", {
+                      required: {
+                        value: true,
+                        message: "Mật khẩu không được để trống",
+                      },
+                      minLength: {
+                        value: 5,
+                        message: "Mật khẩu phải từ 5 ký tự trở lên",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.password && (
+                  <Alert color="danger">{errors.password.message}</Alert>
+                )}
+                <div className="form-group">
+                  <label>Nhập lại mật khẩu</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Nhập lại mật khẩu"
+                    defaultValue=""
+                    {...register("password_repeat", {
+                      required: true,
+                      validate: (value) => value === password,
+                    })}
+                  />
+                </div>
+                {errors.password_repeat &&
+                  errors.password_repeat?.type === "validate" && (
+                    <Alert color="danger">Mật khẩu không trùng khớp</Alert>
+                  )}
+
+                <label>Email</label>
+                <input
+                  type="email"
+                  placeholder="Vui lòng nhập email"
+                  className="form-control"
+                  {...register("email", {
+                    required: true,
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Email không đúng định dạng",
+                    },
+                  })}
+                />
+                {errors.email?.message && (
+                  <Alert color="danger">{errors.email?.message}</Alert>
+                )}
+
+                <select
+                  style={{ display: "block", marginTop: "20px" }}
+                  {...register("gender")}
+                >
+                  <option value="female">female</option>
+                  <option value="male">male</option>
+                  <option value="other">other</option>
+                </select>
+                {error && <Alert color="danger">{error}</Alert>}
+                <button
+                  className="btn btn-primary"
+                  style={{
+                    display: "block",
+                    marginLeft: "auto",
+                    marginRight: "0",
+                  }}
+                >
+                  Đăng ký
+                </button>
+              </form>
+            </>
+          )}
         </ModalBody>
         <ModalFooter>
-          <button class="btn btn-primary">Hủy bỏ</button>
+          <button className="btn btn-primary" onClick={toggle}>
+            Hủy bỏ
+          </button>
         </ModalFooter>
       </Modal>
     </div>
