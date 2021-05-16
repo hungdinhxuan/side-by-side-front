@@ -13,11 +13,13 @@ import logo1 from "../img/player-dou-a.jpg";
 import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import {login} from "../actions/auth";
+import { login } from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
-
-import loadingGif from "../img/Infinity-1s-200px.gif"
+import { GoogleLogin } from "react-google-login";
+import loadingGif from "../img/Infinity-1s-200px.gif";
+import axios from "axios"
+import {serverHost} from "../config"
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
@@ -31,8 +33,6 @@ const PopupLogin = (props) => {
     formState: { errors },
   } = useForm();
 
-  
-
   const toggle = () => setModal(!modal);
   const [loginState, setLogin] = useState(false);
   const handleSetLogin = () => {
@@ -44,18 +44,31 @@ const PopupLogin = (props) => {
     dispatch(login(values));
   };
 
-  //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/> 
+  //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/>
 
-    if (userInfo) {
-      const { redirectTo } = qs.parse(location.search, {
-        ignoreQueryPrefix: true,
-      })};
-    
-  if(isLoading){
-    return (
-      <img src={loadingGif}></img>
-    )
+  if (userInfo) {
+    const { redirectTo } = qs.parse(location.search, {
+      ignoreQueryPrefix: true,
+    });
   }
+
+  if (isLoading) {
+    return <img src={loadingGif}></img>;
+  }
+
+  const responseSuccessGoogle = async (response) => {
+    try {
+      const res = await axios.post(`${serverHost}/auth/google`, {
+        tokenId: response.tokenId,
+      });
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const responseErrorGoogle = (response) => {
+    console.log(response);
+  };
 
   return (
     <div>
@@ -122,19 +135,20 @@ const PopupLogin = (props) => {
           </form>
         </ModalBody>
         <ModalFooter>
-          <a href="https://side-by-side-back.vercel.app/auth/google">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
-              Đăng nhập Google{" "}
-            </button>
-          </a>
+          <GoogleLogin
+            clientId="549866172650-o632qga06fhb7bodb723dm4mmnb252g5.apps.googleusercontent.com"
+            buttonText="Login with google"
+            onSuccess={responseSuccessGoogle}
+            onFailure={responseErrorGoogle}
+            cookiePolicy={"single_host_origin"}
+          />
           <a href="https://side-by-side-back.vercel.app/auth/facebook">
             <button class="btn btn-primary mt-2" style={{ display: "block" }}>
               Đăng nhập Facebook{" "}
             </button>
           </a>
-         
+
           <button class="btn btn-primary">Hủy bỏ</button>
-          
         </ModalFooter>
       </Modal>
     </div>
