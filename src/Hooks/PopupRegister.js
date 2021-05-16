@@ -44,7 +44,6 @@ const PopupRegister = () => {
     dispatch(Register(values));
     reset();
     if(userInfo){
-      alert('Đăng ký thành côgn');
       handleSetRegister();
     }
   };

@@ -16,7 +16,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
+
+
 import Loading from "../Components/Loading";
+
+
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
@@ -62,6 +66,8 @@ const PopupLogin = (props) => {
   //     console.log(position);
   //   })
   // }
+
+  
 
   return (
     <div className={isLoading ? "noClick" : ""}>
