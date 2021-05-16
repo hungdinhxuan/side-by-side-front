@@ -19,7 +19,8 @@ import qs from "qs";
 import { GoogleLogin } from "react-google-login";
 import loadingGif from "../img/Infinity-1s-200px.gif";
 import axios from "axios"
-import {serverHost} from "../config"
+import {serverHost, clientId} from "../config"
+import {setCookie } from "../Services/handleCookie"
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
@@ -61,7 +62,8 @@ const PopupLogin = (props) => {
       const res = await axios.post(`${serverHost}/auth/google`, {
         tokenId: response.tokenId,
       });
-      console.log(res);
+      console.log(res.data);
+      setCookie('token', res.data.token, '30')
     } catch (error) {
       console.log(error);
     }
@@ -136,13 +138,13 @@ const PopupLogin = (props) => {
         </ModalBody>
         <ModalFooter>
           <GoogleLogin
-            clientId="549866172650-o632qga06fhb7bodb723dm4mmnb252g5.apps.googleusercontent.com"
+            clientId={clientId}
             buttonText="Login with google"
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
           />
-          <a href="https://side-by-side-back.vercel.app/auth/facebook">
+          <a href="#">
             <button class="btn btn-primary mt-2" style={{ display: "block" }}>
               Đăng nhập Facebook{" "}
             </button>
