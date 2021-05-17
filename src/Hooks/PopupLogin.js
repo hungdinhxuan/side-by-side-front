@@ -185,28 +185,7 @@ const PopupLogin = (props) => {
             onClick={loginFBClicked}
             callback={responseFacebook}
           />
-          ,<button class="btn btn-primary">Hủy bỏ</button>
-          <div className={isLoading ? "noClick" : ""}>
-            <a href="https://side-by-side-back.vercel.app/auth/google">
-              <button
-                className="btn btn-primary mt-2"
-                style={{ display: "block" }}
-              >
-                Đăng nhập Google{" "}
-              </button>
-            </a>
-            <a href="https://side-by-side-back.vercel.app/auth/facebook">
-              <button
-                className="btn btn-primary mt-2"
-                style={{ display: "block" }}
-              >
-                Đăng nhập Facebook{" "}
-              </button>
-            </a>
-            <button className="btn btn-secondary" onClick={toggle}>
-              Hủy bỏ
-            </button>
-          </div>
+          <button class="btn btn-primary">Hủy bỏ</button>
         </ModalFooter>
       </Modal>
     </div>
