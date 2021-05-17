@@ -158,13 +158,15 @@ const PopupLogin = (props) => {
                 {errors.password && (
                   <Alert color="danger">{errors.password.message}</Alert>
                 )}
-                {error && <Alert color="danger">{error}</Alert>}
+
+                
+                {error && <Alert color="danger">{error.message}</Alert>}
                 <button class="btn btn-primary">Đăng Nhập</button>
               </form>
             </>
           )}
         </ModalBody>
-        <ModalFooter>
+        <ModalFooter className={isLoading ? "noClick" : ""}>
           <GoogleLogin
             clientId={googleClientId}
             buttonText="Login with google"

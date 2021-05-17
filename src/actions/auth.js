@@ -19,7 +19,7 @@ export function login(values) {
       console.log(error);
       dispatch({
         type: LOGIN_FAILURE,
-        payload: { error: error.response.error },
+        payload: { error: error.response.data },
       });
     }
   };

@@ -145,15 +145,18 @@ const PopupRegister = () => {
                   placeholder="Vui lòng nhập email"
                   className="form-control"
                   {...register("email", {
-                    required: true,
+                    required: {
+                      value: true,
+                      message: "Email không được để trống"
+                    },
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: "Email không đúng định dạng",
                     },
                   })}
                 />
-                {errors.email?.message && (
-                  <Alert color="danger">{errors.email?.message}</Alert>
+                {errors.email && (
+                  <Alert color="danger">{errors.email.message}</Alert>
                 )}
 
                 <select
