@@ -16,20 +16,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
-<<<<<<< HEAD
 import { GoogleLogin } from "react-google-login";
 import loadingGif from "../img/Infinity-1s-200px.gif";
 import axios from "axios";
 import { serverHost, googleClientId } from "../config";
 import { setCookie } from "../Services/handleCookie";
 import FacebookLogin from "react-facebook-login";
-=======
 
 
 import Loading from "../Components/Loading";
 
 
->>>>>>> b91ca42f4f63b21aec5590ca6441e9370108dac1
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
@@ -70,7 +67,6 @@ const PopupLogin = (props) => {
   //   console.log('offline');
   // }
 
-<<<<<<< HEAD
   const responseSuccessGoogle = async (response) => {
     try {
       const res = await axios.post(`${serverHost}/auth/google`, {
@@ -89,7 +85,6 @@ const PopupLogin = (props) => {
     console.log(response);
   }
   const loginFBClicked = (event) => {
-=======
   // if(navigator.geolocation){
   //   navigator.geolocation.getCurrentPosition(function(position){
   //     console.log(position);
@@ -97,7 +92,6 @@ const PopupLogin = (props) => {
   // }
 
   
->>>>>>> b91ca42f4f63b21aec5590ca6441e9370108dac1
 
   }
   return (
@@ -180,7 +174,7 @@ const PopupLogin = (props) => {
           />
           <FacebookLogin
             appId="1088597931155576"
-            autoLoad={true}
+            autoLoad={false}
             fields="name,email,picture"
             onClick={loginFBClicked}
             callback={responseFacebook}
