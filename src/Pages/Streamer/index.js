@@ -28,6 +28,7 @@ export default function Streamer() {
       behavior: "smooth",
     });
   }, [page]);
+  
 
   if (isLoading) {
     return (

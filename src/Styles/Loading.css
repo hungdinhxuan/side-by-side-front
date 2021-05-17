@@ -35,6 +35,10 @@
 	height:200px;
 }
 
+.noClick {
+	pointer-events: none;
+}
+
 @keyframes spin{
 	100%{
 		transform:rotate3D(1,.5,.75,720deg)  rotateZ(720deg);

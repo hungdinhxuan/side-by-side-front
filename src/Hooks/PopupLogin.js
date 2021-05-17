@@ -16,12 +16,20 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
+<<<<<<< HEAD
 import { GoogleLogin } from "react-google-login";
 import loadingGif from "../img/Infinity-1s-200px.gif";
 import axios from "axios";
 import { serverHost, googleClientId } from "../config";
 import { setCookie } from "../Services/handleCookie";
 import FacebookLogin from "react-facebook-login";
+=======
+
+
+import Loading from "../Components/Loading";
+
+
+>>>>>>> b91ca42f4f63b21aec5590ca6441e9370108dac1
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
@@ -54,10 +62,15 @@ const PopupLogin = (props) => {
     });
   }
 
-  if (isLoading) {
-    return <img src={loadingGif}></img>;
-  }
+  //Check kiểm tra status online hoặc offline
+  // if(navigator.onLine){
+  //   console.log('online');
+  // }
+  // else{
+  //   console.log('offline');
+  // }
 
+<<<<<<< HEAD
   const responseSuccessGoogle = async (response) => {
     try {
       const res = await axios.post(`${serverHost}/auth/google`, {
@@ -76,10 +89,19 @@ const PopupLogin = (props) => {
     console.log(response);
   }
   const loginFBClicked = (event) => {
+=======
+  // if(navigator.geolocation){
+  //   navigator.geolocation.getCurrentPosition(function(position){
+  //     console.log(position);
+  //   })
+  // }
+
+  
+>>>>>>> b91ca42f4f63b21aec5590ca6441e9370108dac1
 
   }
   return (
-    <div>
+    <div className={isLoading ? "noClick" : ""}>
       <Button
         color="danger"
         onClick={() => {
@@ -90,57 +112,63 @@ const PopupLogin = (props) => {
         <i className="far fa-edit" /> Đăng nhập
       </Button>
       <Modal isOpen={modal} toggle={toggle} className="custom-login">
-        <ModalHeader toggle={toggle}>
+        <ModalHeader toggle={toggle} className={isLoading ? "noClick" : ""}>
           <img src={logo1} alt="Anh logo" />
         </ModalHeader>
         <ModalBody className="custom-login-body">
-          <form onSubmit={handleSubmit(handleLogin)}>
-            <div className="form-group">
-              <label>Tài khoản</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Tài khoản"
-                defaultValue=""
-                {...register("username", {
-                  required: {
-                    value: true,
-                    message: "Tài khoản không được để trống",
-                  },
-                  minLength: {
-                    value: 5,
-                    message: "Tài khoản phải từ 5 đến 20 kí tự",
-                  },
-                  maxLength: {
-                    value: 20,
-                    message: "Tài khoản phải từ 5 đến 20 kí tự",
-                  },
-                })}
-              />
-            </div>
-            {errors.username && (
-              <Alert color="danger">{errors.username.message}</Alert>
-            )}
-            <div className="form-group">
-              <label>Mật khẩu</label>
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Mật khẩu"
-                {...register("password", {
-                  required: {
-                    value: true,
-                    message: "Mật khẩu không được để trống",
-                  },
-                })}
-              />
-            </div>
-            {errors.password && (
-              <Alert color="danger">{errors.password.message}</Alert>
-            )}
-            {error && <Alert color="danger">{error}</Alert>}
-            <button class="btn btn-primary">Đăng Nhập</button>
-          </form>
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <form onSubmit={handleSubmit(handleLogin)} >
+                <div className="form-group">
+                  <label>Tài khoản</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Tài khoản"
+                    defaultValue=""
+                    {...register("username", {
+                      required: {
+                        value: true,
+                        message: "Tài khoản không được để trống",
+                      },
+                      minLength: {
+                        value: 5,
+                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.username && (
+                  <Alert color="danger">{errors.username.message}</Alert>
+                )}
+                <div className="form-group">
+                  <label>Mật khẩu</label>
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Mật khẩu"
+                    {...register("password", {
+                      required: {
+                        value: true,
+                        message: "Mật khẩu không được để trống",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.password && (
+                  <Alert color="danger">{errors.password.message}</Alert>
+                )}
+                {error && <Alert color="danger">{error}</Alert>}
+                <button class="btn btn-primary">Đăng Nhập</button>
+              </form>
+            </>
+          )}
         </ModalBody>
         <ModalFooter>
           <GoogleLogin
@@ -158,6 +186,27 @@ const PopupLogin = (props) => {
             callback={responseFacebook}
           />
           ,<button class="btn btn-primary">Hủy bỏ</button>
+          <div className={isLoading ? "noClick" : ""}>
+            <a href="https://side-by-side-back.vercel.app/auth/google">
+              <button
+                className="btn btn-primary mt-2"
+                style={{ display: "block" }}
+              >
+                Đăng nhập Google{" "}
+              </button>
+            </a>
+            <a href="https://side-by-side-back.vercel.app/auth/facebook">
+              <button
+                className="btn btn-primary mt-2"
+                style={{ display: "block" }}
+              >
+                Đăng nhập Facebook{" "}
+              </button>
+            </a>
+            <button className="btn btn-secondary" onClick={toggle}>
+              Hủy bỏ
+            </button>
+          </div>
         </ModalFooter>
       </Modal>
     </div>
