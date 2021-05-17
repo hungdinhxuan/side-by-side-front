@@ -22,7 +22,7 @@ import Loading from "../Components/Loading";
 const PopupRegister = () => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
-  const { userInfo, isLoading, error } = useSelector((state) => state.auth);
+  const { userInfo, isLoading, error } = useSelector((state) => state.authRe);
   const location = useLocation();
   const {
     register,
@@ -33,7 +33,13 @@ const PopupRegister = () => {
     reset,
   } = useForm();
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setModal(!modal)
+    reset()
+    if(error){
+      dispatch('CLEAR_STATE');
+    }
+  };
 
   const handleSetRegister = () => {
     setModal(!modal);
@@ -47,6 +53,7 @@ const PopupRegister = () => {
       handleSetRegister();
     }
   };
+  
   
 
 
@@ -139,6 +146,33 @@ const PopupRegister = () => {
                     <Alert color="danger">Mật khẩu không trùng khớp</Alert>
                   )}
 
+                  <div className="form-group">
+                    <label>Họ và tên</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Họ và tên"
+                      defaultValue=""
+                      {...register("name", {
+                        required: {
+                          value: true,
+                          message: "Tên không được để trống",
+                        },
+                        maxLength: {
+                          value: 30,
+                          message: "Tên không được dài quá 30 ký tự"
+                        },
+                        pattern: {
+                          value: /[^a-z0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/u,
+                          message: "Tên không đúng định dạng",
+                        }
+                      })}
+                    />
+                  </div>
+                  {errors.name && (
+                    <Alert color="danger">{errors.name.message}</Alert>
+                  )}
+
                 <label>Email</label>
                 <input
                   type="email"
@@ -163,11 +197,14 @@ const PopupRegister = () => {
                   style={{ display: "block", marginTop: "20px" }}
                   {...register("gender")}
                 >
-                  <option value="female">female</option>
-                  <option value="male">male</option>
-                  <option value="other">other</option>
+                  <option value="female">Nam</option>
+                  <option value="male">Nữ</option>
+                  <option value="other">Khác</option>
                 </select>
-                {error && <Alert color="danger">{error}</Alert>}
+              
+
+
+                {error && <Alert color="danger">{error.message}</Alert>}
                 <button
                   className="btn btn-primary"
                   style={{

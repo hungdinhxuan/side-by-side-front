@@ -11,28 +11,32 @@ import "../../Styles/Home.css";
 import ShowHome from '../../Hooks/ShowHome';
 import lolImg from "../../img/Carousel/league-of-legends.jpg"
 import { v4 as uuidv4 } from 'uuid';
+import Anh1 from '../../img/Carousel/1.gif'
+import Anh2 from '../../img/Carousel/2.gif'
+import Anh3 from '../../img/Carousel/3.gif'
+import Anh4 from '../../img/Carousel/4.gif'
+
 
 const items = [
   {
-    src: lolImg,
+    src: Anh4,
     // altText: "Slide 1",
     // caption: "Slide 1",
   },
   {
-    src:
-      "https://dl.lolwallpapers.net/?id=8887",
+    src: Anh1
     // altText: "Slide 2",
     // caption: "Slide 2",
   },
   {
     src:
-      "https://preview.redd.it/46vbxutg18561.png?width=1920&format=png&auto=webp&s=3a9cf233b1ac6647baa7dd7324b6b0f36e37d057",
+      Anh2,
     // altText: "Slide 3",
     // caption: "Slide 3",
   },
   {
     src:
-      "https://preview.redd.it/46vbxutg18561.png?width=1920&format=png&auto=webp&s=3a9cf233b1ac6647baa7dd7324b6b0f36e37d057",
+      Anh3,
     // altText: "Slide 4",
     // caption: "Slide 4",
   },

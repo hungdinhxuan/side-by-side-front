@@ -13,14 +13,14 @@ import logo1 from "../img/player-dou-a.jpg";
 import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
-import { login } from "../actions/auth";
+import { login, LoginGoogle } from "../actions/auth";
 import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 import { GoogleLogin } from "react-google-login";
 import loadingGif from "../img/Infinity-1s-200px.gif";
 import axios from "axios";
 import { serverHost, googleClientId } from "../config";
-import { setCookie } from "../Services/handleCookie";
+import { getCookie, setCookie } from "../Services/handleCookie";
 import FacebookLogin from "react-facebook-login";
 
 
@@ -33,23 +33,35 @@ const PopupLogin = (props) => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
+  
+  
   const location = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset
   } = useForm();
 
-  const toggle = () => setModal(!modal);
+  const toggle = () => {
+    setModal(!modal)
+    
+  };
   const [loginState, setLogin] = useState(false);
   const handleSetLogin = () => {
     setLogin(true);
   };
 
   const handleLogin = (values) => {
-    console.log(values);
+    console.log(values);  
     dispatch(login(values));
+    reset();
   };
+
+  const handleLoginGoogle = (values) => {
+    dispatch(LoginGoogle(values));
+    
+  }
 
   //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/>
 
@@ -59,7 +71,7 @@ const PopupLogin = (props) => {
     });
   }
 
-  //Check kiểm tra status online hoặc offline
+  // Check kiểm tra status online hoặc offline
   // if(navigator.onLine){
   //   console.log('online');
   // }
@@ -67,33 +79,29 @@ const PopupLogin = (props) => {
   //   console.log('offline');
   // }
 
-  const responseSuccessGoogle = async (response) => {
-    try {
-      const res = await axios.post(`${serverHost}/auth/google`, {
-        tokenId: response.tokenId,
-      });
-      console.log(res.data);
-      setCookie("token", res.data.token, "30");
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  const responseErrorGoogle = (response) => {
-    console.log(response);
-  };
-  const responseFacebook = (response) => {
-    console.log(response);
-  }
-  const loginFBClicked = (event) => {
-  // if(navigator.geolocation){
-  //   navigator.geolocation.getCurrentPosition(function(position){
-  //     console.log(position);
-  //   })
-  // }
+  // const responseSuccessGoogle = async (response) => {
+  //   try {
+  //     const { data } = await axios.post(`${serverHost}/auth/google`, {
+  //       tokenId: response.tokenId,
+  //     });
+  //     console.log(data);
+  //     setCookie("token", data.token, "30");
+  //     return <Redirect path="/" exact />
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   
 
-  }
+  
+  
+
+  const responseErrorGoogle = (response) => {
+    console.log(response);
+  };
+
+ 
   return (
     <div className={isLoading ? "noClick" : ""}>
       <Button
@@ -159,7 +167,7 @@ const PopupLogin = (props) => {
                   <Alert color="danger">{errors.password.message}</Alert>
                 )}
 
-                
+
                 {error && <Alert color="danger">{error.message}</Alert>}
                 <button class="btn btn-primary">Đăng Nhập</button>
               </form>
@@ -169,19 +177,12 @@ const PopupLogin = (props) => {
         <ModalFooter className={isLoading ? "noClick" : ""}>
           <GoogleLogin
             clientId={googleClientId}
-            buttonText="Login with google"
-            onSuccess={responseSuccessGoogle}
+            buttonText="Đăng nhập với google"
+            onSuccess={handleLoginGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
           />
-          <FacebookLogin
-            appId="1088597931155576"
-            autoLoad={false}
-            fields="name,email,picture"
-            onClick={loginFBClicked}
-            callback={responseFacebook}
-          />
-          <button class="btn btn-primary">Hủy bỏ</button>
+          <button class="btn btn-primary" onClick={toggle}>Hủy bỏ</button>
         </ModalFooter>
       </Modal>
     </div>

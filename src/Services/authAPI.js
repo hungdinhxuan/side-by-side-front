@@ -5,8 +5,11 @@ const authAPI = {
     return axiosClient.post("/renter/login", values);
   },
   register: (values) => {
-    return axiosClient.post("/renter/register", values);
+    return axiosClient.post("/auth/register", values);
   },
+  loginGoogle: (values) => {
+    return axiosClient.post("/auth/google",values);
+  }
 };
 
 export default authAPI;

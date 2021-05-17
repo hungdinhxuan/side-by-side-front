@@ -2,6 +2,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  CLEAR_STATE
 } from "../../constants/auth";
 import { getCookie } from "../../Services/handleCookie";
 
@@ -11,7 +12,9 @@ import {
   REGISTER_FAILURE,
 } from "../../constants/auth";
 
-const userInfo = getCookie('token');
+import {LOGIN_GOOGLE_REQUEST,LOGIN_GOOGLE_SUCCESS,LOGIN_GOOGLE_FAILURE} from '../../constants/auth';
+
+const userInfo = getCookie("token") ? getCookie("token") : null; //Chỉnh sửa
 
 const initialState = {
   userInfo,
@@ -21,7 +24,7 @@ const initialState = {
 
 //Xử lý login và register
 
-function authReducer(state = initialState, action) {
+export function authReducerLogin(state = initialState, action) {
   switch (action.type) {
     case LOGIN_REQUEST: {
       return { ...state, isLoading: true, error: null };
@@ -32,6 +35,16 @@ function authReducer(state = initialState, action) {
     case LOGIN_FAILURE: {
       return { ...state, isLoading: false, error: action.payload.error };
     }
+    case CLEAR_STATE: {
+      return {...state, error: null};
+    }
+    default:
+      return state;
+  }
+}
+
+export function authReducerRegister(state = initialState, action) {
+  switch (action.type) {
     case REGISTER_REQUEST: {
       return { ...state, isLoading: true, error: null };
     }
@@ -41,9 +54,27 @@ function authReducer(state = initialState, action) {
     case REGISTER_FAILURE: {
       return { ...state, isLoading: false, error: action.payload.error };
     }
+    case CLEAR_STATE: {
+      return state;
+    }
     default:
       return state;
   }
 }
 
-export default authReducer;
+
+export function authReducerGoogle(state = initialState, action) {
+  switch (action.type) {
+    case LOGIN_GOOGLE_REQUEST: {
+      return { ...state, isLoading: true, error: null };
+    }
+    case LOGIN_GOOGLE_SUCCESS: {
+      return { ...state, isLoading: false, userInfo: action.payload.data };
+    }
+    case LOGIN_GOOGLE_FAILURE: {
+      return { ...state, isLoading: false, error: action.payload.error };
+    }
+    default:
+      return state;
+  }
+}

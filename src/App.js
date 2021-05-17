@@ -6,10 +6,21 @@ import AppLayout from "./Components/LayoutApp";
 import Home from "./Pages/Home";
 import Streamer from './Pages/Streamer'
 import BackToTop from "./Hooks/BackToTop";
+import { getCookie } from "./Services/handleCookie";
+import { useEffect, useState } from "react";
 
 
 function App(props) {
   
+  const [token, setToken] = useState(false);
+
+  useEffect(()=> {
+    if(getCookie('token')){
+      setToken(true);
+    }
+  },[token])
+
+
   return (
     <BrowserRouter>
       {/* Route Main */}

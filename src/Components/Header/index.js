@@ -13,8 +13,13 @@ import Navbar from "../Header/Navbar";
 import { deleteCookie } from "../../Services/handleCookie";
 
 export default function Header() {
-  const { userInfo } = useSelector((state) => state.auth);
-  const data = userInfo;
+  const {userInfo,isLoading,error } = useSelector((state) => state.auth);
+  
+  const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
+
+  const data = userInfo ? userInfo : dataGoogle;
+  
+  
   const [logout, setLogout] = useState(null);
 
   const handleLocalStore = () => {
@@ -75,9 +80,7 @@ export default function Header() {
                       <Link path="/">
                         <button onClick={handleLocalStore}>Log out</button>
                       </Link>
-                      <Link path = "/">
-                        
-                      </Link>
+                      <Link path="/"></Link>
                     </>
                   ) : (
                     <>
