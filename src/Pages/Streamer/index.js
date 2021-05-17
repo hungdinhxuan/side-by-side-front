@@ -40,7 +40,7 @@ export default function Streamer() {
   return (
     <div className="streamer">
       <div className="container row" style={{ backgroundImage: { Anhmau } }}>
-        {dulieu && dulieu.map((item) => <StreamerCard streamer={item} />)}
+        {dulieu && dulieu.map((item) => <StreamerCard streamer={item} key={item._id}/>)}
       </div>
       {/* <div style={{width: "22%", margin: "10px auto"}}>
       <Pagination coun

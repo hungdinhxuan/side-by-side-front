@@ -18,9 +18,10 @@ import { Redirect, useLocation, Link } from "react-router-dom";
 import qs from "qs";
 import { GoogleLogin } from "react-google-login";
 import loadingGif from "../img/Infinity-1s-200px.gif";
-import axios from "axios"
-import {serverHost, clientId} from "../config"
-import {setCookie } from "../Services/handleCookie"
+import axios from "axios";
+import { serverHost, googleClientId } from "../config";
+import { setCookie } from "../Services/handleCookie";
+import FacebookLogin from "react-facebook-login";
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
@@ -63,7 +64,7 @@ const PopupLogin = (props) => {
         tokenId: response.tokenId,
       });
       console.log(res.data);
-      setCookie('token', res.data.token, '30')
+      setCookie("token", res.data.token, "30");
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +72,12 @@ const PopupLogin = (props) => {
   const responseErrorGoogle = (response) => {
     console.log(response);
   };
+  const responseFacebook = (response) => {
+    console.log(response);
+  }
+  const loginFBClicked = (event) => {
 
+  }
   return (
     <div>
       <Button
@@ -138,19 +144,20 @@ const PopupLogin = (props) => {
         </ModalBody>
         <ModalFooter>
           <GoogleLogin
-            clientId={clientId}
+            clientId={googleClientId}
             buttonText="Login with google"
             onSuccess={responseSuccessGoogle}
             onFailure={responseErrorGoogle}
             cookiePolicy={"single_host_origin"}
           />
-          <a href="#">
-            <button class="btn btn-primary mt-2" style={{ display: "block" }}>
-              Đăng nhập Facebook{" "}
-            </button>
-          </a>
-
-          <button class="btn btn-primary">Hủy bỏ</button>
+          <FacebookLogin
+            appId="1088597931155576"
+            autoLoad={true}
+            fields="name,email,picture"
+            onClick={loginFBClicked}
+            callback={responseFacebook}
+          />
+          ,<button class="btn btn-primary">Hủy bỏ</button>
         </ModalFooter>
       </Modal>
     </div>

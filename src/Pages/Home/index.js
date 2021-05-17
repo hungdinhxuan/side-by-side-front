@@ -10,8 +10,7 @@ import {
 import "../../Styles/Home.css";
 import ShowHome from '../../Hooks/ShowHome';
 import lolImg from "../../img/Carousel/league-of-legends.jpg"
-import {useLocation} from 'react-router-dom'
-import { setCookie } from  '../../Services/handleCookie'
+import { v4 as uuidv4 } from 'uuid';
 
 const items = [
   {
@@ -65,25 +64,19 @@ const Home = (props) => {
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.src}
+        key={uuidv4()}
       >
         <img src={item.src} alt={item.altText} />
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
+          
         />
       </CarouselItem>
     );
   });
 
   
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
-}
-let query = useQuery();
-if(query.get('token')){
-  setCookie('token', query.get('token'))
-}
 
   return (
     <div className='Home-main'>

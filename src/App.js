@@ -17,10 +17,10 @@ function App(props) {
         
         <Route path="/">
           <AppLayout>
-            <Route path="/" exact>
+            <Route path="/" exact >
               <Home />
             </Route>
-            <Route path="/streamer">
+            <Route path="/streamer" >
               <Streamer />
               {/* <BackToTop/> */}
             </Route>
