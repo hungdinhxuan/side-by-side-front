@@ -13,25 +13,25 @@ import Navbar from "../Header/Navbar";
 import { deleteCookie } from "../../Services/handleCookie";
 
 export default function Header() {
-  const {userInfo,isLoading,error } = useSelector((state) => state.auth);
+  // const {userInfo,isLoading,error } = useSelector((state) => state.auth);
   
-  const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
+  // const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
 
-  const data = userInfo ? userInfo : dataGoogle;
+  // const data = userInfo ? userInfo : dataGoogle; 
   
   
-  const [logout, setLogout] = useState(null);
+  // const [logout, setLogout] = useState(null);
 
-  const handleLocalStore = () => {
-    deleteCookie("token");
-    setLogout(false);
-  };
+  // const handleLocalStore = () => {
+  //   deleteCookie("token");
+  //   setLogout(false);
+  // };
 
-  useEffect(() => {
-    if (data && data !== "undefined") {
-      setLogout(true);
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data && data !== "undefined") {
+  //     setLogout(true);
+  //   }
+  // }, [data]);
 
   return (
     <div className="header-bg">
@@ -74,32 +74,6 @@ export default function Header() {
             </div>
             <div className="col-sm-6">
               <div className="header-top-login">
-                <ul className="list-dang-nhap">
-                  {logout ? (
-                    <>
-                      <Link path="/">
-                        <button onClick={handleLocalStore}>Log out</button>
-                      </Link>
-                      <Link path="/"></Link>
-                    </>
-                  ) : (
-                    <>
-                      <li>
-                        <PopupRegister>
-                          <Redirect to="/" />
-                        </PopupRegister>
-                      </li>
-                      <li className="or" style={{ color: "orange" }}>
-                        or
-                      </li>
-                      <li>
-                        <PopupLogin>
-                          <Redirect to="/"></Redirect>
-                        </PopupLogin>
-                      </li>
-                    </>
-                  )}
-                </ul>
               </div>
             </div>
           </div>

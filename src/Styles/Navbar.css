@@ -20,15 +20,18 @@
     align-items: center;
     justify-content: center;
 }
-.menu-wrap .col-sm-8 .logo .menu-text{
+.menu-wrap .col-sm-8 .logo .menu-text {
     color: #fff;
     font-size: 30px;
     line-height: 30px;
     padding-left: 10px;
     text-decoration: none;
 }
-.menu-wrap .col-sm-8 .logo .menu-text span{
-    color: #EA7C69;
+.menu-wrap .col-sm-8 .logo .menu-text p {
+    padding-bottom: 10px;
+}
+.menu-wrap .col-sm-8 .logo .menu-text span {
+    color: #ea7c69;
 }
 
 .menu-wrap .col-sm-8 ul {
@@ -56,14 +59,66 @@
     width: 107%;
     transform: translateY(-50%) skewX(-17deg);
     background: #ff5917;
-    z-index: -1 ;
+    z-index: -1;
     opacity: 0;
 }
 
-.menu-wrap .col-sm-8 ul li:active a::before, .menu-wrap .col-sm-8 ul li:hover a::before{
+.menu-wrap .col-sm-8 ul li:active a::before,
+.menu-wrap .col-sm-8 ul li:hover a::before {
     opacity: 1;
 }
 
 .menu-wrap .col-sm-8 ul li a:hover {
     text-decoration: none;
 }
+
+.menu-wrap .menu-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-right__items {
+    display: flex;
+}
+
+.menu-right__items li {
+    padding: 0 10px;
+    align-items: center;
+}
+
+.header-top-login:hover{
+    background-color:#ff6b00 !important;
+}
+
+/* .menu-right__items li {
+    padding: 0 10px !important;;
+    background-color: #ff3838;
+    width: 80px !important;;
+    height: 100px !important;;
+    border-left: solid 5px #b20000 !important;;
+    border-right: solid 5px #b20000 !important;;
+    position: absolute !important;;
+    top: 0 - 250px + 20px + 15px !important;;
+    left: 50% !important;;
+    cursor: pointer !important;;
+    box-shadow: 0 0 15px 1px #222 !important;;
+    transform: translateY(0) translateX(-50%) !important;;
+    transition: transform 0.2s ease 0.2s, top 0.5s ease-in 0.4s !important;;
+} */
+
+/* .menu-right__items li ::before {
+    content: "" !important; 
+    background-color: #222 !important;;
+    width: 59px !important;;
+    height: 59px !important;;
+    border-right: solid 5px #b20000 !important;;
+    border-bottom: solid 5px #b20000 !important;;
+    display: block !important;;
+    position: absolute !important;;
+    bottom: 0 !important;;
+    left: 50% !important;;
+    box-shadow: 0 0 15px 1px #222 !important;;
+    transform: translate(-50%, 50%) rotate(45deg) !important;;
+}  */

@@ -22,7 +22,7 @@ import axios from "axios";
 import { serverHost, googleClientId } from "../config";
 import { getCookie, setCookie } from "../Services/handleCookie";
 import FacebookLogin from "react-facebook-login";
-
+import '../Styles/Navbar.css';
 
 import Loading from "../Components/Loading";
 
@@ -105,13 +105,13 @@ const PopupLogin = (props) => {
   return (
     <div className={isLoading ? "noClick" : ""}>
       <Button
-        color="danger"
         onClick={() => {
           toggle();
           handleSetLogin();
         }}
-      >
-        <i className="far fa-edit" /> Đăng nhập
+        style={{backgroundColor: "#ea7c69"}}
+        className="header-top-login"
+      > Đăng nhập
       </Button>
       <Modal isOpen={modal} toggle={toggle} className="custom-login">
         <ModalHeader toggle={toggle} className={isLoading ? "noClick" : ""}>

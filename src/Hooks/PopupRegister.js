@@ -34,10 +34,10 @@ const PopupRegister = () => {
   } = useForm();
 
   const toggle = () => {
-    setModal(!modal)
-    reset()
-    if(error){
-      dispatch('CLEAR_STATE');
+    setModal(!modal);
+    reset();
+    if (error) {
+      dispatch("CLEAR_STATE");
     }
   };
 
@@ -49,13 +49,10 @@ const PopupRegister = () => {
     console.log(values);
     dispatch(Register(values));
     reset();
-    if(userInfo){
+    if (userInfo) {
       handleSetRegister();
     }
   };
-  
-  
-
 
   // Kiểm tra mật khẩu
   const password = watch("password"); //Kiểm tra giá trị password
@@ -63,12 +60,13 @@ const PopupRegister = () => {
   return (
     <div>
       <Button
-        color="danger"
         onClick={() => {
           toggle();
         }}
+        style={{ backgroundColor: "#ea7c69", width: "115%" }}
+        className="header-top-login"
       >
-        <i className="far fa-edit" /> Đăng ký
+        Đăng ký
       </Button>
       <Modal isOpen={modal} toggle={toggle} className="custom-register">
         <ModalHeader toggle={toggle}>
@@ -146,32 +144,33 @@ const PopupRegister = () => {
                     <Alert color="danger">Mật khẩu không trùng khớp</Alert>
                   )}
 
-                  <div className="form-group">
-                    <label>Họ và tên</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder="Họ và tên"
-                      defaultValue=""
-                      {...register("name", {
-                        required: {
-                          value: true,
-                          message: "Tên không được để trống",
-                        },
-                        maxLength: {
-                          value: 30,
-                          message: "Tên không được dài quá 30 ký tự"
-                        },
-                        pattern: {
-                          value: /[^a-z0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/u,
-                          message: "Tên không đúng định dạng",
-                        }
-                      })}
-                    />
-                  </div>
-                  {errors.name && (
-                    <Alert color="danger">{errors.name.message}</Alert>
-                  )}
+                <div className="form-group">
+                  <label>Họ và tên</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Họ và tên"
+                    defaultValue=""
+                    {...register("name", {
+                      required: {
+                        value: true,
+                        message: "Tên không được để trống",
+                      },
+                      maxLength: {
+                        value: 30,
+                        message: "Tên không được dài quá 30 ký tự",
+                      },
+                      pattern: {
+                        value:
+                          /[^a-z0-9A-Z_ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]/u,
+                        message: "Tên không đúng định dạng",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.name && (
+                  <Alert color="danger">{errors.name.message}</Alert>
+                )}
 
                 <label>Email</label>
                 <input
@@ -181,7 +180,7 @@ const PopupRegister = () => {
                   {...register("email", {
                     required: {
                       value: true,
-                      message: "Email không được để trống"
+                      message: "Email không được để trống",
                     },
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
@@ -201,8 +200,6 @@ const PopupRegister = () => {
                   <option value="male">Nữ</option>
                   <option value="other">Khác</option>
                 </select>
-              
-
 
                 {error && <Alert color="danger">{error.message}</Alert>}
                 <button
