@@ -23,7 +23,7 @@ const StreamerCard = ({ streamer }) => {
             alt="Card image cap"
           />
           <CardBody>
-            <CardTitle tag="h5">{streamer._id}</CardTitle>
+            <CardTitle tag="h5">{streamer.firstName + " " + streamer.lastName}</CardTitle>
             <CardSubtitle
               tag="h6"
               className="mb-2 text-muted"
@@ -31,7 +31,7 @@ const StreamerCard = ({ streamer }) => {
             >
               {streamer.price}đ/1h
             </CardSubtitle>
-            <CardText>{streamer.renterId['username']}</CardText>
+            <CardText>{streamer.nation}</CardText>
             
             <Button>Thuê ngay</Button>
           </CardBody>
