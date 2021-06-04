@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../../Styles/Navbar.css";
 import logo from "../../img/logo.png";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PopupRegister from "../../Hooks/PopupRegister";
 import PopupLogin from "../../Hooks/PopupLogin";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCookie } from "../../Services/handleCookie";
+import  UserMenu  from "../../Components/UserMenu";
 
 export default function Navbar() {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
@@ -74,6 +75,8 @@ export default function Navbar() {
                 <Link path="/">
                         <button onClick={handleLocalStore} className="log-out">Log out</button>
                 </Link>
+
+                <UserMenu />                
               </>
             ) : (
               <>

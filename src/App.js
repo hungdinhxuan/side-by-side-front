@@ -5,9 +5,11 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import AppLayout from "./Components/LayoutApp";
 import Home from "./Pages/Home";
 import Streamer from './Pages/Streamer'
+import Setting from './Pages/Setting'
 import BackToTop from "./Hooks/BackToTop";
 import { getCookie } from "./Services/handleCookie";
 import { useEffect, useState } from "react";
+
 
 
 function App(props) {
@@ -35,6 +37,10 @@ function App(props) {
               <Streamer />
               {/* <BackToTop/> */}
             </Route>
+            <Route path="/setting/general" render={props => <Setting {...props} route='general'/>} />
+            <Route path="/setting/wallet" render={props => <Setting {...props} route='wallet'/>} />
+            <Route path="/setting/security" render={props => <Setting {...props} route='security'/>} />
+            <Route path="/setting/blocklist" render={props => <Setting {...props} route='blocklist'/>} />
           </AppLayout>
         </Route>
       </Switch>

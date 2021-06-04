@@ -136,12 +136,12 @@ const PopupLogin = (props) => {
                         message: "Tài khoản không được để trống",
                       },
                       minLength: {
-                        value: 5,
-                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                        value: 6,
+                        message: "Tài khoản phải có độ dài từ 6 đến 32 kí tự",
                       },
                       maxLength: {
-                        value: 20,
-                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                        value: 32,
+                        message: "Tài khoản phải có độ dài từ 6 đến 32 kí tự",
                       },
                     })}
                   />
