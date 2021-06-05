@@ -2,11 +2,8 @@ import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
-import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import axiosClient from "../../Services/axiosClient";
@@ -29,9 +26,44 @@ function Alert(props) {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 345,
-    margin: "95px",
+  cardLarge: {
+    width: 400,
+    // height: 400,
+    marginLeft: 95,
+    marginTop: 95,
+  },
+
+  cardSmall: {
+    width: 400,
+    marginTop: 23,
+    marginLeft: 95,
+    height: 84,
+    background: "rgba(0, 0, 0, 0.04)",
+    boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+    borderRadius: 4,
+  },
+  cardSmallLeft: {
+    float: "left",
+    backgroundColor: "cyan",
+    width: "79% ",
+    height: "100%",
+    textAlign: "center",
+    paddingTop: "6%",
+  },
+  cardSmallRight: {
+    float: "right",
+    backgroundColor: "red",
+    width: "21%",
+    height: "100%",
+    textAlign: "center",
+    fontFamily: "Barlow",
+    fontStyle: "normal",
+    fontWeight: 600,
+    fontSize: 16,
+    lineHeight: "140%",
+    paddingTop: "4%",
+
+    color: "#000000",
   },
   button: {
     display: "block",
@@ -88,8 +120,6 @@ const GeneralSetting = () => {
     setselectedBirthDate(date);
   };
 
-
-
   const [gender, setGender] = React.useState("");
   const [openGenderSelector, setOpenGenderSelector] = React.useState(false);
   const [openCitySelector, setOpenCitySelector] = React.useState(false);
@@ -99,17 +129,21 @@ const GeneralSetting = () => {
   const handleSaveClick = async (e) => {
     e.preventDefault();
     try {
-      
-      const response = await axiosClient.patch("/renter/general", {id: renterData._id, gender, city, country, nickName, birthDate: selectedBirthDate, name});
+      const response = await axiosClient.patch("/renter/general", {
+        id: renterData._id,
+        gender,
+        city,
+        country,
+        nickName,
+        birthDate: selectedBirthDate,
+        name,
+      });
       console.log(response);
-      if(response.data.success)
-        setOpenSucessDialog(true);
-      else
-        setOpenErrorDialog(true);
+      if (response.data.success) setOpenSucessDialog(true);
+      else setOpenErrorDialog(true);
     } catch (error) {
       setOpenErrorDialog(true);
     }
-    
   };
 
   const handleSaveClose = (event, reason) => {
@@ -174,39 +208,30 @@ const GeneralSetting = () => {
           width: "50%",
           height: "100%",
           display: "inline-block",
+          verticalAlign: "middle",
+
           float: "left",
         }}
       >
-        <Card className={classes.root}>
+        <Card className={classes.cardLarge}>
           <CardActionArea>
             <CardMedia
               component="img"
               alt="Contemplative Reptile"
-              height="300px"
-              width="300x"
+              height="400px"
+              width="300px"
               title="Contemplative Reptile"
               image={renterData.avatar}
+              onClick={(e) =>{console.log('Header')}}
             />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Lizard
-              </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Lizards are a widespread group of squamate reptiles, with over
-                6,000 species, ranging across all continents except Antarctica
-              </Typography>
-            </CardContent>
           </CardActionArea>
-          <CardActions>
-            <Button size="small" color="primary">
-              Share
-            </Button>
-            <Button size="small" color="primary">
-              Learn More
-            </Button>
-          </CardActions>
+        </Card>
+        <Card className={classes.cardSmall} style={{ display: "inline-block" }}>
+          <div className={classes.cardSmallLeft}>Renew Your ProAccount</div>
+          <Button className={classes.cardSmallRight}>Update Now </Button>
         </Card>
       </div>
+
       <div
         style={{
           width: "50%",
