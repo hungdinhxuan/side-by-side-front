@@ -31,7 +31,7 @@ const StreamerCard = ({ streamer }) => {
             >
               {streamer.price}đ/1h
             </CardSubtitle>
-            <CardText>{streamer.nation}</CardText>
+            <CardText>{streamer.renterId.nation}</CardText>
             
             <Button>Thuê ngay</Button>
           </CardBody>
