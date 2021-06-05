@@ -7,6 +7,7 @@ import Home from "./Pages/Home";
 import Streamer from './Pages/Streamer'
 import Setting from './Pages/Setting'
 import BackToTop from "./Hooks/BackToTop";
+import BXH from './Pages/BXH/index';
 import { getCookie } from "./Services/handleCookie";
 import { useEffect, useState } from "react";
 
@@ -41,6 +42,9 @@ function App(props) {
             <Route path="/setting/wallet" render={props => <Setting {...props} route='wallet'/>} />
             <Route path="/setting/security" render={props => <Setting {...props} route='security'/>} />
             <Route path="/setting/blocklist" render={props => <Setting {...props} route='blocklist'/>} />
+            <Route path="/BXH">
+              <BXH/>
+            </Route>
           </AppLayout>
         </Route>
       </Switch>
