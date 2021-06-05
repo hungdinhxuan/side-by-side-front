@@ -5,7 +5,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import AppLayout from "./Components/LayoutApp";
 import Home from "./Pages/Home";
 import Streamer from './Pages/Streamer'
-import Setting from './Pages/Setting'
+import Setting from './Components/Setting'
 import BackToTop from "./Hooks/BackToTop";
 import { getCookie } from "./Services/handleCookie";
 import { useEffect, useState } from "react";
