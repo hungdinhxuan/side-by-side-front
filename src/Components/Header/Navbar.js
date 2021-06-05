@@ -75,7 +75,6 @@ export default function Navbar() {
                 <Link path="/">
                         <button onClick={handleLocalStore} className="log-out">Log out</button>
                 </Link>
-
                 <UserMenu />                
               </>
             ) : (

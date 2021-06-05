@@ -11,7 +11,7 @@ export function login(values) {
       const { data } = await authAPI.login(values);
       if(data) {
         // localStorage.setItem("token", JSON.stringify(data.token));
-        setCookie('token', JSON.stringify(data.token), 90)
+        setCookie('token', data.token, 90)
         dispatch({ type: LOGIN_SUCCESS, payload: { data } }); 
       }
       dispatch({type: CLEAR_STATE});
@@ -48,8 +48,9 @@ export function LoginGoogle(values) {
     dispatch({ type: LOGIN_GOOGLE_REQUEST });
     try {
       const { data } = await authAPI.loginGoogle(values);
+      console.log(data);
       if(data){
-        setCookie("token", JSON.stringify(data.token), "30");
+        setCookie("token", data.token, "90");
       }
       dispatch({ type: LOGIN_GOOGLE_SUCCESS, payload: { data } });
     } catch (error) {
