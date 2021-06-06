@@ -3,10 +3,10 @@ import { Navigation } from "react-minimal-side-navigation";
 import "react-minimal-side-navigation/lib/ReactMinimalSideNavigation.css";
 import "../../Styles/Setting.css";
 import { Link } from "react-router-dom";
-import GeneralSetting from "../../Pages/Setting/GeneralSetting";
-import SecuritySetting from "../../Pages/Setting/SecuritySetting";
-import WalletSetting from "../../Pages/Setting/WalletSetting";
-import BlockList from "../../Pages/Setting/BlockList";
+import GeneralSetting from "./GeneralSetting";
+import SecuritySetting from "./SecuritySetting";
+import WalletSetting from "./WalletSetting";
+import BlockList from "./BlockList";
 
 export const Setting = ({route}) => {
   return (
