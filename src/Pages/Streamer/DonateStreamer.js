@@ -7,13 +7,12 @@ const DonateStreamer = (props) => {
     className
   } = props;
 
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState(true);
 
   const toggle = () => setModal(!modal);
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>{buttonLabel}</Button>
       <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>

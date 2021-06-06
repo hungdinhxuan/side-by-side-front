@@ -76,10 +76,10 @@ const PopupRegister = () => {
           {isLoading ? (
             <Loading />
           ) : (
-            <>
+            <div style={{ marginLeft: "30px", marginRight: "30px" }}>
               <form onSubmit={handleSubmit(handleRegister)}>
                 <div className="form-group">
-                  <label>Tài khoản</label>
+                  {/* <label>Tài khoản</label> */}
                   <input
                     type="text"
                     className="form-control"
@@ -91,12 +91,12 @@ const PopupRegister = () => {
                         message: "Tài khoản không được để trống",
                       },
                       minLength: {
-                        value: 5,
-                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                        value: 6,
+                        message: "Tài khoản phải từ 6 đến 32 kí tự",
                       },
                       maxLength: {
-                        value: 20,
-                        message: "Tài khoản phải từ 5 đến 20 kí tự",
+                        value: 32,
+                        message: "Tài khoản phải từ 6 đến 32 kí tự",
                       },
                     })}
                   />
@@ -104,48 +104,29 @@ const PopupRegister = () => {
                 {errors.username && (
                   <Alert color="danger">{errors.username.message}</Alert>
                 )}
-                <div className="form-group">
-                  <label>Mật khẩu</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Mật khẩu"
-                    defaultValue=""
-                    {...register("password", {
-                      required: {
-                        value: true,
-                        message: "Mật khẩu không được để trống",
-                      },
-                      minLength: {
-                        value: 5,
-                        message: "Mật khẩu phải từ 5 ký tự trở lên",
-                      },
-                    })}
-                  />
-                </div>
-                {errors.password && (
-                  <Alert color="danger">{errors.password.message}</Alert>
+                              <div className="form-group"> 
+                <input
+                  type="email"
+                  placeholder="Vui lòng nhập email"
+                  className="form-control"
+                  {...register("email", {
+                    required: {
+                      value: true,
+                      message: "Email không được để trống",
+                    },
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Email không đúng định dạng",
+                    },
+                  })}
+                />
+                {errors.email && (
+                  <Alert color="danger" >{errors.email.message}</Alert>
                 )}
-                <div className="form-group">
-                  <label>Nhập lại mật khẩu</label>
-                  <input
-                    type="password"
-                    className="form-control"
-                    placeholder="Nhập lại mật khẩu"
-                    defaultValue=""
-                    {...register("password_repeat", {
-                      required: true,
-                      validate: (value) => value === password,
-                    })}
-                  />
                 </div>
-                {errors.password_repeat &&
-                  errors.password_repeat?.type === "validate" && (
-                    <Alert color="danger">Mật khẩu không trùng khớp</Alert>
-                  )}
-
+                
                 <div className="form-group">
-                  <label>Họ và tên</label>
+                  {/* <label>Họ và tên</label> */}
                   <input
                     type="text"
                     className="form-control"
@@ -172,55 +153,97 @@ const PopupRegister = () => {
                   <Alert color="danger">{errors.name.message}</Alert>
                 )}
 
-                <label>Email</label>
-                <input
-                  type="email"
-                  placeholder="Vui lòng nhập email"
-                  className="form-control"
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Email không được để trống",
-                    },
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Email không đúng định dạng",
-                    },
-                  })}
-                />
-                {errors.email && (
-                  <Alert color="danger">{errors.email.message}</Alert>
-                )}
 
+                <div className="form-group">
+                  {/* <label>Mật khẩu</label> */}
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Mật khẩu"
+                    defaultValue=""
+                    {...register("password", {
+                      required: {
+                        value: true,
+                        message: "Mật khẩu không được để trống",
+                      },
+                      minLength: {
+                        value: 5,
+                        message: "Mật khẩu phải từ 5 ký tự trở lên",
+                      },
+                    })}
+                  />
+                </div>
+                {errors.password && (
+                  <Alert color="danger" style={{fontSize: "15px", padding: "3px"}}>{errors.password.message}</Alert>
+                )}
+                <div className="form-group">
+                  {/* <label>Nhập lại mật khẩu</label> */}
+                  <input
+                    type="password"
+                    className="form-control"
+                    placeholder="Nhập lại mật khẩu"
+                    defaultValue=""
+                    {...register("password_repeat", {
+                      required: true,
+                      validate: (value) => value === password,
+                    })}
+                  />
+                </div>
+                {errors.password_repeat &&
+                  errors.password_repeat?.type === "validate" && (
+                    <Alert color="danger" style={{fontSize: "1px"}}>Mật khẩu không trùng khớp</Alert>
+                  )}
+
+                
+                {/* <label>Email</label> */}
+                <div className="form-group" > 
                 <select
-                  style={{ display: "block", marginTop: "20px" }}
+                  style={{ display: "block", marginTop: "20px"}}
                   {...register("gender")}
                 >
-                  <option value="female">Nam</option>
-                  <option value="male">Nữ</option>
+                  <option value="none">Giới Tính</option>
+                  <option value="male">Nam</option>
+                  <option value="female">Nữ</option>
                   <option value="other">Khác</option>
                 </select>
 
                 {error && <Alert color="danger">{error.message}</Alert>}
-                <button
+                </div>
+                <div>
+                  <button
+                    className="btn btn-primary"
+                    style={{
+                      float: "left",
+                      // marginLeft: "auto",
+                      // marginRight: "0",
+                      backgroundColor:"rgb(244, 119, 34)" ,
+                      borderRadius: "14px",
+                      width: "48%",
+                    }}
+                  >
+                    Đăng ký
+                  </button>
+                  <button
                   className="btn btn-primary"
-                  style={{
-                    display: "block",
-                    marginLeft: "auto",
-                    marginRight: "0",
-                  }}
-                >
-                  Đăng ký
-                </button>
+                    onClick={toggle}
+                    style={{
+                      backgroundColor:"rgb(39, 26, 36)" ,
+                      borderRadius: "14px",
+                      float: "right",
+                      // marginRight: "0",
+                      width: "48%",
+                    }}
+                  >
+                    Hủy bỏ
+                  </button>
+                </div>
               </form>
-            </>
+            </div>
+            
           )}
+          <ModalFooter>
+            </ModalFooter>
         </ModalBody>
-        <ModalFooter>
-          <button className="btn btn-primary" onClick={toggle}>
-            Hủy bỏ
-          </button>
-        </ModalFooter>
       </Modal>
     </div>
   );

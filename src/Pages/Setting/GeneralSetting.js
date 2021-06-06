@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     width: 400,
     // height: 400,
     marginLeft: 95,
-    marginTop: 95,
+    marginTop: 40,
   },
 
   cardSmall: {
@@ -220,6 +220,34 @@ const GeneralSetting = () => {
           float: "left",
         }}
       >
+        <div style={{ marginLeft: "14%", paddingTop: "20px" }}>
+          <h1
+            style={{
+              fontFamily: "Barlow",
+              fontSize: "28px",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "140%",
+              letterSpacing: "0em",
+              textAlign: "left",
+              // color: "white"
+            }}
+          >
+            
+            HELLO PINKY ...
+          </h1>
+          <h2
+            style={{
+              fontSize: "24px",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "140%",
+              color: "rgba(178, 178, 178, 0.64)",
+            }}
+          >
+            Have a nice day with RentMe
+          </h2>
+        </div>
         <Card className={classes.cardLarge}>
           <CardActionArea>
             <CardMedia
@@ -241,11 +269,12 @@ const GeneralSetting = () => {
 
       <div
         style={{
-          width: "50%",
+          width: "40%",
           height: "100%",
           display: "inline-block",
           float: "left",
-          padding: "70px",
+          // padding: "70px",
+          // marginLeft: "10%"
         }}
       >
         <Form>
