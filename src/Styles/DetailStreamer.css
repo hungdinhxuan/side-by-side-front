@@ -1,0 +1,274 @@
+.container .player-profile-left .avt {
+    width: 260px;
+    height: 260px;
+}
+
+.player-profile-left {
+    text-align: center;
+}
+
+.container .avt-lg {
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid #e2e6ea;
+}
+
+.avt .avt-img {
+    min-width: 25px;
+}
+
+.avt img {
+    width: 100%;
+}
+
+.rent-time-wrap {
+    margin-top: 20px;
+}
+.rent-time-wrap p.ready {
+    color: #87cb16;
+}
+
+.rent-time-wrap p {
+    height: 23px;
+    font-size: 18px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin: 0;
+}
+
+.member-since span:first-child {
+    margin-right: 5px;
+}
+
+.player-profile-main .name-player-profile {
+    font-size: 28px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #354052;
+}
+
+.player-profile-main .hidden-over-name {
+    display: block;
+    overflow: hidden;
+}
+
+.center-item {
+    display: flex;
+    align-items: center;
+}
+
+.center-item .btn-player {
+    outline-style: none;
+    position: absolute;
+    right: 15px;
+    margin-left: 30px;
+    border-radius: 4px;
+    border: 1px solid #f0564a;
+    background-color: #f0564a;
+    padding: 5px 10px;
+    color: #fff;
+    font-weight: 700;
+}
+
+.nav-player-profile {
+    margin-top: 30px;
+    justify-content: space-around;
+}
+
+.item-nav-name {
+    width: 66px;
+    height: 15px;
+    opacity: 0.7;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: Poppins;
+    color: #354052;
+    text-transform: uppercase;
+    display: inline;
+    width: 100%;
+}
+
+.item-nav-value {
+    font-size: 15px;
+    color: #f0564a;
+    font-weight: 600;
+}
+
+.horizontal {
+    height: 2px;
+    width: 100%;
+    background-color: #393c49;
+    opacity: 0.2;
+    margin-top: 30px;
+}
+
+.title-player-profile {
+    margin-top: 30px;
+    color: #f47722;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.content-player-profile {
+    white-space: normal;
+    word-break: break-word;
+    margin-top: 15px;
+}
+
+.album-of-player {
+    margin: 23px 0;
+    display: flex;
+    position: relative;
+}
+
+.img-player {
+    text-align: center;
+    margin-right: 5px;
+    width: 123px;
+    height: 123px;
+    line-height: 116px;
+}
+
+.img-player img {
+    border: 0;
+    height: auto;
+    max-width: 100%;
+    width: auto;
+}
+
+.video-player-profile {
+    margin-top: 30px;
+}
+
+.review-duo-player {
+    margin-top: 13px;
+}
+
+.review-img-small {
+    display: flex;
+    width: 10%;
+}
+
+.avt-md {
+    height: 50px;
+    width: 50px;
+}
+
+.review-img-small img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.wrapper-content-rating {
+    width: 90%;
+    border-bottom: 1px solid #e2e6ea;
+    display: flex;
+}
+
+.full-size {
+    display: flex;
+    width: 100%;
+    margin-top: 23px;
+}
+
+.full-size:last-child .wrapper-content-rating {
+    border-bottom: none;
+}
+
+.review-content {
+    /* display: flex; */
+    width: 80%;
+}
+.review-content a:hover {
+    text-decoration: none;
+}
+.review-content .name-player-review {
+    margin-bottom: 5px !important;
+    font-size: 15px;
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1.13;
+    letter-spacing: -0.2px;
+}
+
+.review-content .name-player-review.color-vip-6 {
+    color: #aa0e16;
+}
+.review-rating {
+    /* display: flex; */
+    text-align: right;
+    width: 20%;
+    height: 100%;
+}
+
+.rateting-style {
+    color: #FFC107;
+    margin-bottom: 5px;
+    white-space: nowrap;
+}
+.content-player-review {
+    word-break: break-word;
+    text-align: justify;
+    display: inline-block;
+    width: 100%;
+}
+
+.time-player-review {
+    font-size: 12px;
+}
+
+/* Right player */
+
+.player-profile-right .right-player-profile {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #e2e6ea;
+}
+
+.price-player-profile {
+    font-size: 24px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #ff9c59;
+    margin: 0;
+}
+
+.btn-my-style {
+    width: 100%;
+    height: 54px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 700;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    margin: 10px 0 0;
+    border: 0;
+    text-transform: uppercase;
+}
+
+.btn-my-style.red {
+    background-color: #ff9c59;
+    color: #fff;
+}
+
+.btn-my-style.white{
+    color: #354052;
+    background-color: #fff;
+    border: 1px solid #e2e6ea;
+}

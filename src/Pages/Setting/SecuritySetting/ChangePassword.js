@@ -5,8 +5,6 @@ const ChangePassword = () => {
   return (
     <div>
       <Form>
-       
-
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Mật khẩu hiện tại</Form.Label>
           <Form.Control type="password" placeholder="Password" />
@@ -19,9 +17,11 @@ const ChangePassword = () => {
           <Form.Label>Xác nhận mật khẩu mới</Form.Label>
           <Form.Control type="password" placeholder="Password" />
         </Form.Group>
-        <Button variant="primary" type="submit" >
-          Submit
-        </Button>
+        <div className="text-center" >
+          <Button variant="primary" type="submit" style={{width: "50%", backgroundColor: "rgb(244, 119, 34)"}}>
+            Submit
+          </Button>
+        </div>  
       </Form>
     </div>
   );

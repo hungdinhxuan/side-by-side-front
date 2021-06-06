@@ -7,6 +7,7 @@ import GeneralSetting from "./GeneralSetting";
 import SecuritySetting from "./SecuritySetting";
 import WalletSetting from "./WalletSetting";
 import BlockList from "./BlockList";
+import '../../Styles/Setting.css'
 
 export const Setting = ({route}) => {
   return (

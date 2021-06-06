@@ -10,6 +10,8 @@ import BackToTop from "./Hooks/BackToTop";
 import BXH from './Pages/BXH/index';
 import { getCookie } from "./Services/handleCookie";
 import { useEffect, useState } from "react";
+import DetailStreamer from "./Pages/Streamer/DetailStreamer";
+
 
 
 
@@ -29,22 +31,22 @@ function App(props) {
       {/* Route Main */}
       <Switch>
         
-        <Route path="/">
+        <Route>
           <AppLayout>
             <Route path="/" exact >
               <Home />
             </Route>
             <Route path="/streamer" >
               <Streamer />
-              {/* <BackToTop/> */}
             </Route>
             <Route path="/setting/general" render={props => <Setting {...props} route='general'/>} />
             <Route path="/setting/wallet" render={props => <Setting {...props} route='wallet'/>} />
             <Route path="/setting/security" render={props => <Setting {...props} route='security'/>} />
             <Route path="/setting/blocklist" render={props => <Setting {...props} route='blocklist'/>} />
             <Route path="/BXH">
-              <BXH/>
+              <BXH />
             </Route>
+            <Route path="/detail/:id" component={DetailStreamer}/>
           </AppLayout>
         </Route>
       </Switch>

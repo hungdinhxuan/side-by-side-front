@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
     root : {
         width : "50%",
         margin : "auto",
-        backgroundColor : "red",
+        backgroundColor : "white",
     }
 }));
 
@@ -29,11 +29,11 @@ const SecuritySetting = () => {
 
     return (
         <div className={classes.root}>
-        <div >
-            <button onClick={handleChangePasswordClick}>Change Password</button>
-            <button onClick={handleSettingPasswordLevel2}>SettingPasswordLevel2</button>
+        <div className="text-center mt-5 security-password">
+            <button className="btn btn-primary ps1" onClick={handleChangePasswordClick}>Change Password</button>
+            <button className="btn btn-primary ps2" style={{marginLeft: "10px"}} onClick={handleSettingPasswordLevel2}>SettingPasswordLevel2</button>
         </div>
-        <div>
+        <div className="mt-3">
             {changePassword && <ChangePassword/> }
             {settingPasswordLevel2 && <SettingPasswordLevel2 />}
         </div>

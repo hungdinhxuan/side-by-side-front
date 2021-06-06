@@ -9,8 +9,11 @@ import {
   CardSubtitle,
   CardBody,
 } from "reactstrap";
+import {Link, Redirect, Route, useParams} from 'react-router-dom';
 
-const StreamerCard = ({ streamer }) => {
+const StreamerCard = (props) => {
+  const {streamer} = props;
+  let {id} = useParams();
   return (
     <div className="col-3" key={streamer._id}>
       <CardColumns>
@@ -33,8 +36,8 @@ const StreamerCard = ({ streamer }) => {
             </CardSubtitle>
             <CardText>{streamer.renterId.nation}</CardText>
             
-            <Button>Thuê ngay</Button>
-          </CardBody>
+            <Link to={`/detail/${streamer._id}`}>Thuê ngay</Link>
+          </CardBody> 
         </Card>
       </CardColumns>
     </div>

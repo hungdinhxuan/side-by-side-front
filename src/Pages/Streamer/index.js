@@ -12,7 +12,7 @@ import Loading from "../../Components/Loading";
 import StreamerCard from "../../Components/StreamerCard";
 import BackToTop from "../../Hooks/BackToTop";
 
-export default function Streamer() {
+export default function Streamer(props) {
   const dispatch = useDispatch();
   let { dulieu, isLoading, error } = useSelector((state) => state.streamer);
   const [page, setPage] = useState(1);
@@ -20,6 +20,7 @@ export default function Streamer() {
   const handleChange = (event, value) => {
     setPage(value);
   };
+
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
