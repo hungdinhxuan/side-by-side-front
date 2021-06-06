@@ -1,7 +1,9 @@
-import React, {useState, useEffect} from 'react';
+
 import ChangePassword from "./SecuritySetting/ChangePassword";
 import SettingPasswordLevel2 from "./SecuritySetting/SettingPasswordLevel2";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
+
 
 const useStyles = makeStyles((theme) => ({
     root : {
@@ -36,6 +38,7 @@ const SecuritySetting = () => {
         <div className="mt-3">
             {changePassword && <ChangePassword/> }
             {settingPasswordLevel2 && <SettingPasswordLevel2 />}
+            
         </div>
         </div>
     )
