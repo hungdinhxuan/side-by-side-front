@@ -125,6 +125,8 @@ const GeneralSetting = () => {
   const [openCitySelector, setOpenCitySelector] = React.useState(false);
   const [openSucessDialog, setOpenSucessDialog] = useState(false);
   const [openErrorDialog, setOpenErrorDialog] = React.useState(false);
+  const [successMessage, setSuccessMessage] = React.useState('Cập nhật thành công');
+  const [errorMessage, setErrorMessage] = React.useState('Server lỗi, vui lòng thử lại sau ít phút!!');
 
   const handleSaveClick = async (e) => {
     e.preventDefault();
@@ -139,10 +141,15 @@ const GeneralSetting = () => {
         name,
       });
       console.log(response);
-      if (response.data.success) setOpenSucessDialog(true);
+      if (response.data.success){ 
+        setOpenSucessDialog(true);
+        setSuccessMessage(response.data.message);
+      }
       else setOpenErrorDialog(true);
     } catch (error) {
       setOpenErrorDialog(true);
+      const {message} = error.response.data;
+      setErrorMessage(message);
     }
   };
 
@@ -376,7 +383,7 @@ const GeneralSetting = () => {
               onClose={handleSaveClose}
             >
               <Alert onClose={handleSaveClose} severity="success">
-                Cập nhật thành công
+                {successMessage}
               </Alert>
             </Snackbar>
 
@@ -386,7 +393,7 @@ const GeneralSetting = () => {
               onClose={handleSaveClose}
             >
               <Alert onClose={handleSaveClose} severity="error">
-                Server lỗi ! Vui lòng thử lại sau ít phút !
+                {errorMessage}
               </Alert>
             </Snackbar>
           </Form.Group>

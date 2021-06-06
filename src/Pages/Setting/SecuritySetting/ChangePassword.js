@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import axiosClient from "../../../Services/axiosClient";
 
 const ChangePassword = () => {
 
   const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState= useState('');
-  const [cofirmPassword, setCofirmPassword] = useState('');
+  const [newPassword, setNewPassword] =useState('');
+  const [cofirmPassword, setCofirmPassword] =useState('');
 
 
   const handleCurrentPasswordChange=  (e) => {
@@ -21,21 +21,11 @@ const ChangePassword = () => {
     setCofirmPassword(e.target.value);
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("header")
+    const {data} = axiosClient.patch('/auth/change-password', {password: currentPassword, newPassword});
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const {data} = axiosClient.patch('/auth/change-password', {password: currentPassword, newPassword})
-      } catch (error) {
-        
-      }
-    }
-    fetchData();
-  }, []);
 
   return (
     <div>

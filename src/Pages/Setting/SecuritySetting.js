@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from 'react';
+
 import ChangePassword from "./SecuritySetting/ChangePassword";
 import SettingPasswordLevel2 from "./SecuritySetting/SettingPasswordLevel2";
 import { makeStyles } from "@material-ui/core/styles";
+import React, { useEffect, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
     root : {
