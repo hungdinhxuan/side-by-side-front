@@ -6,8 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
     root : {
         width : "50%",
-        margin : "auto",
-        backgroundColor : "red",
+        marginLeft: "25%",
+        marginTop: "8%",
+       
     }
 }));
 
@@ -28,7 +29,7 @@ const SecuritySetting = () => {
     }
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} >
         <div >
             <button onClick={handleChangePasswordClick}>Change Password</button>
             <button onClick={handleSettingPasswordLevel2}>SettingPasswordLevel2</button>
