@@ -4,7 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 
-function UserMenu() {
+function UserMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -14,6 +14,8 @@ function UserMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const {check} = props;
 
   return (
     <div style={{ backgroundColor: "white", marginLeft: "10px" }}>
@@ -38,7 +40,7 @@ function UserMenu() {
           <MenuItem >Cài đặt tài khoản</MenuItem>
         </Link>
         <Link to="/">
-          <MenuItem>Đăng xuất</MenuItem>
+          <MenuItem onClick={check}>Đăng xuất</MenuItem>
         </Link>
       </Menu>
     </div>

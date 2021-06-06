@@ -4,7 +4,8 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 const DonateStreamer = (props) => {
   const {
     buttonLabel,
-    className
+    className,
+    open
   } = props;
 
   const [modal, setModal] = useState(true);

@@ -14,11 +14,11 @@ export default function DetailStreamer(props) {
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)
   );
-  const [donateOpen, setDonateOpen] = useState(true);
+  const [donateOpen, setDonateOpen] = useState(false);
 
   const handleDonate = () => {
-    console.log('adu vip');
-    setDonateOpen(true);
+    setDonateOpen(!donateOpen);
+    console.log(donateOpen);    
   };
 
   // Đây là detail của nhân vật streamer: {newDay.getDate().toString()} / {newDay.getMonth().toString()*1 + 1} / {newDay.getFullYear().toString()}
@@ -240,7 +240,7 @@ export default function DetailStreamer(props) {
           </div>
         </div>
       </div>
-      {donateOpen && <DonateStreamer />}
+        {donateOpen && <DonateStreamer open={donateOpen}/>}
     </div>
   );
 }
