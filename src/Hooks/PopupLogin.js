@@ -17,30 +17,26 @@ import qs from "qs";
 import { GoogleLogin } from "react-google-login";
 import loadingGif from "../img/Infinity-1s-200px.gif";
 import { serverHost, googleClientId } from "../config";
-import '../Styles/Navbar.css';
+import "../Styles/Navbar.css";
 
 import Loading from "../Components/Loading";
-
-
 
 const PopupLogin = (props) => {
   const { buttonLabel, className } = props;
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
-  
-  
+
   const location = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    reset
+    reset,
   } = useForm();
 
   const toggle = () => {
-    setModal(!modal)
-    
+    setModal(!modal);
   };
   const [loginState, setLogin] = useState(false);
   const handleSetLogin = () => {
@@ -48,15 +44,14 @@ const PopupLogin = (props) => {
   };
 
   const handleLogin = (values) => {
-    console.log(values);  
+    console.log(values);
     dispatch(login(values));
     reset();
   };
 
   const handleLoginGoogle = (values) => {
     dispatch(LoginGoogle(values));
-    
-  }
+  };
 
   //REACT HOOK FORM xung đột dữ liệu khi sử dụng <Redirect/> hoặc <Route/>
 
@@ -87,16 +82,10 @@ const PopupLogin = (props) => {
   //   }
   // };
 
-  
-
-  
-  
-
   const responseErrorGoogle = (response) => {
     console.log(response);
   };
 
- 
   return (
     <div className={isLoading ? "noClick" : ""}>
       <Button
@@ -104,9 +93,11 @@ const PopupLogin = (props) => {
           toggle();
           handleSetLogin();
         }}
-        style={{backgroundColor: "#ea7c69"}}
+        style={{ backgroundColor: "#ea7c69" }}
         className="header-top-login"
-      > Đăng nhập
+      >
+        {" "}
+        Đăng nhập
       </Button>
       <Modal isOpen={modal} toggle={toggle} className="custom-login">
         <ModalHeader toggle={toggle} className={isLoading ? "noClick" : ""}>
@@ -117,7 +108,7 @@ const PopupLogin = (props) => {
             <Loading />
           ) : (
             <>
-              <form onSubmit={handleSubmit(handleLogin)} >
+              <form onSubmit={handleSubmit(handleLogin)}>
                 <div className="form-group">
                   <label>Tài khoản</label>
                   <input
@@ -162,22 +153,29 @@ const PopupLogin = (props) => {
                   <Alert color="danger">{errors.password.message}</Alert>
                 )}
 
-
                 {error && <Alert color="danger">{error.message}</Alert>}
-                <button class="btn btn-primary">Đăng Nhập</button>
+                <button class="btn-login">Đăng Nhập</button>
               </form>
+              <div style={{ marginTop: "15px" }}>
+                <GoogleLogin
+                  clientId={googleClientId}
+                  buttonText="Đăng nhập với google"
+                  onSuccess={handleLoginGoogle}
+                  onFailure={responseErrorGoogle}
+                  cookiePolicy={"single_host_origin"}
+                  className="text-center google"
+                />
+              </div>
+              <Link to="/forgot-password" onClick={toggle}>
+                Quên mật khẩu
+              </Link>
             </>
           )}
         </ModalBody>
         <ModalFooter className={isLoading ? "noClick" : ""}>
-          <GoogleLogin
-            clientId={googleClientId}
-            buttonText="Đăng nhập với google"
-            onSuccess={handleLoginGoogle}
-            onFailure={responseErrorGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-          <button class="btn btn-primary" onClick={toggle}>Hủy bỏ</button>
+          <button class="btn btn-primary" onClick={toggle}>
+            Hủy bỏ
+          </button>
         </ModalFooter>
       </Modal>
     </div>

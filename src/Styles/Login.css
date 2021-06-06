@@ -1,25 +1,57 @@
-.modal-content .modal-header{
+.modal-content .modal-header {
     width: 100%;
-    text-align: center 
+    text-align: center;
 }
 
-.modal-header .modal-title{
+.modal-header .modal-title {
     display: block;
     margin: 0;
     padding: 0;
     width: 100%;
 }
 
-.modal-header .modal-title img{
+.modal-header .modal-title img {
     height: 100px;
 }
 
-
-.modal-content{
+.modal-content {
     width: 75%;
     margin: 0 auto;
 }
 
 .custom-login-body button {
     width: 100%;
+}
+
+.btn-login {
+    font-size: 16px;
+    color: white;
+    border: 1px solid transparent;
+    background-color: rgb(249,114,34);
+    box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
+    border-radius: 2px;
+    padding: 10px;
+    border-radius: 40px;
+}
+
+.google {
+    font-size: 16px;
+    transition: all 0.5s;
+    background-color: rgb(249,114,34)!important;
+    border-radius: 40px!important;
+    color: white!important;
+}
+
+.google:hover{
+    background: black;
+}
+
+.google>div{
+    border-radius: 50%!important;
+    margin-left: 10px;
+}
+
+.google span {
+    margin-left: 54px;
+    font-size: 16px;
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../Styles/Navbar.css";
-import logo from "../../img/logo.png";
+import logo from "../../img/player-dou-a.jpg";
 import { Link, Redirect } from "react-router-dom";
 import PopupRegister from "../../Hooks/PopupRegister";
 import PopupLogin from "../../Hooks/PopupLogin";
@@ -35,7 +35,7 @@ export default function Navbar() {
           <div className="col-sm-8">
             <Link to="/" className="logo" style={{ textDecoration: "none" }}>
               <a>
-                <img src={logo} alt="Anh logo"></img>
+                <img src={logo} alt="Anh logo" style={{width: "100px", height: "70px"}}></img>
               </a>
               <div className="menu-text">
                 <p>
@@ -73,9 +73,10 @@ export default function Navbar() {
             {logout ? (
               <>
                 <Link path="/">
-                        <button onClick={handleLocalStore} className="log-out">Log out</button>
+                        {/* <button onClick={handleLocalStore} className="log-out">Log out</button> */}
+                        <UserMenu check={handleLocalStore}/>
                 </Link>
-                <UserMenu />                
+                              
               </>
             ) : (
               <>
