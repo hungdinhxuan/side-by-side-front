@@ -11,6 +11,7 @@ import BXH from './Pages/BXH/index';
 import { getCookie } from "./Services/handleCookie";
 import { useEffect, useState } from "react";
 import DetailStreamer from "./Pages/Streamer/DetailStreamer";
+import SettingStreamer from "./Pages/Streamer/SettingStreamer";
 
 
 
@@ -47,6 +48,7 @@ function App(props) {
               <BXH />
             </Route>
             <Route path="/detail/:id" component={DetailStreamer}/>
+            <Route path="/setting-streamer-profile" component={SettingStreamer} />
           </AppLayout>
         </Route>
       </Switch>

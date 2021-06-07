@@ -11,17 +11,21 @@ import Loading from "../../Components/Loading";
 
 import StreamerCard from "../../Components/StreamerCard";
 import BackToTop from "../../Hooks/BackToTop";
-import '../../Styles/DetailStreamer.css';
+import "../../Styles/DetailStreamer.css";
 
 export default function Streamer(props) {
   const dispatch = useDispatch();
   let { dulieu, isLoading, error } = useSelector((state) => state.streamer);
   const [page, setPage] = useState(1);
+  const [openSetting, setOpenSetting] = useState(false);
+
+  const handleSetting = () => {
+    setOpenSetting(!openSetting);
+  };
 
   const handleChange = (event, value) => {
     setPage(value);
   };
-
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
@@ -30,11 +34,10 @@ export default function Streamer(props) {
       behavior: "smooth",
     });
   }, [page]);
-  
 
   if (isLoading) {
     return (
-      <div style={{background: 'pink',padding: "100px"}}>
+      <div style={{ background: "pink", padding: "100px" }}>
         <Loading></Loading>
       </div>
     );
@@ -43,7 +46,8 @@ export default function Streamer(props) {
   return (
     <div className="streamer">
       <div className="container row" style={{ backgroundImage: { Anhmau } }}>
-        {dulieu && dulieu.map((item) => <StreamerCard streamer={item} key={item._id}/>)}
+        {dulieu &&
+          dulieu.map((item) => <StreamerCard streamer={item} key={item._id} />)}
       </div>
       {/* <div style={{width: "22%", margin: "10px auto"}}>
       <Pagination coun
@@ -58,9 +62,7 @@ export default function Streamer(props) {
           onChange={handleChange}
         />
       </div>
-      <BackToTop/>
-
-      <button className="setting-player-profile"><i className="fa fa-cog icon-setting"></i></button>
+      <BackToTop />
     </div>
   );
 }
