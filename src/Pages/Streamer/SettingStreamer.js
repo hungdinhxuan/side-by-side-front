@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   TabContent,
   TabPane,
@@ -29,17 +29,18 @@ const SettingStreamer = (props) => {
   const [name, setName] = useState("");
   const [game, setGame] = useState("");
   const [desc, setDesc] = useState("");
-  const [name, setName] = useState("");
   const [social, setSocial] = useState("");
-  const [describe, describe] = useState("");
+  const [describe, setDescribe] = useState("");
   const [hilight, setHilight] = useState("");
   const [price, setPrice] = useState("");
   const [maxHours, setMaxHours] = useState("");
-  
+
   //   Handle form
   const handleEditName = () => {
     setEdit(true);
   };
+
+  useEffect(() => {}, [name]);
 
   const handleCheckValue = () => {
     console.log(name);
@@ -77,19 +78,22 @@ const SettingStreamer = (props) => {
         <TabPane tabId="1">
           <div className="container">
             {edit ? (
-              <Form>
-                <FormGroup className="nickname">
-                  <Input
-                    type="text"
-                    placeholder="Nhập nickname của bạn"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                </FormGroup>
-                {/* <Button onClick={handleCheckValue}>Check value</Button> */}
-              </Form>
+              <div>
+                <Form>
+                  <FormGroup className="nickname">
+                    <Input
+                      type="text"
+                      placeholder="Nhập nickname của bạn"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="border-input"
+                    />
+                  </FormGroup>
+                  {/* <Button onClick={handleCheckValue}>Check value</Button> */}
+                </Form>
+              </div>
             ) : (
-              <>
+              <div>
                 <p className="nick-name">
                   NickName{" "}
                   <button
@@ -99,21 +103,54 @@ const SettingStreamer = (props) => {
                     <i class="fa fa-edit edit-icon"></i>
                   </button>
                 </p>
-              </>
+              </div>
             )}
 
-            <p className="game">Nhập vào tựa game của bạn</p>
-            <Form>
-              <FormGroup className="game">
-                <Input
-                  type="text"
-                  placeholder="Nhập tựa game bạn yêu thích"
-                  value={game}
-                  onChange={(e) => setName(e.target.value)}
-                />
-              </FormGroup>
-              {/* <Button onClick={handleCheckValue}>Check value</Button> */}
-            </Form>
+            <div className="game">
+              <p className="game-title">Nhập vào tựa game của bạn</p>
+              <Form>
+                <FormGroup className="game">
+                  <Input
+                    type="text"
+                    placeholder="Nhập tựa game bạn yêu thích: Liên Minh, Liên quân,...."
+                    value={game}
+                    onChange={(e) => setGame(e.target.value)}
+                    className="border-input"
+                  />
+                </FormGroup>
+                {/* <Button onClick={handleCheckValue}>Check value</Button> */}
+              </Form>
+            </div>
+            <div className="desc">
+              <p className="desc-title">Mô tả</p>
+              <Form>
+                <FormGroup className="desc">
+                  <Input
+                    type="text"
+                    placeholder="Nhập vào mô tả về bản thân bạn"
+                    value={desc}
+                    onChange={(e) => setDesc(e.target.value)}
+                  />
+                </FormGroup>
+                {/* <Button onClick={handleCheckValue}>Check value</Button> */}
+              </Form>
+            </div>
+            <div className="social">
+              <p className="social-title">Liên kết xã hội</p>
+              <Form>
+                <FormGroup className="social">
+                  <Input
+                    type="text"
+                    placeholder="Nhập đường dẫn facebook, instagram,..."
+                    value={social}
+                    onChange={(e) => {
+                      setSocial(e.target.value);
+                    }}
+                  />
+                </FormGroup>
+                {/* <Button onClick={handleCheckValue}>Check value</Button> */}
+              </Form>
+            </div>
           </div>
         </TabPane>
         <TabPane tabId="2">

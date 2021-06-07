@@ -1,5 +1,33 @@
+/* Border input */
+.border-input {
+    border-radius: 48px;
+    height: 30px;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+}
+
+.container form {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    transition: all 0.5s !important;
+}
+.container form input {
+    color: white !important;
+}
+
+.container form input:focus {
+    border: 1px solid #EA7C69 !important;
+}
+.form-control {
+    border: none;
+}
+.form-control:focus {
+    border: none;
+    box-shadow: none;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+}
+
 .setting-streamer {
-    justify-content: center!important;
+    justify-content: center !important;
     align-items: center;
 }
 
@@ -10,18 +38,25 @@
     text-transform: uppercase;
 }
 
-.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
     background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
     color: #ff4800;
     border: none;
 }
 
-.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
     border: none;
     cursor: pointer;
 }
 
-.tab-content .nick-name{
+.tab-content {
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    padding: 0 10px;
+}
+
+.tab-content .nick-name {
     color: white;
     font-size: 48px;
     text-transform: uppercase;
@@ -33,7 +68,7 @@
     color: #ff4800;
 }
 
-.container{
+.container {
     padding: 0;
 }
 
@@ -41,6 +76,54 @@
     margin: 25px 0;
 }
 
-.container .nickname input{
+.container .nickname input {
     width: 50%;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+}
+
+.game .game-title {
+    color: white;
+}
+.game form {
+    margin-left: 10px;
+    width: 75%;
+}
+
+.container .game input {
+    width: 44%;
+}
+
+.desc {
+    color: #fff;
+}
+
+.desc p {
+    margin: 0;
+}
+
+.desc input {
+    height: 80px;
+    width: 50%;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    border-radius: 20px;
+}
+
+
+.social {
+    color: #fff
+}
+
+.social p{
+   margin: 0;
+}
+
+.social input {
+    height: 50px;
+    width: 50%;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    border-radius: 10px;
 }
