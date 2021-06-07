@@ -27,20 +27,31 @@ const SettingStreamer = (props) => {
   //   Setup useState của form
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
   const [game, setGame] = useState("");
   const [desc, setDesc] = useState("");
   const [social, setSocial] = useState("");
   const [describe, setDescribe] = useState("");
-  const [hilight, setHilight] = useState("");
+  const [highlight, setHighlight] = useState("");
+  const [device, setDevice] = useState("None");
   const [price, setPrice] = useState("");
   const [maxHours, setMaxHours] = useState("");
+  const [requestHours, setRequestHours] = useState([]);
 
   //   Handle form
   const handleEditName = () => {
     setEdit(true);
   };
 
-  useEffect(() => {}, [name]);
+  const handleImage = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event) => {
+        setSelectedFile(event.target.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  };
 
   const handleCheckValue = () => {
     console.log(name);
@@ -132,7 +143,6 @@ const SettingStreamer = (props) => {
                     onChange={(e) => setDesc(e.target.value)}
                   />
                 </FormGroup>
-                {/* <Button onClick={handleCheckValue}>Check value</Button> */}
               </Form>
             </div>
             <div className="social">
@@ -148,34 +158,239 @@ const SettingStreamer = (props) => {
                     }}
                   />
                 </FormGroup>
-                {/* <Button onClick={handleCheckValue}>Check value</Button> */}
               </Form>
+            </div>
+            <div className="picture">
+              <p className="album-title">Album ảnh</p>
+              <div className="player-albums">
+                <div className="row">
+                  <div className="col-md-2 setting-albums">
+                    <input
+                      name="album"
+                      type="file"
+                      accept="image/png, image/jpeg, image/jpg"
+                      multiple
+                      onChange={handleImage}
+                    />
+                    <p>
+                      <span className="btn-upload">
+                        <i className="fas fa-images"></i>
+                        Thêm ảnh
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="item-image-upload col-sm-2">
+                    {selectedFile ? (
+                      <img src={selectedFile} id="img-selected" />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="describe">
+              <p className="describe-title">Giới thiệu chi tiết bản thân</p>
+              <Form>
+                <FormGroup className="describe-form">
+                  <Input
+                    type="textarea"
+                    placeholder="Giới thiệu chi tiết"
+                    onChange={(e) => {
+                      setDescribe(e.target.value);
+                    }}
+                  />
+                </FormGroup>
+              </Form>
+            </div>
+            <div className="highlight">
+              <p className="highlight-title">Link highlight</p>
+              <Form>
+                <FormGroup>
+                  <Input
+                    type="url"
+                    placeholder="Nhập đường dẫn highlight"
+                    value={highlight}
+                    onChange={(e) => {
+                      setHighlight(e.target.value);
+                    }}
+                    className="border-input"
+                  />
+                </FormGroup>
+              </Form>
+            </div>
+            <div className="device">
+              <p className="device-title">Mô tả</p>
+              <FormGroup>
+                <select
+                  type="select"
+                  name="select"
+                  id="SelectDevice"
+                  className="border-input"
+                  onChange={(e) => setDevice(e.target.value)}
+                >
+                  <option value="Microphone">Microphone</option>
+                  <option value="None">None</option>
+                </select>
+              </FormGroup>
+            </div>
+            <div className="btn-setting-profile row">
+              <div className="col-md-6">
+                <button className="btn-reset">Reset</button>
+                <button className="btn-save">Lưu thay đổi</button>
+              </div>
             </div>
           </div>
         </TabPane>
         <TabPane tabId="2">
-          <Row>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-            <Col sm="6">
-              <Card body>
-                <CardTitle>Special Title Treatment</CardTitle>
-                <CardText>
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </CardText>
-                <Button>Go somewhere</Button>
-              </Card>
-            </Col>
-          </Row>
+          <div className="container">
+            <div className="price">
+              <p className="price-title">Chi phí mỗi giờ thuê</p>
+              <Form>
+                <FormGroup className="price-form">
+                  <Input
+                    type="text"
+                    placeholder="Giá trị lớn hơn 10.000 đ/h"
+                    value={price}
+                    onChange={(e) => setPrice(e.target.value)}
+                    className="border-input"
+                  />
+                </FormGroup>
+              </Form>
+            </div>
+            <div className="max-hours">
+              <p className="max-hours-title">Mỗi lượt có thể thuê tối đa</p>
+              <Form>
+                <FormGroup className="max-hours-form">
+                  <select
+                    type="select"
+                    name="select"
+                    id="SelectHours"
+                    className="border-input"
+                    onChange={(e) => setMaxHours(e.target.value)}
+                  >
+                    <option value="Microphone">Microphone</option>
+                    <option value="None">None</option>
+                  </select>
+                </FormGroup>
+              </Form>
+            </div>
+            <div className="request-hours">
+              <p className="request-hours-title">Khung giờ nhận yêu cầu</p>
+              <div className="row">
+                <div className="col-md-6 row request-left">
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1AM
+                  </div>
+                </div>
+                <div className="col-md-6 row request-right">
+                  <div className="col-md-2">
+                    <Input type="checkbox" checked="checked" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                  <div className="col-md-2">
+                    <Input type="checkbox" />
+                    1PM
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="setting-right-button">
+              <div className="btn-setting-profile row">
+                <div className="col-md-6">
+                  <button className="btn-reset">Reset</button>
+                  <button className="btn-save">Lưu thay đổi</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </TabPane>
       </TabContent>
     </div>
