@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   width: 250px;
-  background-color: #f1f1f1;
+  background-color: #271A24;
   position: absolute;
   max-height: 100%;
   overflow: auto;
@@ -10,19 +10,22 @@
 
 .sidebar a {
   display: block;
-  color: black;
+  color: #ff4800;
   padding: 16px;
   text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
 }
  
 .sidebar a.active {
-  background-color: #04AA6D;
-  color: white;
+  background-color:  #ea7c69;
+  color: #ff4800;
 }
 
 .sidebar a:hover:not(.active) {
-  background-color: #555;
-  color: white;
+  background-color:  #ea7c69 ;
+  color: #ff4800;
+
 }
 
 div.content {

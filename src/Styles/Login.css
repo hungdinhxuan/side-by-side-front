@@ -23,27 +23,41 @@
     width: 100%;
 }
 
+.custom-login-body a{
+    color: gray;
+}
+
+.custom-login-body a:hover{
+    text-decoration: none;
+    color: black;
+}
+
 .btn-login {
     font-size: 16px;
     color: white;
     border: 1px solid transparent;
-    background-color: rgb(249,114,34);
+    background-color: #ea7c69;
     box-shadow: rgb(0 0 0 / 24%) 0px 2px 2px 0px, rgb(0 0 0 / 24%) 0px 0px 1px 0px;
     border-radius: 2px;
     padding: 10px;
     border-radius: 40px;
+    transition: all 0.5s;
+}
+
+.btn-login:hover {
+    background-color: #ff4800;
 }
 
 .google {
     font-size: 16px;
     transition: all 0.5s;
-    background-color: rgb(249,114,34)!important;
+    background-color: #ea7c69!important;
     border-radius: 40px!important;
     color: white!important;
 }
 
 .google:hover{
-    background: black;
+    background: #ff4800!important;
 }
 
 .google>div{

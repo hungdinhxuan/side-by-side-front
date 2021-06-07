@@ -211,7 +211,7 @@
 }
 
 .rateting-style {
-    color: #FFC107;
+    color: #ffc107;
     margin-bottom: 5px;
     white-space: nowrap;
 }
@@ -267,8 +267,29 @@
     color: #fff;
 }
 
-.btn-my-style.white{
+.btn-my-style.white {
     color: #354052;
     background-color: #fff;
     border: 1px solid #e2e6ea;
+}
+
+/* Streamer */
+.streamer {
+    position: relative;
+}
+
+.streamer .setting-player-profile {
+    position: absolute;
+    top: 0;
+    right: 15px;
+    background: gray;
+    padding: 10px;
+}
+.setting-player-profile {
+    border: none;
+}
+
+.icon-setting {
+    color: #ff4800;
+    font-size: 20px;
 }

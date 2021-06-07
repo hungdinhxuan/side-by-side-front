@@ -21,7 +21,7 @@ export default function BackToTop() {
   }, [isVisible]);
 
   return (
-    <div className="scroll-to-top" style={{ textAlign: "right", display: isVisible ? "block" : "none"}}>
+    <div className="scroll-to-top" style={{ textAlign: "right", display: isVisible ? "block" : "none", background: "#fff"}}>
       {isVisible && (
         <div onClick={scrollToTop}>
           <i class="fa fa-arrow-alt-circle-up" style={{fontSize: "50px"}}></i>

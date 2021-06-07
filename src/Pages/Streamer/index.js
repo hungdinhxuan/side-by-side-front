@@ -11,6 +11,7 @@ import Loading from "../../Components/Loading";
 
 import StreamerCard from "../../Components/StreamerCard";
 import BackToTop from "../../Hooks/BackToTop";
+import '../../Styles/DetailStreamer.css';
 
 export default function Streamer(props) {
   const dispatch = useDispatch();
@@ -33,7 +34,7 @@ export default function Streamer(props) {
 
   if (isLoading) {
     return (
-      <div style={{background: '#24272e'}}>
+      <div style={{background: 'pink',padding: "100px"}}>
         <Loading></Loading>
       </div>
     );
@@ -58,6 +59,8 @@ export default function Streamer(props) {
         />
       </div>
       <BackToTop/>
+
+      <button className="setting-player-profile"><i className="fa fa-cog icon-setting"></i></button>
     </div>
   );
 }

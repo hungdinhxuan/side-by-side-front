@@ -105,7 +105,7 @@ const PopupLogin = (props) => {
         </ModalHeader>
         <ModalBody className="custom-login-body">
           {isLoading ? (
-            <Loading />
+            <Loading style={{padding: "0",backgroundColor: "white"}} />
           ) : (
             <>
               <form onSubmit={handleSubmit(handleLogin)}>

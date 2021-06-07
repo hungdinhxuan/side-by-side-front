@@ -18,6 +18,7 @@ import { Register } from "../actions/auth";
 import { useLocation } from "react-router-dom";
 import qs from "qs";
 import Loading from "../Components/Loading";
+import "../Styles/Navbar.css";
 
 const PopupRegister = () => {
   const dispatch = useDispatch();
@@ -58,7 +59,7 @@ const PopupRegister = () => {
   const password = watch("password"); //Kiểm tra giá trị password
 
   return (
-    <div>
+    <div className={isLoading ? "noClick" : ""}>
       <Button
         onClick={() => {
           toggle();
@@ -191,7 +192,7 @@ const PopupRegister = () => {
                 </div>
                 {errors.password_repeat &&
                   errors.password_repeat?.type === "validate" && (
-                    <Alert color="danger" style={{fontSize: "1px"}}>Mật khẩu không trùng khớp</Alert>
+                    <Alert color="danger" style={{fontSize: "10px"}}>Mật khẩu không trùng khớp</Alert>
                   )}
 
                 
