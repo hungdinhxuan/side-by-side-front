@@ -27,7 +27,7 @@ const SettingStreamer = (props) => {
   //   Setup useState của form
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState([]);
   const [game, setGame] = useState("");
   const [desc, setDesc] = useState("");
   const [social, setSocial] = useState("");
@@ -47,11 +47,10 @@ const SettingStreamer = (props) => {
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (event) => {
-        setSelectedFile(event.target.result);
+        setSelectedFile([...selectedFile,...event.target.result]);
       };
-      reader.readAsDataURL(event.target.files[0]);
+      reader.readAsDataURL(selectedFile);
     }
-    
   };
 
   const handleCheckValue = () => {
@@ -346,7 +345,7 @@ const SettingStreamer = (props) => {
                 </div>
                 <div className="col-md-6 row request-right">
                   <div className="col-md-2">
-                    <Input type="checkbox" checked="checked"  />
+                    <Input type="checkbox" checked="checked" />
                     1PM
                   </div>
                   <div className="col-md-2">
