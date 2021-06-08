@@ -27,7 +27,7 @@ const SettingStreamer = (props) => {
   //   Setup useState của form
   const [edit, setEdit] = useState(false);
   const [name, setName] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [selectedFile, setSelectedFile] = useState([]);
   const [game, setGame] = useState("");
   const [desc, setDesc] = useState("");
   const [social, setSocial] = useState("");
@@ -44,14 +44,34 @@ const SettingStreamer = (props) => {
   };
 
   const handleImage = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = (event) => {
-        setSelectedFile(event.target.result);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    }
-    
+    // if (event.target.files && event.target.files[0]) {
+    //   let reader = new FileReader();
+    //   reader.onload = (event) => {
+    //     setSelectedFile(event.target.result);
+    //   };
+    //   reader.readAsDataURL(event.target.files[0]);
+    // }
+    const files = Array.from(event.target.files);
+    Promise.all(
+      files.map((file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener("load", (ev) => {
+            resolve(ev.target.result);
+          });
+          reader.addEventListener("error", reject);
+          reader.readAsDataURL(file);
+        });
+      })
+    ).then(
+      (images) => {
+        /* Once all promises are resolved, update state with image URI array */
+        setSelectedFile(images);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   };
 
   const handleCheckValue = () => {
@@ -184,7 +204,18 @@ const SettingStreamer = (props) => {
                 <div className="row">
                   <div className="item-image-upload col-sm-2">
                     {selectedFile ? (
-                      <img src={selectedFile} id="img-selected" />
+                      <div >
+                        {selectedFile.map((imageURI) => (
+                          <div className="col-sm-2">
+                          <img
+                            src={imageURI}
+                            width="250px"
+                            height="250px"
+                            alt="Photo uploaded"
+                          />
+                          </div>
+                        ))}
+                      </div>
                     ) : (
                       <></>
                     )}
@@ -346,7 +377,7 @@ const SettingStreamer = (props) => {
                 </div>
                 <div className="col-md-6 row request-right">
                   <div className="col-md-2">
-                    <Input type="checkbox" checked="checked"  />
+                    <Input type="checkbox" checked="checked" />
                     1PM
                   </div>
                   <div className="col-md-2">
