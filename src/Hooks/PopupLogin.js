@@ -62,12 +62,12 @@ const PopupLogin = (props) => {
   }
 
   // Check kiểm tra status online hoặc offline
-  // if(navigator.onLine){
-  //   console.log('online');
-  // }
-  // else{
-  //   console.log('offline');
-  // }
+  if(navigator.onLine){
+    console.log('online');
+  }
+  else{
+    console.log('offline');
+  }
 
   // const responseSuccessGoogle = async (response) => {
   //   try {

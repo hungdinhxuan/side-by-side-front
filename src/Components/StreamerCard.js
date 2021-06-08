@@ -9,11 +9,12 @@ import {
   CardSubtitle,
   CardBody,
 } from "reactstrap";
-import {Link, Redirect, Route, useParams} from 'react-router-dom';
+import { Link, Redirect, Route, useParams } from "react-router-dom";
+import "../Styles/StreamerCard.css";
 
 const StreamerCard = (props) => {
-  const {streamer} = props;
-  let {id} = useParams();
+  const { streamer } = props;
+  let { id } = useParams();
   return (
     <div className="col-3" key={streamer._id}>
       <CardColumns>
@@ -26,18 +27,23 @@ const StreamerCard = (props) => {
             alt="Card image cap"
           />
           <CardBody>
-            <CardTitle tag="h5">{streamer.firstName + " " + streamer.lastName}</CardTitle>
-            <CardSubtitle
-              tag="h6"
-              className="mb-2 text-muted"
-              style={{ h6: "red" }}
-            >
-              {streamer.price}đ/1h
-            </CardSubtitle>
-            <CardText>{streamer.renterId.nation}</CardText>
-            
-            <Link to={`/detail/${streamer._id}`}>Thuê ngay</Link>
-          </CardBody> 
+            <CardTitle tag="h5">
+              {streamer.firstName + " " + streamer.lastName}
+            </CardTitle>
+            <div className="price-right">
+              {streamer.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+              đồng /h
+            </div>
+            <div className="desc-card">
+              <CardText>{streamer.renterId.nation}</CardText>
+            </div>
+            <div className="game-card">
+              <CardText>Thể loại game Liên minh, Liên Quân</CardText>
+            </div>
+            <div className="btn-rent">
+              <Link to={`/detail/${streamer._id}`}>Thuê ngay</Link>
+            </div>
+          </CardBody>
         </Card>
       </CardColumns>
     </div>

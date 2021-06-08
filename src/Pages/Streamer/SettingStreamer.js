@@ -51,6 +51,7 @@ const SettingStreamer = (props) => {
       };
       reader.readAsDataURL(event.target.files[0]);
     }
+    
   };
 
   const handleCheckValue = () => {
@@ -71,7 +72,7 @@ const SettingStreamer = (props) => {
               toggle("1");
             }}
           >
-            Setting streamer
+            Cài đặt thông tin thuê người chơi
           </NavLink>
         </NavItem>
         <NavItem>
@@ -81,7 +82,7 @@ const SettingStreamer = (props) => {
               toggle("2");
             }}
           >
-            Setting giờ thuê
+            Cài đặt thông tin giờ thuê
           </NavLink>
         </NavItem>
       </Nav>
@@ -232,6 +233,8 @@ const SettingStreamer = (props) => {
                   onChange={(e) => setDevice(e.target.value)}
                 >
                   <option value="Microphone">Microphone</option>
+                  <option value="Video">Video</option>
+                  <option value="All">Microphone + Video</option>
                   <option value="None">None</option>
                 </select>
               </FormGroup>
@@ -253,7 +256,7 @@ const SettingStreamer = (props) => {
                   <Input
                     type="text"
                     placeholder="Giá trị lớn hơn 10.000 đ/h"
-                    value={price}
+                    defaultValue="10.000"
                     onChange={(e) => setPrice(e.target.value)}
                     className="border-input"
                   />
@@ -271,8 +274,19 @@ const SettingStreamer = (props) => {
                     className="border-input"
                     onChange={(e) => setMaxHours(e.target.value)}
                   >
-                    <option value="Microphone">Microphone</option>
-                    <option value="None">None</option>
+                    <option>1 giờ</option>
+                    <option>2 giờ</option>
+                    <option>3 giờ</option>
+                    <option>4 giờ</option>
+                    <option>5 giờ</option>
+                    <option>6 giờ</option>
+                    <option>7 giờ</option>
+                    <option>8 giờ</option>
+                    <option>9 giờ</option>
+                    <option>10 giờ</option>
+                    <option>11 giờ</option>
+                    <option>12 giờ</option>
+                    <option>24 giờ</option>
                   </select>
                 </FormGroup>
               </Form>
@@ -332,7 +346,7 @@ const SettingStreamer = (props) => {
                 </div>
                 <div className="col-md-6 row request-right">
                   <div className="col-md-2">
-                    <Input type="checkbox" checked="checked" />
+                    <Input type="checkbox" checked="checked"  />
                     1PM
                   </div>
                   <div className="col-md-2">
