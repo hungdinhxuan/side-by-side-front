@@ -44,13 +44,34 @@ const SettingStreamer = (props) => {
   };
 
   const handleImage = (event) => {
-    if (event.target.files && event.target.files[0]) {
-      let reader = new FileReader();
-      reader.onload = (event) => {
-        setSelectedFile([...selectedFile,...event.target.result]);
-      };
-      reader.readAsDataURL(selectedFile);
-    }
+    // if (event.target.files && event.target.files[0]) {
+    //   let reader = new FileReader();
+    //   reader.onload = (event) => {
+    //     setSelectedFile(event.target.result);
+    //   };
+    //   reader.readAsDataURL(event.target.files[0]);
+    // }
+    const files = Array.from(event.target.files);
+    Promise.all(
+      files.map((file) => {
+        return new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.addEventListener("load", (ev) => {
+            resolve(ev.target.result);
+          });
+          reader.addEventListener("error", reject);
+          reader.readAsDataURL(file);
+        });
+      })
+    ).then(
+      (images) => {
+        /* Once all promises are resolved, update state with image URI array */
+        setSelectedFile(images);
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   };
 
   const handleCheckValue = () => {
@@ -180,10 +201,22 @@ const SettingStreamer = (props) => {
                     </p>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="item-image-upload col-sm-2">
+                <div>
+                  <div className="item-image-upload">
                     {selectedFile ? (
-                      <img src={selectedFile} id="img-selected" />
+                      <div className="row">
+                        {selectedFile.map((imageURI) => (
+                          <div className="col-md-3">
+                            <img
+                              src={imageURI}
+                              width="250px"
+                              height="250px"
+                              alt="Photo uploaded"
+                              style={{marginTop: "10px"}}
+                            />
+                          </div>
+                        ))}
+                      </div>
                     ) : (
                       <></>
                     )}

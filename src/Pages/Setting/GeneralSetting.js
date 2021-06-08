@@ -18,6 +18,7 @@ import {
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import {serverHost} from "../../config"
 
 import { Form, DropdownButton, Dropdown } from "react-bootstrap";
 
@@ -121,6 +122,7 @@ const GeneralSetting = () => {
   };
 
   const [gender, setGender] = React.useState("");
+  const [imageLink, setImageLink] = React.useState("ad");
   const [openGenderSelector, setOpenGenderSelector] = React.useState(false);
   const [openCitySelector, setOpenCitySelector] = React.useState(false);
   const [openSucessDialog, setOpenSucessDialog] = useState(false);
@@ -152,6 +154,11 @@ const GeneralSetting = () => {
       setErrorMessage(message);
     }
   };
+
+  const handleSubmitAvatar = async (event) => {
+    event.preventDefault();
+    
+  }
 
   const handleSaveClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -194,7 +201,7 @@ const GeneralSetting = () => {
         setCity(data.city);
         setCountry(data.nation);
         setselectedBirthDate(data.birthDate);
-
+        setImageLink(`https://rent-me-now.herokuapp.com/public/images/${renterData.avatar.split('/')[renterData.avatar.split('/').length - 1]}`)
         console.log(data);
 
         // set list cities
@@ -206,7 +213,7 @@ const GeneralSetting = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [renterData.avatar]);
 
   return (
     <>
@@ -256,9 +263,11 @@ const GeneralSetting = () => {
               height="400px"
               width="300px"
               title="Contemplative Reptile"
-              image={renterData.avatar}
+              image={imageLink}
               onClick={(e) =>{console.log('Header')}}
+              
             />
+            
           </CardActionArea>
         </Card>
         <Card className={classes.cardSmall} style={{ display: "inline-block" }}>

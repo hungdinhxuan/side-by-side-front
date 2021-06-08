@@ -1,3 +1,7 @@
+.container {
+    color: #fff;
+}
+
 .container .player-profile-left .avt {
     width: 260px;
     height: 260px;
@@ -272,4 +276,3 @@
     background-color: #fff;
     border: 1px solid #e2e6ea;
 }
-
