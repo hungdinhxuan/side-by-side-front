@@ -19,8 +19,8 @@ export default function Wallet() {
     watch,
     formState: { errors },
   } = useForm();
-  
-  const {path, url} = useRouteMatch();
+
+  const { path, url } = useRouteMatch();
   const [next, setNext] = useState(false);
   const onSubmit = (values) => {
     console.log(values);
@@ -40,8 +40,9 @@ export default function Wallet() {
             placeholder="Nhap gia tien mong muon"
             {...register("money", { required: true, maxLength: 20000 })}
           />
-          <button type="submit" >click</button>
+          <button type="submit" className="btn btn-secondary">Xác nhận số tiền nạp</button>
         </form>
+        {next ? <Link to="/wallet/napthe">Continue</Link> : <></>}
       </div>
     </div>
   );
