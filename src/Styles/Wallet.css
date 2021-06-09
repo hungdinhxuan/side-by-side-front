@@ -1,0 +1,12 @@
+.container-wallet-form {
+    height: 50vh;
+}
+
+.wallet .container-wallet-form {
+    background: #424242;
+    margin-bottom: 100px;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 16px;
+    color: #fff;
+}
