@@ -12,6 +12,7 @@ import { getCookie } from "./Services/handleCookie";
 import { useEffect, useState } from "react";
 import DetailStreamer from "./Pages/Streamer/DetailStreamer";
 import SettingStreamer from "./Pages/Streamer/SettingStreamer";
+import CountdownTime from "./Components/CountdownTime";
 
 
 
@@ -45,7 +46,7 @@ function App(props) {
             <Route path="/setting/security" render={props => <Setting {...props} route='security'/>} />
             <Route path="/setting/blocklist" render={props => <Setting {...props} route='blocklist'/>} />
             <Route path="/BXH">
-              <BXH />
+              <CountdownTime/>
             </Route>
             <Route path="/detail/:id" component={DetailStreamer}/>
             <Route path="/setting-streamer-profile" component={SettingStreamer} />

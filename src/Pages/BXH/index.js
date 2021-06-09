@@ -3,7 +3,7 @@ import React from 'react'
 export default function BXH() {
     return (
         <div>
-            <p>Đây là BXH</p>
+            <h1>Đây là BXH</h1>
         </div>
     )
 }

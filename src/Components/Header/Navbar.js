@@ -63,8 +63,8 @@ export default function Navbar() {
                 </Link>
               </li>
               <li className="menu-items">
-                <Link>
-                  <a>BXH</a>
+                <Link to="/BXH">
+                  BXH
                 </Link>
               </li>
             </ul>

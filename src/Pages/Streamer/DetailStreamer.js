@@ -1,24 +1,33 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import CountdownTime from "../../Components/CountdownTime";
 import Anh from "../../img/Ha.jpg";
 import Anh1 from "../../img/Ha1.jpg";
 import Anh2 from "../../img/Ha2.jpg";
 import Anh3 from "../../img/Ha3.jpg";
 import Anh4 from "../../img/Ha4.jpg";
 import "../../Styles/DetailStreamer.css";
-import DonateStreamer from './DonateStreamer';
+import DonateStreamer from "./DonateStreamer";
 
-export default function DetailStreamer(props) {
+export default function DetailStreamer({num}) {
   const { id } = useParams();
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)
   );
+
+  
+  
   const [donateOpen, setDonateOpen] = useState(false);
+  const [rent, setRent] = useState(false);
+
+  const handleRent = () => {
+    setRent(true);
+  };
 
   const handleDonate = () => {
     setDonateOpen(!donateOpen);
-    console.log(donateOpen);    
+    console.log(donateOpen);
   };
 
   // Đây là detail của nhân vật streamer: {newDay.getDate().toString()} / {newDay.getMonth().toString()*1 + 1} / {newDay.getFullYear().toString()}
@@ -231,7 +240,13 @@ export default function DetailStreamer(props) {
               </span>
             </div>
             <div className="text-center">
-              <button className="btn-my-style red">Thuê</button>
+              {rent ? (
+                <CountdownTime  num={5} />
+              ) : (
+                <>
+                  <button className="btn-my-style red" onClick={handleRent}>Thuê</button>
+                </>
+              )}
               <button className="btn-my-style white" onClick={handleDonate}>
                 Donate
               </button>
@@ -240,7 +255,7 @@ export default function DetailStreamer(props) {
           </div>
         </div>
       </div>
-        {donateOpen && <DonateStreamer open={donateOpen}/>}
+      {donateOpen && <DonateStreamer open={donateOpen} />}
     </div>
   );
 }
