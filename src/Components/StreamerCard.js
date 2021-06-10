@@ -38,7 +38,7 @@ const StreamerCard = (props) => {
               <CardText>Hello mấy cưng</CardText>
             </div>
             <div className="game-card">
-              <CardText>Thể loại game Liên minh, Liên Quân  {streamer.status === 'online' ? <span class="dot-online"></span> : <span class="dot-offline"></span>}</CardText>
+              <CardText>Thể loại game Liên minh, Liên Quân  {streamer.status === 'active' ? <span class="dot-online"></span> : <span class="dot-offline"></span>}</CardText>
             </div>
             <div className="btn-rent">
               <Link to={`/detail/${streamer._id}`}>Thuê ngay</Link>

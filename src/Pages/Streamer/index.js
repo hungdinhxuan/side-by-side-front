@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 
 import Pagination from "@material-ui/lab/Pagination";
 import Typography from "@material-ui/core/Typography";
@@ -14,17 +14,15 @@ import BackToTop from "../../Hooks/BackToTop";
 import "../../Styles/DetailStreamer.css";
 // import { socket } from "../../Services/socket";
 
-import {socket} from "../../Services/socket";
-import {getCookie} from "../../Services/handleCookie";
-
+import { getCookie } from "../../Services/handleCookie";
+import { socketContext } from "../../Components/socket";
 
 export default function Streamer(props) {
   const dispatch = useDispatch();
   let { dulieu, isLoading, error } = useSelector((state) => state.streamer);
   const [page, setPage] = useState(1);
   const [openSetting, setOpenSetting] = useState(false);
-  const [players, setPlayers] = useState([])
-
+  const [players, setPlayers] = useState([]);
 
   const handleSetting = () => {
     setOpenSetting(!openSetting);
@@ -42,18 +40,17 @@ export default function Streamer(props) {
   //   console.log(players);
   // }, []);
 
+  // Use socket
+
+  const socket = useContext(socketContext);
+  socket.emit("VALIDATION", getCookie("token"));
   useEffect(() => {
-    // Gửi lên server lấy dữ liệu players
-    socket.emit('getListPlayers')
-    // Gửi lên server cookie
-    socket.emit('validate', getCookie("token"))
-    socket.on('showPlayers', (data) => {
-      console.log(data.response)
-      setPlayers(data.response)
-    })
-    
-    
-  }, [dulieu])
+    socket.emit("GET_USERS");
+    socket.on("GET_USERS", (data) => {
+      console.log(data.response);
+      setPlayers(data.response);
+    });
+  }, [socket]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
@@ -75,7 +72,9 @@ export default function Streamer(props) {
     <div className="streamer">
       <div className="container row" style={{ backgroundImage: { Anhmau } }}>
         {players &&
-          players.map((item) => <StreamerCard streamer={item} key={item._id} />)}
+          players.map((item) => (
+            <StreamerCard streamer={item} key={item._id} />
+          ))}
       </div>
       {/* <div style={{width: "22%", margin: "10px auto"}}>
       <Pagination coun

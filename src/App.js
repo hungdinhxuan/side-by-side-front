@@ -15,6 +15,7 @@ import SettingStreamer from "./Pages/Streamer/SettingStreamer";
 import CountdownTime from "./Components/CountdownTime";
 import Wallet from "./Pages/Wallet";
 import Napthe from "./Pages/Wallet/Napthe";
+import { socketContext, socketio } from "./Components/socket";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -26,51 +27,53 @@ function App(props) {
   }, [token]);
 
   return (
-    <BrowserRouter>
-      {/* Route Main */}
-      <Switch>
-        <Route>
-          <AppLayout>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/streamer">
-              <Streamer />
-            </Route>
-            <Route
-              path="/setting/general"
-              render={(props) => <Setting {...props} route="general" />}
-            />
-            <Route
-              path="/setting/wallet"
-              render={(props) => <Setting {...props} route="wallet" />}
-            />
-            <Route
-              path="/setting/security"
-              render={(props) => <Setting {...props} route="security" />}
-            />
-            <Route
-              path="/setting/blocklist"
-              render={(props) => <Setting {...props} route="blocklist" />}
-            />
-            <Route path="/BXH">
-              <BXH />
-            </Route>
-            <Route path="/detail/:id" component={DetailStreamer} />
-            <Route
-              path="/setting-streamer-profile"
-              component={SettingStreamer}
-            />
-            <Switch>
-              <Route path="/wallet" component={Wallet} exact/>
-              <Route path="/wallet/payment">
-                <Napthe />
+    <socketContext.Provider value={socketio}>
+      <BrowserRouter>
+        {/* Route Main */}
+        <Switch>
+          <Route>
+            <AppLayout>
+              <Route path="/" exact>
+                <Home />
               </Route>
-            </Switch>
-          </AppLayout>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+              <Route path="/streamer">
+                <Streamer />
+              </Route>
+              <Route
+                path="/setting/general"
+                render={(props) => <Setting {...props} route="general" />}
+              />
+              <Route
+                path="/setting/wallet"
+                render={(props) => <Setting {...props} route="wallet" />}
+              />
+              <Route
+                path="/setting/security"
+                render={(props) => <Setting {...props} route="security" />}
+              />
+              <Route
+                path="/setting/blocklist"
+                render={(props) => <Setting {...props} route="blocklist" />}
+              />
+              <Route path="/BXH">
+                <BXH />
+              </Route>
+              <Route path="/detail/:id" component={DetailStreamer} />
+              <Route
+                path="/setting-streamer-profile"
+                component={SettingStreamer}
+              />
+              <Switch>
+                <Route path="/wallet" component={Wallet} exact />
+                <Route path="/wallet/payment">
+                  <Napthe />
+                </Route>
+              </Switch>
+            </AppLayout>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </socketContext.Provider>
   );
 }
 
