@@ -13,6 +13,7 @@ export function login(values) {
         // localStorage.setItem("token", JSON.stringify(data.token));
         setCookie('token', data.token, 90)
         dispatch({ type: LOGIN_SUCCESS, payload: { data } }); 
+        
       }
       dispatch({type: CLEAR_STATE});
     } catch (error) {
