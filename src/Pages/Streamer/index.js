@@ -50,7 +50,7 @@ export default function Streamer(props) {
       console.log(data.response);
       setPlayers(data.response);
     });
-  }, [socket]);
+  }, [socket,players]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
