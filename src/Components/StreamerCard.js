@@ -35,7 +35,7 @@ const StreamerCard = (props) => {
               đồng /h
             </div>
             <div className="desc-card">
-              <CardText>{streamer.renterId.nation}</CardText>
+              <CardText>Hello mấy cưng</CardText>
             </div>
             <div className="game-card">
               <CardText>Thể loại game Liên minh, Liên Quân  {streamer.status === 'online' ? <span class="dot-online"></span> : <span class="dot-offline"></span>}</CardText>

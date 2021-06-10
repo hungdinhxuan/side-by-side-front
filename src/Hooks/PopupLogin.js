@@ -36,6 +36,7 @@ const PopupLogin = (props) => {
   } = useForm();
 
   const toggle = () => {
+    
     setModal(!modal);
   };
   const [loginState, setLogin] = useState(false);
@@ -62,12 +63,12 @@ const PopupLogin = (props) => {
   }
 
   // Check kiểm tra status online hoặc offline
-  if(navigator.onLine){
-    console.log('online');
-  }
-  else{
-    console.log('offline');
-  }
+  // if(navigator.onLine){
+  //   console.log('online');
+  // }
+  // else{
+  //   console.log('offline');
+  // }
 
   // const responseSuccessGoogle = async (response) => {
   //   try {

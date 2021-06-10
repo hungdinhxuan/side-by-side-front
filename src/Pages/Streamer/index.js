@@ -52,7 +52,8 @@ export default function Streamer(props) {
       setPlayers(data.response)
     })
     
-  }, [])
+    
+  }, [dulieu])
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));

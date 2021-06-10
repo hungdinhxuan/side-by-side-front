@@ -63,7 +63,7 @@
     bottom: 0;
     width: 45px;
     height: 5px;
-    background: #ff5917;
+    background: #ea7c69;
     border-radius: 0px 0px 4px 4px;
 }
 
@@ -109,6 +109,7 @@
 
 .show-more-game-items img {
     width: 100%;
+    border-radius: 12px;
 }
 
 .show-more-game .text-show-more{

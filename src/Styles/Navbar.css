@@ -24,16 +24,20 @@
     align-items: center;
     justify-content: center;
 }
+.logo a img {
+    transform: rotate(45deg);
+    object-fit: contain;
+}
 .menu-wrap .col-sm-7 .logo .menu-text {
     color: #fff;
     font-size: 30px;
     line-height: 30px;
     padding-left: 10px;
     text-decoration: none;
+    text-shadow: 3px 5px 6px #ea7c69;
+    font-weight: 600;
 }
-.menu-wrap .col-sm-7 .logo .menu-text p {
-    padding-bottom: 10px;
-}
+
 .menu-wrap .col-sm-7 .logo .menu-text span {
     color: #ea7c69;
 }
@@ -91,6 +95,9 @@
 
 .menu-right__items {
     display: flex;
+}
+.menu-right__items ul{
+    margin: 0;
 }
 
 .menu-right__items li {

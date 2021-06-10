@@ -23,13 +23,16 @@ export default function Navbar() {
   const [logout, setLogout] = useState(false);
   const handleLocalStore = () => {
     deleteCookie("token");
+    window.location.reload();
     setLogout(false);
   };
   useEffect(() => {
     if (data && data !== "undefined") {
       setLogout(true);
     }
+    
   }, [data]);
+  
 
   // Dropdown thông báo giữa 2 client
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -49,7 +52,7 @@ export default function Navbar() {
                   <img
                     src={logo}
                     alt="Anh logo"
-                    style={{ width: "100px", height: "70px" }}
+                    style={{ width: "64px", height: "55px" }}
                   ></img>
                 </a>
                 <div className="menu-text">
@@ -102,14 +105,13 @@ export default function Navbar() {
                 </div>
                 <div className="col-md-4">
                   <div className="money">
-                    <Link className="btn btn-secondary"  to="/wallet">
+                    <Link className="btn btn-secondary" to="/wallet">
                       <i className="fa fa-wallet"></i> + 10,000,000 đ
                     </Link>
                   </div>
                 </div>
                 <div className="col-md-4">
                   <Link path="/">
-                    {/* <button onClick={handleLocalStore} className="log-out">Log out</button> */}
                     <UserMenu check={handleLocalStore} />
                   </Link>
                 </div>
