@@ -10,7 +10,7 @@ import Anh4 from "../../img/Ha4.jpg";
 import "../../Styles/DetailStreamer.css";
 import DonateStreamer from "./DonateStreamer";
 
-export default function DetailStreamer({num}) {
+export default function DetailStreamer() {
   const { id } = useParams();
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)

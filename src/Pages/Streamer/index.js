@@ -12,12 +12,14 @@ import Loading from "../../Components/Loading";
 import StreamerCard from "../../Components/StreamerCard";
 import BackToTop from "../../Hooks/BackToTop";
 import "../../Styles/DetailStreamer.css";
+// import { socket } from "../../Services/socket";
 
 export default function Streamer(props) {
   const dispatch = useDispatch();
   let { dulieu, isLoading, error } = useSelector((state) => state.streamer);
   const [page, setPage] = useState(1);
   const [openSetting, setOpenSetting] = useState(false);
+  const [players, setPlayers] = useState([]);
 
   const handleSetting = () => {
     setOpenSetting(!openSetting);
@@ -26,6 +28,14 @@ export default function Streamer(props) {
   const handleChange = (event, value) => {
     setPage(value);
   };
+
+  // useEffect(() => {
+  //   socket.emit("getListPlayers");
+  //   socket.on("showPlayers",(data)=> {
+  //     setPlayers(data.response);
+  //   });
+  //   console.log(players);
+  // }, []);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));

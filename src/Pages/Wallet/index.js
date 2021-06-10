@@ -10,15 +10,16 @@ import {
 } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import "../../Styles/Wallet.css";
-import { Alert } from "@material-ui/lab";
+import { Alert } from "reactstrap";
 
-export default function Wallet() {
+export default function Wallet(props) {
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
+ 
 
   const { path, url } = useRouteMatch();
   const [next, setNext] = useState(false);
@@ -26,6 +27,13 @@ export default function Wallet() {
     console.log(values);
     console.log(url);
     setNext(true);
+  };
+
+  const handleCheck = (e) => {
+    const { value } = e.target;
+    if (value < 0) {
+      console.log("lỗi");
+    }
   };
 
   return (
@@ -38,11 +46,45 @@ export default function Wallet() {
           <input
             style={{ width: "100%" }}
             placeholder="Nhap gia tien mong muon"
-            {...register("money", { required: true, maxLength: 20000 })}
+            {...register("money", {
+              required: {
+                value: true,
+                message: "Số tiền không được để trống",
+              },
+              minLength: {
+                value: 5,
+                message: "Phải nạp ít nhất là 10.000vnđ",
+              },
+              maxLength: {
+                value: 7,
+                message: "Chỉ được nạp tối đa 1M vnđ",
+              },
+              pattern: {
+                value: /^[0-9\b]+$/,
+                message: "Nhập không đúng định dạng tiền",
+              },
+            })}
+            onChange={handleCheck}
           />
-          <button type="submit" className="btn btn-secondary">Xác nhận số tiền nạp</button>
+          {errors.money && <Alert color="danger">{errors.money.message}</Alert>}
+
+          <button
+            type="submit"
+            className="btn btn-secondary"
+            style={{ marginTop: "15px" }}
+          >
+            Xác nhận số tiền nạp
+          </button>
         </form>
-        {next ? <Link to="/wallet/napthe">Continue</Link> : <></>}
+        {next ? (
+          <div className="link-to-payment">
+            <Link to="/wallet/payment">
+              <span className="payment-link text-center">Continue</span>
+            </Link>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

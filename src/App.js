@@ -14,6 +14,7 @@ import DetailStreamer from "./Pages/Streamer/DetailStreamer";
 import SettingStreamer from "./Pages/Streamer/SettingStreamer";
 import CountdownTime from "./Components/CountdownTime";
 import Wallet from "./Pages/Wallet";
+import Napthe from "./Pages/Wallet/Napthe";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -60,7 +61,12 @@ function App(props) {
               path="/setting-streamer-profile"
               component={SettingStreamer}
             />
-            <Route path="/wallet" component={Wallet}/>
+            <Switch>
+              <Route path="/wallet" component={Wallet} exact/>
+              <Route path="/wallet/payment">
+                <Napthe />
+              </Route>
+            </Switch>
           </AppLayout>
         </Route>
       </Switch>
