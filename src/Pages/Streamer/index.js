@@ -44,19 +44,31 @@ export default function Streamer(props) {
   const testPlayers = useRef();
 
   const socket = useContext(socketContext);
-  
 
   useEffect(() => {
-    const time1 = setTimeout(() =>{
-      socket.emit("GET_USERS");
-    },15000)
+    socket.emit("GET_USERS");
     socket.on("GET_USERS", (data) => {
-      console.log(data.response);
       // setPlayers(item => [...item,data.response]);
+      console.log(data.response);
       setPlayers(data.response);
     });
     return () => {
       socket.removeEventListener();
+    }
+  }, [socket]);
+
+  useEffect(() => {
+    socket.emit("GET_USERS");
+    const time1 = setTimeout(() => {
+      socket.on("GET_USERS", (data) => {
+        console.log(data.response);
+        // setPlayers(item => [...item,data.response]);
+        setPlayers(data.response);
+      });
+    }, 10000);
+
+    return () => {
+      // socket.removeEventListener();
       clearTimeout(time1);
     };
   }, [players]);
