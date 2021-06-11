@@ -99,7 +99,7 @@ export default function Streamer(props) {
       <Pagination coun
       t={10} color="primary" size="large" />
       </div> */}
-      <div style={{ width: "22%", margin: "10px auto" }}>
+      <div style={{ width: "22%", margin: "10px auto",display: "none" }}>
         <Pagination
           count={10}
           page={page}

@@ -1,5 +1,4 @@
 import React from 'react'
-import Bee from '../../img/myhoan.jpg';
 
 export default function Napthe() {
     return (

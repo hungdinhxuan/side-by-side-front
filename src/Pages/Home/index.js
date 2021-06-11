@@ -67,7 +67,7 @@ const Home = (props) => {
         onExited={() => setAnimating(false)}
         key={uuidv4()}
       >
-        <img src={item.src} alt={item.altText} style={{width: "100vw", height: "40vh"}} />
+        <img src={item.src} alt={item.altText} style={{width: "100vw", height: "50vh"}} />
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
@@ -99,6 +99,7 @@ const Home = (props) => {
         </Carousel>
 
         <div className="container">
+          
           <ShowHome></ShowHome>
         </div>
       </div>

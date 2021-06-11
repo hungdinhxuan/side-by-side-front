@@ -1,5 +1,7 @@
 .Home-main {
-    background-color: #271a24;
+    background-image: url(../img/Header/home_four_area_bg.png) !important;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .carousel .carousel-inner .carousel-item img {

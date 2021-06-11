@@ -6,6 +6,9 @@
     position: relative;
     margin-top: 71px;
 }
+.streamer {
+    background: #271a24;
+}
 
 .card img {
     width: 200px;
@@ -77,23 +80,21 @@
     font-size: 12px;
 }
 
-
 /* Pagination */
 
-
-button.MuiButtonBase-root{
+button.MuiButtonBase-root {
     color: white;
 }
 
-button.MuiPaginationItem-textPrimary.Mui-selected{
+button.MuiPaginationItem-textPrimary.Mui-selected {
     color: white !important;
     background: gray;
     transition: all 0.5s;
 }
-button.MuiPaginationItem-textPrimary.Mui-selected:hover, .MuiPaginationItem-textPrimary.Mui-selected.Mui-focusVisible{
+button.MuiPaginationItem-textPrimary.Mui-selected:hover,
+.MuiPaginationItem-textPrimary.Mui-selected.Mui-focusVisible {
     background-color: #ff4800;
 }
-
 
 .dot-online {
     height: 10px;
