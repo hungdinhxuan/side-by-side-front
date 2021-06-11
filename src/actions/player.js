@@ -11,6 +11,7 @@ export default function getPlayersById(player_id) {
     dispatch({ type: PLAYER_REQUEST });
     try {
       const { data } = await playerAPI.getPlayer(player_id);
+    //   console.log(data.profile);
       dispatch({ type: PLAYER_SUCCESS, payload: { data } });
     } catch (error) {
       // Báo lỗi

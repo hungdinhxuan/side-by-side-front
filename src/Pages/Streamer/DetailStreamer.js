@@ -14,6 +14,7 @@ import getPlayersById from "../../actions/player";
 export default function DetailStreamer() {
   const { id } = useParams();
   const { data, isLoading, error } = useSelector((state) => state.player);
+  const {price, setPrice} = useState(0);
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)
   );
@@ -22,8 +23,11 @@ export default function DetailStreamer() {
   useEffect(() => {
     dispatch(getPlayersById(id));
     console.log(data);
-  }, []);
+  }, [id]);
   // console.log(streamer);
+  if(data){
+    console.log(data.playerID);
+  }
 
   const [donateOpen, setDonateOpen] = useState(false);
   const [rent, setRent] = useState(false);
@@ -46,21 +50,23 @@ export default function DetailStreamer() {
       <div className="row">
         <div className="player-profile-left col-md-3">
           <div className="avt avt-lg">
-            <img src={Anh} alt="Anh streamer" className="avt-img" />
+            <img src={data.avatar} alt="Anh streamer" className="avt-img" />
           </div>
           <div className="rent-time-wrap">
             <p className="ready">Đang sẵn sàng</p>
           </div>
           <div className="member-since">
             <span>Ngày tham gia: </span>
-            <span>{data.profile.createdAt}</span>
+            <span>{data.createdAt}</span>
+            <div className="icon-wrap facebook"><a href="https://facebook.com/camapduahau" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f" /></a></div>
+
           </div>
         </div>
         <div className="player-profile-main col-md-6 col-md-push-3">
           <div className="row">
             <div className="col-md-12 center-item">
               <span className="hidden-over-name name-player-profile">
-                Khánh hà
+                {data.displayName}
               </span>
               <button className="btn-player">
                 <i className="fa fa-heart"></i>
@@ -107,11 +113,10 @@ export default function DetailStreamer() {
           <div className="horizontal"></div>
           <div className="title-player-profile row">
             <div className="col-md-12">
-              <span>Thông tin</span>
+              <span>{data.shortDescribe}</span>
             </div>
           </div>
           <div className="content-player-profile">
-            <strong>Eu reprehenderit Lorem pariatur nisi.</strong>
             <div className="album-of-player">
               <div style={{ display: "inherit", width: "100%" }}>
                 <div className="img-player">
@@ -131,24 +136,13 @@ export default function DetailStreamer() {
                 </div>
               </div>
             </div>
-            <p>
-              TFT( VÀNG, BẠC, ĐỒNG, SẮT) - LQMB - PUBGMB - PROP AND SEEK - FALL
-              GUYS - HUMAN FALL FLATS - PICO PARK - CỜ TỶ PHÚ (BUSINESS TOUR ) -
-              VLR - PUBGPC+ DECEIT+CSGO (CÓ GAME NHƯNG CHƯA CHƠI ) 🍌 Name : Cún
-              cute phô mai con bò cười 🍑 🍌 Sinh ngày : 15/7/2xxx 🍌 Quê : Thái
-              Bình 🍌 Hiện học làm việc tại Hà Nội ạ 🍌Hát vu vơ , giọng vui
-              buồn , dễ thương hay mạnh mẽ đều okla 🍌 Nhận book nhạc , tâm sự ,
-              mở phim ( có nitro + netflix ) , coi bạn chơi game động viên lấy
-              lại tự tin , truyền năng lượng tích cực . 🍌 Có thể tải game và
-              tập chơi game theo yêu cầu Cần có người quan tâm che chở 😊 Tuy
-              không quá pro nhưng user sẽ có trải nghiệm tốt
-            </p>
+            <p>{data.detailDescribe}</p>
             <div class="video-player-profile">
               <div className="col-md-12" style={{ padding: "0" }}>
                 <iframe
                   width="100%"
                   height="350"
-                  src="https://www.youtube.com/embed/oci_a9RQ6gE"
+                  src={`https://www.youtube.com/embed/oci_a9RQ6gE`}
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -234,7 +228,7 @@ export default function DetailStreamer() {
         </div>
         <div className="player-profile-right col-md-3 col-md-pull-6">
           <div className="right-player-profile">
-            <p className="price-player-profile">70,000 đ/h</p>
+            <p className="price-player-profile">{data?.playerID?.price} đ/h</p>
             <div className="rateting-style">
               <i className="fas fa-star" />
               <i className="fas fa-star" />

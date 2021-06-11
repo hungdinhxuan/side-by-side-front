@@ -27,6 +27,7 @@ const StreamerCard = (props) => {
             height="50%"
             src={streamer.avatar}
             alt="Card image cap"
+            style={{objectFit: "cover"}}
           />
           <CardBody>
             <CardTitle tag="h5">

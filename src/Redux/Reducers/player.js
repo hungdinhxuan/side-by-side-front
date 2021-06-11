@@ -15,7 +15,7 @@ function playerReducer(state = initialState, action) {
     case PLAYER_REQUEST:
       return { ...state, isLoading: true, error: null };
     case PLAYER_SUCCESS:
-      return { ...state, isLoading: false, data: action.payload.data };
+      return { ...state, isLoading: false, data: action.payload.data.profile };
     case PLAYER_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
     default:
