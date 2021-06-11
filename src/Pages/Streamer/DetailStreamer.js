@@ -10,6 +10,8 @@ import Anh4 from "../../img/Ha4.jpg";
 import "../../Styles/DetailStreamer.css";
 import DonateStreamer from "./DonateStreamer";
 import getPlayersById from "../../actions/player";
+import moment from "moment";
+import {formatMoney, getIdYoutube} from "../../Services/mix";
 
 export default function DetailStreamer() {
   const { id } = useParams();
@@ -22,8 +24,8 @@ export default function DetailStreamer() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlayersById(id));
-    console.log(data);
-  }, [id]);
+    
+  }, [dispatch, id]);
   // console.log(streamer);
   if(data){
     console.log(data.playerID);
@@ -57,7 +59,7 @@ export default function DetailStreamer() {
           </div>
           <div className="member-since">
             <span>Ngày tham gia: </span>
-            <span>{data.createdAt}</span>
+            <span>{moment(data.createdAt).format("DD MMM YYYY") }</span>
             <div className="icon-wrap facebook"><a href="https://facebook.com/camapduahau" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f" /></a></div>
 
           </div>
@@ -142,7 +144,7 @@ export default function DetailStreamer() {
                 <iframe
                   width="100%"
                   height="350"
-                  src={`https://www.youtube.com/embed/oci_a9RQ6gE`}
+                  src={`https://www.youtube.com/embed/${getIdYoutube(data?.linkHightLight)}`}
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -228,7 +230,7 @@ export default function DetailStreamer() {
         </div>
         <div className="player-profile-right col-md-3 col-md-pull-6">
           <div className="right-player-profile">
-            <p className="price-player-profile">{data?.playerID?.price} đ/h</p>
+            <p className="price-player-profile">{data?.playerId?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} đ/h</p>
             <div className="rateting-style">
               <i className="fas fa-star" />
               <i className="fas fa-star" />
