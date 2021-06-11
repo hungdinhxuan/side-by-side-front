@@ -32,21 +32,31 @@ export default function Streamer(props) {
     setPage(value);
   };
 
-  useEffect(() => {
-    socket.emit("GET_USERS");
-    socket.on("GET_USERS",(data)=> {
-      setPlayers(data.response);
-    });
-    console.log(players);
-  }, []);
+  
 
   // Use socket
   const testPlayers = useRef();
 
   const socket = useContext(socketContext);
   
+  // useEffect(() => {
+  //   socket.emit("GET_USERS");
+  //   socket.on("GET_USERS",(data)=> {
+  //     setPlayers(data.response);
+  //   });
+  //   console.log(players);
+  // }, [socket, players]);
 
+  useEffect(() =>{
+    socket.emit("GET_USERS");
+    socket.on("GET_USERS", (data) => {
+      console.log(data.response);
+      // setPlayers(item => [...item,data.response]);
+      setPlayers(data.response);
+    });
+  }, [])
   useEffect(() => {
+   
     const time1 = setTimeout(() =>{
       socket.emit("GET_USERS");
     },15000)
@@ -59,7 +69,7 @@ export default function Streamer(props) {
       socket.removeEventListener();
       clearTimeout(time1);
     };
-  }, [players]);
+  }, [socket, players]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
@@ -67,7 +77,7 @@ export default function Streamer(props) {
       top: 0,
       behavior: "smooth",
     });
-  }, [page]);
+  }, [page, dispatch]);
 
   if (isLoading) {
     return (
