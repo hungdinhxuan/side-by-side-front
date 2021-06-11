@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import CountdownTime from "../../Components/CountdownTime";
@@ -12,6 +12,7 @@ import DonateStreamer from "./DonateStreamer";
 import getPlayersById from "../../actions/player";
 import moment from "moment";
 import {formatMoney, getIdYoutube} from "../../Services/mix";
+import { socketContext } from "../../Components/socket";
 
 export default function DetailStreamer() {
   const { id } = useParams();
@@ -20,6 +21,7 @@ export default function DetailStreamer() {
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)
   );
+  const socket = useContext(socketContext);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,15 +30,26 @@ export default function DetailStreamer() {
   }, [dispatch, id]);
   // console.log(streamer);
   if(data){
-    console.log(data.playerID);
+    console.log(data.playerId);
   }
 
   const [donateOpen, setDonateOpen] = useState(false);
   const [rent, setRent] = useState(false);
 
   const handleRent = () => {
-    setRent(true);
+    // setRent(true);
+    console.log( data)
+    socket.emit('RENT_REQUEST', {receiver: data?.playerId?.renterId, message: 'i want to rent you'})
   };
+
+  useEffect(() =>{
+    socket.on('SENDER_NOTIFICATION', (data) => {
+      console.log(data.response);
+    })
+    socket.on('RECEIVER_NOTIFICATION', (data) => {
+      alert(data.response);
+    })
+  }, [socket]);
 
   const handleDonate = () => {
     setDonateOpen(!donateOpen);
