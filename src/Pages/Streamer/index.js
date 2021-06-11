@@ -32,13 +32,13 @@ export default function Streamer(props) {
     setPage(value);
   };
 
-  // useEffect(() => {
-  //   socket.emit("getListPlayers");
-  //   socket.on("showPlayers",(data)=> {
-  //     setPlayers(data.response);
-  //   });
-  //   console.log(players);
-  // }, []);
+  useEffect(() => {
+    socket.emit("GET_USERS");
+    socket.on("GET_USERS",(data)=> {
+      setPlayers(data.response);
+    });
+    console.log(players);
+  }, []);
 
   // Use socket
   const testPlayers = useRef();
