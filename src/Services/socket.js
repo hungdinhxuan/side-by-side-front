@@ -1,7 +1,7 @@
 import io from "socket.io-client";
 import {getCookie} from "./handleCookie"
 
-const socket =  io('http://localhost:3000');
+const socket =  io('https://rent-me-now.herokuapp.com');
 // socket.on('connect', () => {
 //     socket.emit('authenticate', { token: getCookie('token')}) //send the jwt
       

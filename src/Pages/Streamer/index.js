@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 
 import Pagination from "@material-ui/lab/Pagination";
 import Typography from "@material-ui/core/Typography";
@@ -41,17 +41,24 @@ export default function Streamer(props) {
   // }, []);
 
   // Use socket
+  const testPlayers = useRef();
 
   const socket = useContext(socketContext);
   
+
   useEffect(() => {
     socket.emit("GET_USERS");
     socket.on("GET_USERS", (data) => {
       console.log(data.response);
-      setPlayers(data.response);
+      // setPlayers(item => [...item,data.response]);
+      setTimeout(() => {
+        setPlayers(data.response);
+      }, 15000);
     });
-  
-  }, [socket]);
+    return () => {
+      socket.removeEventListener();
+    };
+  }, [players]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
