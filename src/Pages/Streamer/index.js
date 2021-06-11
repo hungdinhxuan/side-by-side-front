@@ -53,16 +53,17 @@ export default function Streamer(props) {
   }, []);
 
   useEffect(() => {
-    socket.emit("GET_USERS");
+    const time1 = setTimeout(() =>{
+      socket.emit("GET_USERS");
+    },15000)
     socket.on("GET_USERS", (data) => {
       console.log(data.response);
       // setPlayers(item => [...item,data.response]);
-      setTimeout(() => {
-        setPlayers(data.response);
-      }, 15000);
+      setPlayers(data.response);
     });
     return () => {
       socket.removeEventListener();
+      clearTimeout(time1);
     };
   }, [players]);
 
