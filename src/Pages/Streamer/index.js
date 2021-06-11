@@ -43,14 +43,14 @@ export default function Streamer(props) {
   // Use socket
 
   const socket = useContext(socketContext);
-  socket.emit("VALIDATION", getCookie("token"));
+  // socket.emit("VALIDATION", getCookie("token"));
   useEffect(() => {
     socket.emit("GET_USERS");
     socket.on("GET_USERS", (data) => {
       console.log(data.response);
       setPlayers(data.response);
     });
-  }, [socket,players]);
+  }, [socket]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
