@@ -23,7 +23,7 @@ export default function CountdownTime({ num }) {
     intervalRef.current = setInterval(decreaseNum, 1000);
 
     return () => clearInterval(intervalRef.current);
-  }, [payment]);
+  }, [payment, decreaseNum]);
   if (payment === 0) {
     window.location.reload();
   }
