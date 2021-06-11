@@ -33,8 +33,8 @@ export default function Streamer(props) {
   };
 
   useEffect(() => {
-    socket.emit("getListPlayers");
-    socket.on("showPlayers",(data)=> {
+    socket.emit("GET_USERS");
+    socket.on("GET_USERS",(data)=> {
       setPlayers(data.response);
     });
     console.log(players);
