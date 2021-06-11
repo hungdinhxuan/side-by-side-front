@@ -33,34 +33,43 @@ export default function Streamer(props) {
   };
 
   
+
   // Use socket
   const testPlayers = useRef();
-  
+
   const socket = useContext(socketContext);
   
-  useEffect(() => {
-    socket.emit("GET_USERS");
-    socket.on("GET_USERS",(data)=> {
-      setPlayers(data.response);
-    });
-    console.log(players);
-  }, []);
-
   // useEffect(() => {
   //   socket.emit("GET_USERS");
-  //   const time1 = setTimeout(() => {
-  //     socket.on("GET_USERS", (data) => {
-  //       console.log(data.response);
-  //       // setPlayers(item => [...item,data.response]);
-  //       setPlayers(data.response);
-  //     });
-  //   },30000);
+  //   socket.on("GET_USERS",(data)=> {
+  //     setPlayers(data.response);
+  //   });
+  //   console.log(players);
+  // }, [socket, players]);
 
-  //   return () => {
-  //     // socket.removeEventListener();
-  //     clearTimeout(time1);
-  //   };
-  // }, [players]);
+  useEffect(() =>{
+    socket.emit("GET_USERS");
+    socket.on("GET_USERS", (data) => {
+
+      // setPlayers(item => [...item,data.response]);
+      setPlayers(data.response);
+    });
+  }, [])
+  useEffect(() => {
+   
+    const time1 = setTimeout(() =>{
+      socket.emit("GET_USERS");
+    },7000)
+    socket.on("GET_USERS", (data) => {
+
+      // setPlayers(item => [...item,data.response]);
+      setPlayers(data.response);
+    });
+    return () => {
+      socket.removeEventListener();
+      clearTimeout(time1);
+    };
+  }, [socket, players]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
@@ -68,7 +77,7 @@ export default function Streamer(props) {
       top: 0,
       behavior: "smooth",
     });
-  }, [page]);
+  }, [page, dispatch]);
 
   if (isLoading) {
     return (
