@@ -39,6 +39,7 @@ function App(props) {
               <Route path="/streamer">
                 <Streamer />
               </Route>
+              <Route path="/detail/:id" component={DetailStreamer} />
               <Route
                 path="/setting/general"
                 render={(props) => <Setting {...props} route="general" />}
@@ -58,7 +59,6 @@ function App(props) {
               <Route path="/BXH">
                 <BXH />
               </Route>
-              <Route path="/detail/:id" component={DetailStreamer} />
               <Route
                 path="/setting-streamer-profile"
                 component={SettingStreamer}

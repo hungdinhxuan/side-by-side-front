@@ -16,6 +16,7 @@ import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import classnames from "classnames";
 
 import "../../Styles/SettingStreamer.css";
+import { Manager } from "socket.io-client";
 
 const SettingStreamer = (props) => {
   const [activeTab, setActiveTab] = useState("1");
@@ -37,6 +38,10 @@ const SettingStreamer = (props) => {
   const [price, setPrice] = useState("");
   const [maxHours, setMaxHours] = useState("");
   const [requestHours, setRequestHours] = useState([]);
+
+  // KHUNG GIỜ
+  const HOURSARRAYSANG = [...Array(12).keys()];
+  const HOURSARRAYTOI = [...Array(12).keys()];
 
   //   Handle form
   const handleEditName = () => {
@@ -212,7 +217,7 @@ const SettingStreamer = (props) => {
                               width="250px"
                               height="250px"
                               alt="Photo uploaded"
-                              style={{marginTop: "10px"}}
+                              style={{ marginTop: "10px" }}
                             />
                           </div>
                         ))}
@@ -327,104 +332,42 @@ const SettingStreamer = (props) => {
               <p className="request-hours-title">Khung giờ nhận yêu cầu</p>
               <div className="row">
                 <div className="col-md-6 row request-left">
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1AM
-                  </div>
+                  {HOURSARRAYSANG.map((item) => {
+                    return (
+                      <>
+                        <div className="col-md-2">
+                          <Input
+                            type="checkbox"
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                console.log(item + 1);
+                              }
+                            }}
+                          />
+                          {item + 1}
+                        </div>
+                      </>
+                    );
+                  })}
                 </div>
                 <div className="col-md-6 row request-right">
-                  <div className="col-md-2">
-                    <Input type="checkbox" checked="checked" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
-                  <div className="col-md-2">
-                    <Input type="checkbox" />
-                    1PM
-                  </div>
+                  {HOURSARRAYTOI.map((item) => {
+                    return (
+                      <>
+                        <div className="col-md-2">
+                          <Input
+                            type="checkbox"
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                console.log(item + 1);
+                              }
+                            }}
+                          />
+                          {item + 1}
+                        </div>
+                      </>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -442,5 +385,11 @@ const SettingStreamer = (props) => {
     </div>
   );
 };
+{
+  /* <div className="col-md-2">
+                    <Input type="checkbox" checked="checked" />
+                    1PM
+                  </div> */
+}
 
 export default SettingStreamer;

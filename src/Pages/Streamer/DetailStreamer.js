@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import CountdownTime from "../../Components/CountdownTime";
 import Anh from "../../img/Ha.jpg";
@@ -9,15 +9,22 @@ import Anh3 from "../../img/Ha3.jpg";
 import Anh4 from "../../img/Ha4.jpg";
 import "../../Styles/DetailStreamer.css";
 import DonateStreamer from "./DonateStreamer";
+import getPlayersById from "../../actions/player";
 
 export default function DetailStreamer() {
   const { id } = useParams();
+  const { data, isLoading, error } = useSelector((state) => state.player);
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)
   );
 
-  
-  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPlayersById(id));
+    console.log(data);
+  }, []);
+  // console.log(streamer);
+
   const [donateOpen, setDonateOpen] = useState(false);
   const [rent, setRent] = useState(false);
 
@@ -46,7 +53,7 @@ export default function DetailStreamer() {
           </div>
           <div className="member-since">
             <span>Ngày tham gia: </span>
-            <span>6/6/2021</span>
+            <span>{data.profile.createdAt}</span>
           </div>
         </div>
         <div className="player-profile-main col-md-6 col-md-push-3">
@@ -241,10 +248,12 @@ export default function DetailStreamer() {
             </div>
             <div className="text-center">
               {rent ? (
-                <CountdownTime  num={5} />
+                <CountdownTime num={5} />
               ) : (
                 <>
-                  <button className="btn-my-style red" onClick={handleRent}>Thuê</button>
+                  <button className="btn-my-style red" onClick={handleRent}>
+                    Thuê
+                  </button>
                 </>
               )}
               <button className="btn-my-style white" onClick={handleDonate}>

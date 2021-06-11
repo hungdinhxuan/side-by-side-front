@@ -14,7 +14,9 @@ import "../Styles/StreamerCard.css";
 
 const StreamerCard = (props) => {
   const { streamer } = props;
+  // console.log(streamer);
   let { id } = useParams();
+  console.log(streamer.status);
   return (
     <div className="col-3" key={streamer._id}>
       <CardColumns>
@@ -38,10 +40,28 @@ const StreamerCard = (props) => {
               <CardText>Hello mấy cưng</CardText>
             </div>
             <div className="game-card">
-              <CardText>Thể loại game Liên minh, Liên Quân  {streamer.status === 'active' ? <span class="dot-online"></span> : <span class="dot-offline"></span>}</CardText>
+              <CardText>
+                Thể loại game Liên minh, Liên Quân{" "}
+                {streamer.status === "active" ? (
+                  <span class="dot-online"></span>
+                ) : (
+                  <span class="dot-offline"></span>
+                )}
+              </CardText>
             </div>
+            {/* {streamer.status === "active" ? (
+              <div className="btn-rent">
+                <Link to={`/detail/${streamer._id}`} streamer={streamer}>
+                  Thuê ngay
+                </Link>
+              </div>
+            ) : (
+              <></>
+            )} */}
             <div className="btn-rent">
-              <Link to={`/detail/${streamer._id}`}>Thuê ngay</Link>
+              <Link to={`/detail/${streamer._id}`} streamer={streamer}>
+                Thuê ngay
+              </Link>
             </div>
           </CardBody>
         </Card>

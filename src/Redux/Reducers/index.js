@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { authReducerGoogle, authReducerLogin, authReducerRegister } from './auth';
+import playerReducer from "./player";
 import streamerReducer from './streamer'
 
 const rootReducer = combineReducers({
@@ -7,7 +8,8 @@ const rootReducer = combineReducers({
   auth: authReducerLogin,
   streamer: streamerReducer,
   authRe: authReducerRegister,
-  authGooogle: authReducerGoogle
+  authGooogle: authReducerGoogle,
+  player: playerReducer
 });
 
 export default rootReducer;
