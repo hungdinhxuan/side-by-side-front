@@ -44,6 +44,7 @@ const PopupLogin = (props) => {
     setLogin(true);
   };
 
+  
   const handleLogin = (values) => {
     console.log(values);
     dispatch(login(values));
@@ -60,6 +61,9 @@ const PopupLogin = (props) => {
     const { redirectTo } = qs.parse(location.search, {
       ignoreQueryPrefix: true,
     });
+  }
+  if(loginState && userInfo){
+    window.location.reload();
   }
 
   // Check kiểm tra status online hoặc offline

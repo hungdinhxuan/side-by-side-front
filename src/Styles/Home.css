@@ -11,27 +11,10 @@
 }
 
 .carousel-indicators {
-    position: absolute;
-    right: 0;
-    bottom: -58px;
-    left: 0;
-    z-index: 15;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-pack: center;
-    justify-content: center;
-    padding-left: 0;
-    margin-right: 15%;
-    margin-left: 15%;
-    list-style: none;
+    display: none;
 }
 
-.carousel-indicators li {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: #ea7c69;
-}
+
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
