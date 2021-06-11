@@ -32,6 +32,12 @@ export default function Streamer(props) {
     setPage(value);
   };
 
+  
+  // Use socket
+  const testPlayers = useRef();
+  
+  const socket = useContext(socketContext);
+  
   useEffect(() => {
     socket.emit("GET_USERS");
     socket.on("GET_USERS",(data)=> {
@@ -40,38 +46,21 @@ export default function Streamer(props) {
     console.log(players);
   }, []);
 
-  // Use socket
-  const testPlayers = useRef();
+  // useEffect(() => {
+  //   socket.emit("GET_USERS");
+  //   const time1 = setTimeout(() => {
+  //     socket.on("GET_USERS", (data) => {
+  //       console.log(data.response);
+  //       // setPlayers(item => [...item,data.response]);
+  //       setPlayers(data.response);
+  //     });
+  //   },30000);
 
-  const socket = useContext(socketContext);
-
-  useEffect(() => {
-    socket.emit("GET_USERS");
-    socket.on("GET_USERS", (data) => {
-      // setPlayers(item => [...item,data.response]);
-      console.log(data.response);
-      setPlayers(data.response);
-    });
-    return () => {
-      socket.removeEventListener();
-    }
-  }, [socket]);
-
-  useEffect(() => {
-    socket.emit("GET_USERS");
-    const time1 = setTimeout(() => {
-      socket.on("GET_USERS", (data) => {
-        console.log(data.response);
-        // setPlayers(item => [...item,data.response]);
-        setPlayers(data.response);
-      });
-    }, 10000);
-
-    return () => {
-      // socket.removeEventListener();
-      clearTimeout(time1);
-    };
-  }, [players]);
+  //   return () => {
+  //     // socket.removeEventListener();
+  //     clearTimeout(time1);
+  //   };
+  // }, [players]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));
