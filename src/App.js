@@ -16,6 +16,7 @@ import CountdownTime from "./Components/CountdownTime";
 import Wallet from "./Pages/Wallet";
 import Napthe from "./Pages/Wallet/Napthe";
 import { socketContext, socketio } from "./Components/socket";
+import Page404 from "./Pages/Error/Page404";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -35,8 +36,10 @@ function App(props) {
             <AppLayout>
               <Route path="/" exact>
                 <Home />
+                
               </Route>
-              <Route path="/streamer">
+              
+              <Route path="/streamer" exact>
                 <Streamer />
               </Route>
               <Route path="/detail/:id" component={DetailStreamer} />
@@ -56,7 +59,7 @@ function App(props) {
                 path="/setting/blocklist"
                 render={(props) => <Setting {...props} route="blocklist" />}
               />
-              <Route path="/BXH">
+              <Route path="/BXH" >
                 <BXH />
               </Route>
               <Route
@@ -70,7 +73,7 @@ function App(props) {
                 </Route>
               </Switch>
             </AppLayout>
-          
+            
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>
