@@ -54,22 +54,22 @@ export default function Streamer(props) {
       // setPlayers(item => [...item,data.response]);
       setPlayers(data.response);
     });
-  }, [])
-  useEffect(() => {
+  }, [socket])
+  // useEffect(() => {
    
-    const time1 = setTimeout(() =>{
-      socket.emit("GET_USERS");
-    },7000)
-    socket.on("GET_USERS", (data) => {
+  //   const time1 = setTimeout(() =>{
+  //     socket.emit("GET_USERS");
+  //   },7000)
+  //   socket.on("GET_USERS", (data) => {
 
-      // setPlayers(item => [...item,data.response]);
-      setPlayers(data.response);
-    });
-    return () => {
-      socket.removeEventListener();
-      clearTimeout(time1);
-    };
-  }, [socket, players]);
+  //     // setPlayers(item => [...item,data.response]);
+  //     setPlayers(data.response);
+  //   });
+  //   return () => {
+  //     socket.removeEventListener();
+  //     clearTimeout(time1);
+  //   };
+  // }, [socket, players]);
 
   useEffect(() => {
     dispatch(getStreamerByPage(page));

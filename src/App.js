@@ -32,7 +32,7 @@ function App(props) {
       <BrowserRouter>
         {/* Route Main */}
         <Switch>
-          <Route>
+          
             <AppLayout>
               {/* <Route path="/" exact>
                 <Home />
@@ -72,7 +72,7 @@ function App(props) {
               </Switch> */}
               <Slick/>
             </AppLayout>
-          </Route>
+          
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>
