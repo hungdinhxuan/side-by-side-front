@@ -34,7 +34,7 @@ function App(props) {
         {/* Route Main */}
         <Switch>
           <AppLayout>
-            {/* <Route path="/" exact>
+            <Route path="/" exact>
               <Home />
             </Route>
             <Route path="/streamer">
@@ -69,7 +69,7 @@ function App(props) {
               <Route path="/wallet/payment">
                 <Napthe />
               </Route>
-            </Switch> */}
+            </Switch>
 
             <Route path="/online" exact>
               <ChatOnline />
