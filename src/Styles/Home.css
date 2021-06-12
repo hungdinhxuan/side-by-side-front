@@ -16,18 +16,16 @@
     display: none;
 }
 
-
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
     display: none;
 }
 
-#show-home{
+#show-home {
     margin-top: 5%;
 }
 
-#show-home .show-more-header{
+#show-home .show-more-header {
     display: flex;
     align-items: center;
 }
@@ -38,10 +36,9 @@
     padding: 0;
     position: relative;
     padding-bottom: 15px;
-    
 }
 
-.show-more-header h3::after{
+.show-more-header h3::after {
     content: "";
     position: absolute;
     left: 0;
@@ -74,10 +71,10 @@
     padding: 0 20px;
 }
 
-#show-home .show-more-game .line-middle{
+#show-home .show-more-game .line-middle {
     flex: 1;
     height: 3px;
-    background-color: #393C49;
+    background-color: #393c49;
 }
 
 .show-more-list {
@@ -97,20 +94,20 @@
     border-radius: 12px;
 }
 
-.show-more-game .text-show-more{
-    color: #ABBBC2;
+.show-more-game .text-show-more {
+    color: #abbbc2;
 }
 
-.show-more-game .text-show-more:hover{
-    transform:scale(1.2,1.2);
+.show-more-game .text-show-more:hover {
+    transform: scale(1.2, 1.2);
 }
 
 .show-more-list .show-more-game-items p {
     color: #fff;
 }
 
-.show-more-list .show-more-game-items .text-game-items{
-    color: #ABBBC2;
+.show-more-list .show-more-game-items .text-game-items {
+    color: #e4a101;
     padding: 10px 0;
 }
 
@@ -123,14 +120,20 @@
     transition: all 0.5s;
 }
 
-.show-more-list .show-more-game-items a:hover{
+.show-more-list .show-more-game-items a:hover {
     text-decoration: none;
     background-color: #ff4800;
 }
 
+/* Slick img */
 
+.img-slick {
+    width: 50%;
+}
+.container .slick-list {
+    padding: 50px 0;
+}
 
-
-
-
-
+.container .slick-slider button.slick-arrow {
+    display: none !important;
+}

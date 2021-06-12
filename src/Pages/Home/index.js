@@ -100,6 +100,7 @@ const Home = (props) => {
         </Carousel>
 
         <div className="container">
+          <Slick></Slick>
           <ShowHome></ShowHome>
         </div>
       </div>

@@ -16,7 +16,7 @@ import CountdownTime from "./Components/CountdownTime";
 import Wallet from "./Pages/Wallet";
 import Napthe from "./Pages/Wallet/Napthe";
 import { socketContext, socketio } from "./Components/socket";
-import Slick from "./Hooks/Slick";
+import ThongBaoDialog from "./Components/ConfirmDialog";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -32,47 +32,45 @@ function App(props) {
       <BrowserRouter>
         {/* Route Main */}
         <Switch>
-          
-            <AppLayout>
-              {/* <Route path="/" exact>
-                <Home />
+          <AppLayout>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/streamer">
+              <Streamer />
+            </Route>
+            <Route path="/detail/:id" component={DetailStreamer} />
+            <Route
+              path="/setting/general"
+              render={(props) => <Setting {...props} route="general" />}
+            />
+            <Route
+              path="/setting/wallet"
+              render={(props) => <Setting {...props} route="wallet" />}
+            />
+            <Route
+              path="/setting/security"
+              render={(props) => <Setting {...props} route="security" />}
+            />
+            <Route
+              path="/setting/blocklist"
+              render={(props) => <Setting {...props} route="blocklist" />}
+            />
+            <Route path="/BXH">
+              <BXH />
+            </Route>
+            <Route
+              path="/setting-streamer-profile"
+              component={SettingStreamer}
+            />
+            <Switch>
+              <Route path="/wallet" component={Wallet} exact />
+              <Route path="/wallet/payment">
+                <Napthe />
               </Route>
-              <Route path="/streamer">
-                <Streamer />
-              </Route>
-              <Route path="/detail/:id" component={DetailStreamer} />
-              <Route
-                path="/setting/general"
-                render={(props) => <Setting {...props} route="general" />}
-              />
-              <Route
-                path="/setting/wallet"
-                render={(props) => <Setting {...props} route="wallet" />}
-              />
-              <Route
-                path="/setting/security"
-                render={(props) => <Setting {...props} route="security" />}
-              />
-              <Route
-                path="/setting/blocklist"
-                render={(props) => <Setting {...props} route="blocklist" />}
-              />
-              <Route path="/BXH">
-                <BXH />
-              </Route>
-              <Route
-                path="/setting-streamer-profile"
-                component={SettingStreamer}
-              />
-              <Switch>
-                <Route path="/wallet" component={Wallet} exact />
-                <Route path="/wallet/payment">
-                  <Napthe />
-                </Route>
-              </Switch> */}
-              <Slick/>
-            </AppLayout>
-          
+            </Switch>
+            {/* <ThongBaoDialog/> */}
+          </AppLayout>
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>

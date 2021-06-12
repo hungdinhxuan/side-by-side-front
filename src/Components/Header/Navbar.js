@@ -14,7 +14,9 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { socketContext } from "../../Components/socket";
-export default function Navbar() {
+import ThongBaoDialog from "../../Components/ConfirmDialog";
+
+export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
 
   const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
@@ -30,20 +32,28 @@ export default function Navbar() {
     if (data && data !== "undefined") {
       setLogout(true);
     }
-    
   }, [data]);
+
+  // Socket nhận thông báo
   const socket = useContext(socketContext);
-  useEffect(() =>{
+  const [notifications, setNotifications] = useState("");
+  useEffect(() => {
     socket.emit("GET_USERS");
-    
-    socket.on('SENDER_NOTIFICATION', (data) => {
+
+    socket.on("SENDER_NOTIFICATION", (data) => {
       alert(data.response);
-    })
-    socket.on('RECEIVER_NOTIFICATION', (data) => {
+    });
+    socket.on("RECEIVER_NOTIFICATION", (data) => {
       alert(data.response);
-    })
+      setNotifications(data.response);
+    });
   }, [socket]);
-  
+
+  const [openNotifi, setNotifi] = useState(false);
+  const handleCheckNotifications = () => {
+    setNotifi(true);
+    console.log(notifications);
+  };
 
   // Dropdown thông báo giữa 2 client
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -108,7 +118,9 @@ export default function Navbar() {
                     <DropdownMenu>
                       <DropdownItem header>Header</DropdownItem>
                       <DropdownItem>
-                        Người chơi: ... đã chấp nhận yêu cầu thuê của bạn
+                        <button onClick={handleCheckNotifications}>
+                          <ThongBaoDialog/>
+                        </button>
                       </DropdownItem>
                       <DropdownItem text></DropdownItem>
                     </DropdownMenu>
