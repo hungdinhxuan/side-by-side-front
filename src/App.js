@@ -16,6 +16,7 @@ import CountdownTime from "./Components/CountdownTime";
 import Wallet from "./Pages/Wallet";
 import Napthe from "./Pages/Wallet/Napthe";
 import { socketContext, socketio } from "./Components/socket";
+import Slick from "./Hooks/Slick";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -33,7 +34,7 @@ function App(props) {
         <Switch>
           <Route>
             <AppLayout>
-              <Route path="/" exact>
+              {/* <Route path="/" exact>
                 <Home />
               </Route>
               <Route path="/streamer">
@@ -68,7 +69,8 @@ function App(props) {
                 <Route path="/wallet/payment">
                   <Napthe />
                 </Route>
-              </Switch>
+              </Switch> */}
+              <Slick/>
             </AppLayout>
           </Route>
         </Switch>

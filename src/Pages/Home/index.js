@@ -15,6 +15,7 @@ import Anh1 from "../../img/Carousel/1.gif";
 import Anh2 from "../../img/Carousel/2.gif";
 import Anh3 from "../../img/Carousel/3.gif";
 import Anh4 from "../../img/Carousel/4.gif";
+import Slick from "../../Hooks/Slick";
 
 const items = [
   {
@@ -99,7 +100,6 @@ const Home = (props) => {
         </Carousel>
 
         <div className="container">
-          
           <ShowHome></ShowHome>
         </div>
       </div>
