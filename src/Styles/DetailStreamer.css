@@ -279,16 +279,45 @@
 
 /* Icon fb, instagram */
 .icon-wrap.facebook {
-    margin: 0 5px
+    margin: 0 5px;
 }
 
-.icon-wrap.facebook a{
+.icon-wrap.facebook a {
     color: white;
 }
-.icon-wrap.facebook a i{
+.icon-wrap.facebook a i {
     background-color: #ea7c69;
     padding: 11px 0;
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+/* Modal thuê người chơi */
+
+.ant-modal-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #354052;
+    font-size: 18px;
+}
+
+table {
+    width: 100%;
+}
+
+.ant-modal-body table tr td {
+    padding: 10px;
+    font-weight: 600;
+    color: #354052;
+    font-size: 14px;
+    /* text-align: center; */
+}
+.form-control {
+    border: 1px solid #e3e3e3 !important;
+    border-radius: 4px;
+    color: #565656;
+    padding: 8px 12px;
+    height: 40px;
 }

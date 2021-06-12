@@ -11,13 +11,14 @@ import "../../Styles/DetailStreamer.css";
 import DonateStreamer from "./DonateStreamer";
 import getPlayersById from "../../actions/player";
 import moment from "moment";
-import {formatMoney, getIdYoutube} from "../../Services/mix";
+import { formatMoney, getIdYoutube } from "../../Services/mix";
 import { socketContext } from "../../Components/socket";
+import { Modal, Button } from "antd";
 
 export default function DetailStreamer() {
   const { id } = useParams();
   const { data, isLoading, error } = useSelector((state) => state.player);
-  const {price, setPrice} = useState(0);
+  const { price, setPrice } = useState(0);
   const newDay = new Date(
     +new Date() - Math.floor(Math.random() * 10000000000)
   );
@@ -26,29 +27,61 @@ export default function DetailStreamer() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPlayersById(id));
-    
   }, [dispatch, id]);
   // console.log(streamer);
-  if(data){
+  if (data) {
     console.log(data.playerId);
   }
 
   const [donateOpen, setDonateOpen] = useState(false);
   const [rent, setRent] = useState(false);
 
-
-  // Click thuê thì emit lên server yêu cầu thuê 
-  const handleRent = () => {
-    // setRent(true);
-    console.log( data)
-    socket.emit('RENT_REQUEST', {receiver: data?.playerId?.renterId, message: 'i want to rent you'})
-  };
-
-  
-
   const handleDonate = () => {
     setDonateOpen(!donateOpen);
-    console.log(donateOpen);
+  };
+
+  // Modal thuê player
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [tempPrice, setTempPrice] = useState(0);
+  const [tempHours, setTempHours] = useState(1);
+  
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  
+  // Click thuê thì emit lên server yêu cầu thuê
+  const gioThue = [...Array(24).keys()];
+  const handleOk = () => {
+    if(tempHours === 1){
+      socket.emit("RENT_REQUEST", {
+        receiver: data?.playerId?.renterId,
+        cost: data?.playerId?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "vnd",
+        time: tempHours + " giờ",
+        message: "i want to rent you",
+      });
+    }
+    else{
+      socket.emit("RENT_REQUEST", {
+        receiver: data?.playerId?.renterId,
+        cost: tempPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "vnd",
+        time: tempHours + " giờ",
+        message: "i want to rent you",
+      });
+    }
+    
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleSelectChange = (event) => {
+    if(event.target.value === 1){
+      console.log(data?.playerId?.price);
+    }
+    setTempHours(event.target.value);
+    setTempPrice(event.target.value * data?.playerId?.price);
   };
 
   // Đây là detail của nhân vật streamer: {newDay.getDate().toString()} / {newDay.getMonth().toString()*1 + 1} / {newDay.getFullYear().toString()}
@@ -67,9 +100,16 @@ export default function DetailStreamer() {
           </div>
           <div className="member-since">
             <span>Ngày tham gia: </span>
-            <span>{moment(data.createdAt).format("DD MMM YYYY") }</span>
-            <div className="icon-wrap facebook"><a href="https://facebook.com/camapduahau" target="_blank" rel="noopener noreferrer"><i className="fab fa-facebook-f" /></a></div>
-
+            <span>{moment(data.createdAt).format("DD MMM YYYY")}</span>
+            <div className="icon-wrap facebook">
+              <a
+                href="https://facebook.com/camapduahau"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i className="fab fa-facebook-f" />
+              </a>
+            </div>
           </div>
         </div>
         <div className="player-profile-main col-md-6 col-md-push-3">
@@ -152,7 +192,9 @@ export default function DetailStreamer() {
                 <iframe
                   width="100%"
                   height="350"
-                  src={`https://www.youtube.com/embed/${getIdYoutube(data?.linkHightLight)}`}
+                  src={`https://www.youtube.com/embed/${getIdYoutube(
+                    data?.linkHightLight
+                  )}`}
                   title="YouTube video player"
                   frameborder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -238,7 +280,12 @@ export default function DetailStreamer() {
         </div>
         <div className="player-profile-right col-md-3 col-md-pull-6">
           <div className="right-player-profile">
-            <p className="price-player-profile">{data?.playerId?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} đ/h</p>
+            <p className="price-player-profile">
+              {data?.playerId?.price
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+              đ/h
+            </p>
             <div className="rateting-style">
               <i className="fas fa-star" />
               <i className="fas fa-star" />
@@ -255,9 +302,55 @@ export default function DetailStreamer() {
                 <CountdownTime num={5} />
               ) : (
                 <>
-                  <button className="btn-my-style red" onClick={handleRent}>
+                  <Button className="btn-my-style red" onClick={showModal}>
                     Thuê
-                  </button>
+                  </Button>
+                  <Modal
+                    title="THUÊ PLAYER"
+                    visible={isModalVisible}
+                    onOk={handleOk}
+                    onCancel={handleCancel}
+                  >
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Player: </td>
+                          <td>{data.displayName} </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>Thời gian muốn thuê</span>
+                          </td>
+                          <td>
+                            <select
+                              name="timeRent"
+                              class="form-control"
+                              onChange={handleSelectChange}
+                            >
+                              {gioThue.map((item) => {
+                                return (
+                                  <option value={item + 1}>
+                                    {item + 1}&nbsp;giờ
+                                  </option>
+                                );
+                              })}
+                            </select>
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>
+                            <span>Chi phí</span>
+                          </td>
+                          <td>
+                            <span class="price">
+                              {tempPrice || data?.playerId?.price}
+                            </span>
+                          </td>
+                        </tr>
+                        <tr></tr>
+                      </tbody>
+                    </table>
+                  </Modal>
                 </>
               )}
               <button className="btn-my-style white" onClick={handleDonate}>

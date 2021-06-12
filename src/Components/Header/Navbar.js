@@ -55,9 +55,11 @@ export default function Navbar({ children }) {
     socket.emit("GET_USERS");
 
     socket.on("SENDER_NOTIFICATION", (data) => {
+      // Người thuê hiện thông báo
       alert(data.response);
     });
     socket.on("RECEIVER_NOTIFICATION", (data) => {
+      // Người đc thuê hiển thị thông báo
       alert(data.response);
       setNotifications(data.response);
     });
