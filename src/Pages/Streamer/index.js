@@ -81,7 +81,7 @@ export default function Streamer(props) {
 
   if (isLoading) {
     return (
-      <div style={{ background: "pink", padding: "100px" }}>
+      <div style={{ background: "pink", padding: "30vh" }}>
         <Loading></Loading>
       </div>
     );
