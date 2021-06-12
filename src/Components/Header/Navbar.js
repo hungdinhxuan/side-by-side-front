@@ -14,8 +14,14 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { socketContext } from "../../Components/socket";
-import { Modal, Button } from "antd";
 import "antd/dist/antd.css";
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
 
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
@@ -26,7 +32,7 @@ export default function Navbar({ children }) {
 
   const showModal = () => {
     setIsModalVisible(true);
-    console.log(isModalVisible)
+    console.log(isModalVisible);
   };
 
   const handleOk = () => {
@@ -60,7 +66,7 @@ export default function Navbar({ children }) {
     });
     socket.on("RECEIVER_NOTIFICATION", (data) => {
       // Người đc thuê hiển thị thông báo
-      alert(data.response);
+      // alert(data.response);
       setNotifications(data.response);
     });
   }, [socket]);
@@ -71,9 +77,33 @@ export default function Navbar({ children }) {
     console.log(notifications);
   };
 
+  // Matterial UI thông báo thuê player
+  const [open, setOpen] = useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const [requestChat, setRequestChat] = useState(false);
+  const handleAccept = () => {
+    if (notifications !== "") {
+      setRequestChat(true);
+    }
+    setOpen(false);
+    console.log(requestChat);
+  };
+
+  
+
   // Dropdown thông báo giữa 2 client
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+  if (requestChat) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div
@@ -134,21 +164,40 @@ export default function Navbar({ children }) {
                     <DropdownMenu>
                       <DropdownItem header>Header</DropdownItem>
                       <DropdownItem>
-                        <button onClick={handleCheckNotifications}>
-                        <Button type="primary" onClick={showModal}>
-                          Open Modal
-                        </Button>
-                        <Modal
-                          title="Basic Modal"
-                          visible={isModalVisible}
-                          onOk={handleOk}
-                          onCancel={handleCancel}
+                        <Button
+                          variant="outlined"
+                          color="primary"
+                          onClick={handleClickOpen}
                         >
-                          <p>Some contents...</p>
-                          <p>Some contents...</p>
-                          <p>Some contents...</p>
-                        </Modal>
-                        </button>
+                          Open alert dialog
+                        </Button>
+                        <Dialog
+                          open={open}
+                          onClose={handleClose}
+                          aria-labelledby="alert-dialog-title"
+                          aria-describedby="alert-dialog-description"
+                        >
+                          <DialogTitle id="alert-dialog-title">
+                            {"Use Google's location service?"}
+                          </DialogTitle>
+                          <DialogContent>
+                            <DialogContentText id="alert-dialog-description">
+                              {notifications}
+                            </DialogContentText>
+                          </DialogContent>
+                          <DialogActions>
+                            <Button onClick={handleClose} color="primary">
+                              Disagree
+                            </Button>
+                            <Button
+                              onClick={handleAccept}
+                              color="primary"
+                              autoFocus
+                            >
+                              Agree
+                            </Button>
+                          </DialogActions>
+                        </Dialog>
                       </DropdownItem>
                       <DropdownItem text></DropdownItem>
                     </DropdownMenu>
