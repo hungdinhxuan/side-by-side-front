@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.6.2",
     "@date-io/date-fns": "v1",
     "@material-ui/core": "latest",
     "@material-ui/lab": "latest",

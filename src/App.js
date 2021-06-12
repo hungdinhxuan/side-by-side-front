@@ -16,7 +16,7 @@ import CountdownTime from "./Components/CountdownTime";
 import Wallet from "./Pages/Wallet";
 import Napthe from "./Pages/Wallet/Napthe";
 import { socketContext, socketio } from "./Components/socket";
-import ThongBaoDialog from "./Components/ConfirmDialog";
+import Page404 from "./Pages/Error/Page404";
 
 function App(props) {
   const [token, setToken] = useState(false);
