@@ -31,7 +31,7 @@ function App(props) {
       <BrowserRouter>
         {/* Route Main */}
         <Switch>
-          <Route>
+          
             <AppLayout>
               <Route path="/" exact>
                 <Home />
@@ -70,7 +70,7 @@ function App(props) {
                 </Route>
               </Switch>
             </AppLayout>
-          </Route>
+          
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>

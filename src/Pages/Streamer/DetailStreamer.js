@@ -36,20 +36,15 @@ export default function DetailStreamer() {
   const [donateOpen, setDonateOpen] = useState(false);
   const [rent, setRent] = useState(false);
 
+
+  // Click thuê thì emit lên server yêu cầu thuê 
   const handleRent = () => {
     // setRent(true);
     console.log( data)
     socket.emit('RENT_REQUEST', {receiver: data?.playerId?.renterId, message: 'i want to rent you'})
   };
 
-  useEffect(() =>{
-    socket.on('SENDER_NOTIFICATION', (data) => {
-      console.log(data.response);
-    })
-    socket.on('RECEIVER_NOTIFICATION', (data) => {
-      alert(data.response);
-    })
-  }, [socket]);
+  
 
   const handleDonate = () => {
     setDonateOpen(!donateOpen);

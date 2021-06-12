@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import "../../Styles/Navbar.css";
 import logo from "../../img/player-dou-a.jpg";
 import { Link, Redirect } from "react-router-dom";
@@ -13,7 +13,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-
+import { socketContext } from "../../Components/socket";
 export default function Navbar() {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
 
@@ -32,6 +32,17 @@ export default function Navbar() {
     }
     
   }, [data]);
+  const socket = useContext(socketContext);
+  useEffect(() =>{
+    socket.emit("GET_USERS");
+    
+    socket.on('SENDER_NOTIFICATION', (data) => {
+      alert(data.response);
+    })
+    socket.on('RECEIVER_NOTIFICATION', (data) => {
+      alert(data.response);
+    })
+  }, [socket]);
   
 
   // Dropdown thông báo giữa 2 client
