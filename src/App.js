@@ -18,6 +18,7 @@ import Napthe from "./Pages/Wallet/Napthe";
 import { socketContext, socketio } from "./Components/socket";
 import Page404 from "./Pages/Error/Page404";
 import ChatOnline from "./Pages/ChatOnline";
+import Update from "./Components/Update/index";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -34,8 +35,14 @@ function App(props) {
         {/* Route Main */}
         <Switch>
           <AppLayout>
-            {/* <Route path="/" exact>
+            <Route path="/" exact>
               <Home />
+            </Route>
+            <Route path="/streamhub">
+              <Update />
+            </Route>
+            <Route path="/streamhub">
+              <Update />
             </Route>
             <Route path="/streamer">
               <Streamer />
@@ -58,7 +65,7 @@ function App(props) {
               render={(props) => <Setting {...props} route="blocklist" />}
             />
             <Route path="/BXH">
-              <BXH />
+              <Update />
             </Route>
             <Route
               path="/setting-streamer-profile"
@@ -69,7 +76,7 @@ function App(props) {
               <Route path="/wallet/payment">
                 <Napthe />
               </Route>
-            </Switch> */}
+            </Switch>
 
             <Route path="/online" exact>
               <ChatOnline />
