@@ -1,5 +1,5 @@
 import React from "react";
-import * as ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import { Chat } from "@progress/kendo-react-conversational-ui";
 
 export default function ChatOnline() {
