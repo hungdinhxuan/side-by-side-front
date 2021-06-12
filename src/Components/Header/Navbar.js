@@ -14,14 +14,28 @@ import {
   DropdownItem,
 } from "reactstrap";
 import { socketContext } from "../../Components/socket";
-import ThongBaoDialog from "../../Components/ConfirmDialog";
+import { Modal, Button } from "antd";
+import "antd/dist/antd.css";
 
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
 
   const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
   const data = userInfo ? userInfo : dataGoogle;
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const showModal = () => {
+    setIsModalVisible(true);
+    console.log(isModalVisible)
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
   const [logout, setLogout] = useState(false);
   const handleLocalStore = () => {
     deleteCookie("token");
@@ -119,7 +133,19 @@ export default function Navbar({ children }) {
                       <DropdownItem header>Header</DropdownItem>
                       <DropdownItem>
                         <button onClick={handleCheckNotifications}>
-                          <ThongBaoDialog/>
+                        <Button type="primary" onClick={showModal}>
+                          Open Modal
+                        </Button>
+                        <Modal
+                          title="Basic Modal"
+                          visible={isModalVisible}
+                          onOk={handleOk}
+                          onCancel={handleCancel}
+                        >
+                          <p>Some contents...</p>
+                          <p>Some contents...</p>
+                          <p>Some contents...</p>
+                        </Modal>
                         </button>
                       </DropdownItem>
                       <DropdownItem text></DropdownItem>
