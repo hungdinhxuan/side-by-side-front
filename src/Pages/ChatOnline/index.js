@@ -34,7 +34,15 @@ export default function ChatOnline() {
         user={user}
         messages={messages}
         onMessageSend={addNewMessage}
-        width={400}
+        width={600}
+        messageTemplate={MessageTemplate}
+      />
+      
+      <Chat
+        messages={messages}
+        user={user2}
+        width={600}
+        onMessageSend={addNewMessage}
         messageTemplate={MessageTemplate}
       />
     </div>

@@ -19,6 +19,7 @@ import { socketContext, socketio } from "./Components/socket";
 import Page404 from "./Pages/Error/Page404";
 import ChatOnline from "./Pages/ChatOnline";
 import Update from "./Components/Update/index";
+import ChatClient from "./Pages/ChatClient";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -71,6 +72,10 @@ function App(props) {
               path="/setting-streamer-profile"
               component={SettingStreamer}
             />
+            <Route path="/room/:id">
+              {/* <ChatOnline /> */}
+              <ChatClient/>
+            </Route>
             <Switch>
               <Route path="/wallet" component={Wallet} exact />
               <Route path="/wallet/payment">
@@ -78,13 +83,11 @@ function App(props) {
               </Route>
             </Switch>
 
-            <Route path="/online" exact>
-              <ChatOnline />
-            </Route>
             {/* <Route path="**" >
             <Page404 />
           </Route> */}
           </AppLayout>
+            
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>

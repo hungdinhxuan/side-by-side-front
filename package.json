@@ -6,6 +6,7 @@
     "@ant-design/icons": "^4.6.2",
     "@date-io/date-fns": "v1",
     "@material-ui/core": "latest",
+    "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "latest",
     "@material-ui/pickers": "latest",
     "@progress/kendo-data-query": "^1.5.5",
