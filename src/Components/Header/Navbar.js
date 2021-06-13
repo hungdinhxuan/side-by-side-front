@@ -57,6 +57,7 @@ export default function Navbar({ children }) {
   // Socket nhận thông báo
   const socket = useContext(socketContext);
   const [notifications, setNotifications] = useState("");
+  const [sender, setSender] = useState("");
   useEffect(() => {
     socket.emit("GET_USERS");
 
@@ -68,6 +69,7 @@ export default function Navbar({ children }) {
       // Người đc thuê hiển thị thông báo
       // alert(data.response);
       setNotifications(data.response);
+      setSender(data.sender)
     });
   }, [socket]);
 
@@ -94,6 +96,8 @@ export default function Navbar({ children }) {
     }
     setOpen(false);
     console.log(requestChat);
+
+
   };
 
   
@@ -102,7 +106,11 @@ export default function Navbar({ children }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   if (requestChat) {
-    return <Redirect to="/" />;
+    socket.emit("CONFIRM_RENT_REQUEST", sender);
+    socket.on("CONFIRM_RENT_REQUEST", data => {
+      return <Redirect to={`/room/${data.room}`} />;
+    })
+    
   }
 
   return (

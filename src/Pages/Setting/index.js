@@ -12,7 +12,7 @@ import '../../Styles/Setting.css'
 export const Setting = ({route}) => {
   return (
     <>
-      <div>
+    
       <div className="sidebar">
         <a  >
         <Link to="/setting/general">Cài đặt chung</Link>
@@ -30,8 +30,8 @@ export const Setting = ({route}) => {
         
         
       </div>
-      </div>
-      <div class="content">
+   
+      <div class="content" style={{background: 'pink'}}>
         {route === "general" && <GeneralSetting /> }
         {route === "security" && <SecuritySetting /> }
         {route === "wallet" && <WalletSetting /> }

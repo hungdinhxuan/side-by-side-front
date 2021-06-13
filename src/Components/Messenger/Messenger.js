@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
+import {useParams} from "react-router-dom";
 import "./messenger.css";
 import Message from "../Message/Message";
 
@@ -13,10 +14,10 @@ export default function Messenger() {
   const [avatar, setAvatar] = useState("");
   //   Sử dụng socket
   const socket = useContext(socketContext);
-
+  const {id} = useParams();
   useEffect(() => {
-    
-    socket.emit("JOIN_ROOM", "1--with--2");
+
+    socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({data,flag: false});
       console.log(data);
