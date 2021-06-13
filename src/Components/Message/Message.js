@@ -8,10 +8,10 @@ export default function Message({ message, own }) {
         <div className="messageTop">
           <img
             className="messageImg"
-            src={AnhTest}
+            src={message.avatar}
             alt=""
           />
-          <p className="messageText">{message}</p>
+          <p className="messageText">{message.text}</p>
         </div>
         <div className="messageBottom">{moment(new Date()).format("DD MMM YYYY")}</div>
       </div>

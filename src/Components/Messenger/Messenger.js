@@ -9,12 +9,13 @@ export default function Messenger() {
   const [currentChat, setCurrentChat] = useState(true);
   const [newMessage, setNewMessage] = useState("");
   const [arrivalMessage, setArrivalMessage] = useState(null);
-  const [sender, setSender] = useState(false);
-
+  // const [sender, setSender] = useState(false);
+  const [avatar, setAvatar] = useState("");
   //   Sử dụng socket
   const socket = useContext(socketContext);
 
   useEffect(() => {
+    
     socket.emit("JOIN_ROOM", "1--with--2");
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({data,flag: false});
@@ -22,6 +23,12 @@ export default function Messenger() {
     });
   }, [socket]);
 
+  useEffect(() =>{
+    socket.emit('EMIT_AVATAR')
+    socket.on('ON_AVATAR', (avatar) =>{
+      setAvatar(avatar);
+    })
+  }, [socket]);
   useEffect(
     () => {
       arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
@@ -31,10 +38,10 @@ export default function Messenger() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    socket.emit("EMIT_MESSEGES",newMessage);
-    setMessages((pre) => [...pre, {data: newMessage, flag: true}]);
+    socket.emit("EMIT_MESSEGES",{avatar, text: newMessage});
+    setMessages((pre) => [...pre, {data: {avatar, text: newMessage}, flag: true}]);
     setNewMessage("");
-    setSender(true);
+    // setSender(true);
   };
 
   useEffect(() => {
@@ -49,7 +56,7 @@ export default function Messenger() {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
-              <div className="chatBoxTop">
+              <div className="chatBoxTop"> 
                 {messages.map((m) => (
                   <div ref={scrollRef}>
                     <Message message={m.data} own={m.flag} />
