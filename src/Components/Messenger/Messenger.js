@@ -16,20 +16,26 @@ export default function Messenger() {
   const socket = useContext(socketContext);
   const {id} = useParams();
   useEffect(() => {
-
+    
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({data,flag: false});
       console.log(data);
     });
-  }, [socket]);
-
-  useEffect(() =>{
     socket.emit('EMIT_AVATAR')
     socket.on('ON_AVATAR', (avatar) =>{
       setAvatar(avatar);
     })
   }, [socket]);
+
+  useEffect(() => {
+    socket.emit("RENTING")
+    socket.on("RENTING", data => {
+      const {renter, player, time, price} = data;
+      console.log(data);
+    })
+  }, [])
+  
   useEffect(
     () => {
       arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);

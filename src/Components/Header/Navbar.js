@@ -58,19 +58,29 @@ export default function Navbar({ children }) {
   const socket = useContext(socketContext);
   const [notifications, setNotifications] = useState("");
   const [sender, setSender] = useState("");
+  const [room, setRoom] = useState("");
+  const [time, setTime] = useState(null);
+  const [price, setPrice] = useState(null);
   useEffect(() => {
     socket.emit("GET_USERS");
 
     socket.on("SENDER_NOTIFICATION", (data) => {
       // Người thuê hiện thông báo
-      alert(data.response);
+      alert(data.response); 
     });
     socket.on("RECEIVER_NOTIFICATION", (data) => {
       // Người đc thuê hiển thị thông báo
       // alert(data.response);
       setNotifications(data.response);
       setSender(data.sender)
+      setTime(data.time)
+      setPrice(data.price)
     });
+    socket.on("CONFIRM_RENT_REQUEST", data => {
+      console.log(data);
+      setRoom(data.room)
+     
+    })
   }, [socket]);
 
   const [openNotifi, setNotifi] = useState(false);
@@ -90,14 +100,14 @@ export default function Navbar({ children }) {
   };
 
   const [requestChat, setRequestChat] = useState(false);
+
   const handleAccept = () => {
     if (notifications !== "") {
       setRequestChat(true);
+      socket.emit("CONFIRM_RENT_REQUEST", {sender, time, price});
     }
     setOpen(false);
     console.log(requestChat);
-
-
   };
 
   
@@ -105,12 +115,15 @@ export default function Navbar({ children }) {
   // Dropdown thông báo giữa 2 client
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
+
   if (requestChat) {
-    socket.emit("CONFIRM_RENT_REQUEST", sender);
-    socket.on("CONFIRM_RENT_REQUEST", data => {
-      return <Redirect to={`/room/${data.room}`} />;
-    })
+    console.log(sender)
     
+
+  }
+ 
+  if(room !== ""){
+    return <Redirect to={`/room/${room}`} />;
   }
 
   return (
