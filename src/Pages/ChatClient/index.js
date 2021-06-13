@@ -5,11 +5,9 @@ import { getCookie } from "../../Services/handleCookie";
 
 export default function ChatClient() {
   if (!getCookie("token")) {
-    <Redirect to="/" exact/>;
+    return  <Redirect to="/" exact/>;
   }
-  else{
-    <Redirect to="/streamer" exact/>;
-  }
+
   return (
     <div>
       <Messenger />
