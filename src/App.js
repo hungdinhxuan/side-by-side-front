@@ -42,9 +42,6 @@ function App(props) {
             <Route path="/streamhub">
               <Update />
             </Route>
-            <Route path="/streamhub">
-              <Update />
-            </Route>
             <Route path="/streamer">
               <Streamer />
             </Route>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import "./messenger.css";
 import Message from "../Message/Message";
+import iconplane from '../../img/plane.png';
 
 import { socketContext } from "../socket";
+import CountdownTime from "../CountdownTime";
 
 export default function Messenger() {
   const [messages, setMessages] = useState([]);
@@ -12,48 +14,79 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   // const [sender, setSender] = useState(false);
   const [avatar, setAvatar] = useState("");
+  const [time,setTime] = useState(0);
   //   Sử dụng socket
   const socket = useContext(socketContext);
-  const {id} = useParams();
+  const { id } = useParams();
+
+  // Khi tham gia room
   useEffect(() => {
-    
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
-      setArrivalMessage({data,flag: false});
+      setArrivalMessage({ data, flag: false });
       console.log(data);
     });
-    socket.emit('EMIT_AVATAR')
-    socket.on('ON_AVATAR', (avatar) =>{
+    socket.emit("EMIT_AVATAR");
+    socket.on("ON_AVATAR", (avatar) => {
       setAvatar(avatar);
-    })
-  }, [socket]);
+    });
 
-  useEffect(() => {
-    socket.emit("RENTING")
-    socket.on("RENTING", data => {
-      const {renter, player, time, price} = data;
+    // Lần đầu khi render ra  giao diện
+    socket.emit("RENTING");
+    socket.on("RENTING", (data) => {
       console.log(data);
-    })
-  }, [])
+      setTime(data[data.length - 1].time);
+    });
+  }, []);
+
   
-  useEffect(
-    () => {
-      arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
-    },
-    [arrivalMessage,currentChat],
-  );
+  console.log(time);
+  
+  useEffect(() => {
+    arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
+  }, [arrivalMessage, currentChat]);
+
+  const handleEnterTextarea = (e) => {
+    if (e.keyCode === 13 && e.shiftKey === false) {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    socket.emit("EMIT_MESSEGES",{avatar, text: newMessage});
-    setMessages((pre) => [...pre, {data: {avatar, text: newMessage}, flag: true}]);
+    socket.emit("EMIT_MESSEGES", { avatar, text: newMessage });
+    setMessages((pre) => [
+      ...pre,
+      { data: { avatar, text: newMessage }, flag: true },
+    ]);
     setNewMessage("");
     // setSender(true);
   };
 
+  // Khi  scroll thanh messages
+  // useEffect(() => {
+  //   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  // }, [arrivalMessage]);
+
+
+  // Đếm ngược thời gian
+  const convertHours = (t) => {
+    return new Date(t * 1000)
+      .toUTCString()
+      .replace(/.*(\d{2}):(\d{2}):(\d{2}).*/, "$1h $2m $3s");
+  };
+
+  let intervalRef = useRef();
+  const decreaseNum = () => {
+    if (time > 0) {
+      setTime((prev) => prev - 1);
+    }
+  };
   useEffect(() => {
-    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    intervalRef.current = setInterval(decreaseNum, 1000);
+
+    return () => clearInterval(intervalRef.current);
+  }, [time, decreaseNum]);
 
   const scrollRef = useRef();
 
@@ -63,9 +96,9 @@ export default function Messenger() {
         <div className="chatBoxWrapper">
           {currentChat ? (
             <>
-              <div className="chatBoxTop"> 
+              <div className="chatBoxTop">
                 {messages.map((m) => (
-                  <div ref={scrollRef}>
+                  <div>
                     <Message message={m.data} own={m.flag} />
                   </div>
                 ))}
@@ -75,13 +108,17 @@ export default function Messenger() {
                   className="chatMessageInput"
                   placeholder="write something..."
                   value={newMessage}
+                  onKeyDown={handleEnterTextarea}
                   onChange={(e) => {
                     setNewMessage(e.target.value);
                   }}
                 ></textarea>
                 <button className="chatSubmitButton" onClick={handleSubmit}>
-                  Send
+                  <img src={iconplane} alt="icon" style={{width: "100%", height: "100%"}}/>
                 </button>
+                <div className="hours-renting">
+                  <strong>{convertHours(time)}</strong>
+                </div>
               </div>
             </>
           ) : (
