@@ -90,9 +90,9 @@ export default function Messenger() {
     return () => clearInterval(intervalRef.current);
   }, [time, decreaseNum]);
 
-  // if (time === 0) {
-  //   return <Redirect to="/" />;
-  // }
+  if (time === 0) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="messenger">
