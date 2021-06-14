@@ -130,6 +130,13 @@ const GeneralSetting = () => {
   const [openErrorDialog, setOpenErrorDialog] = React.useState(false);
   const [successMessage, setSuccessMessage] = React.useState('Cập nhật thành công');
   const [errorMessage, setErrorMessage] = React.useState('Server lỗi, vui lòng thử lại sau ít phút!!');
+  const [file, setFile] = React.useState(null);
+  const imageInputRef = React.useRef();
+  const onInputFileChange = (event) => {
+    setFile(event.target.files[0]);
+  }
+
+  
 
   const handleSaveClick = async (e) => {
     e.preventDefault();
@@ -158,7 +165,28 @@ const GeneralSetting = () => {
 
   const handleSubmitAvatar = async (event) => {
     event.preventDefault();
+    console.log('Submit avatar ', file)
+    const formData = new FormData();
+    formData.append('image', file);
     
+    const config = {
+      headers: {
+        'content-type': 'multipart/form-data'
+      }
+    }
+    try {
+      
+      const response = await axiosClient.post("/renter/upload-avatar", formData, config)
+      console.log(response.data)
+      setImageLink(`https://rent-me-now.herokuapp.com/public/images/${response.data.path.split('/')[response.data.path.split('/').length - 1]}`)
+      
+      setFile(null);
+      setOpenSucessDialog(true)
+      imageInputRef.current.value = "";
+    } catch (error) {
+      console.log(error.response.data.message)
+      setOpenErrorDialog(true)
+    }
   }
 
   const handleSaveClose = (event, reason) => {
@@ -214,7 +242,7 @@ const GeneralSetting = () => {
       }
     };
     fetchData();
-  }, [renterData.avatar]);
+  }, [renterData.avatar, imageLink]);
 
   return (
     <>
@@ -270,6 +298,11 @@ const GeneralSetting = () => {
             />
             
           </CardActionArea>
+
+          <form onSubmit={handleSubmitAvatar}>
+            <input type="file" onChange={onInputFileChange}  ref={imageInputRef}/>  
+            <button type="submit">Change avatar </button>
+          </form>
         </Card>
         <Card className={classes.cardSmall} style={{ display: "inline-block" }}>
           <div className={classes.cardSmallLeft} style={{background: "#ea7c69",textTransform: "uppercase", color: "#fff"}}>Renew Your ProAccount</div>
