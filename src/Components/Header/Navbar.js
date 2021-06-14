@@ -66,11 +66,13 @@ export default function Navbar({ children }) {
 
     socket.on("SENDER_NOTIFICATION", (data) => {
       // Người thuê hiện thông báo
+      // console.log(data);
       alert(data.response); 
     });
     socket.on("RECEIVER_NOTIFICATION", (data) => {
       // Người đc thuê hiển thị thông báo
       // alert(data.response);
+      console.log(data);
       setNotifications(data.response);
       setSender(data.sender)
       setTime(data.time)

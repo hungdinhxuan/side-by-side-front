@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { Redirect, useParams } from "react-router-dom";
 import "./messenger.css";
 import Message from "../Message/Message";
-import iconplane from '../../img/plane.png';
+import iconplane from "../../img/plane.png";
 
 import { socketContext } from "../socket";
 import CountdownTime from "../CountdownTime";
@@ -14,7 +14,7 @@ export default function Messenger() {
   const [arrivalMessage, setArrivalMessage] = useState(null);
   // const [sender, setSender] = useState(false);
   const [avatar, setAvatar] = useState("");
-  const [time,setTime] = useState(0);
+  const [time, setTime] = useState(0);
   //   Sử dụng socket
   const socket = useContext(socketContext);
   const { id } = useParams();
@@ -24,7 +24,6 @@ export default function Messenger() {
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({ data, flag: false });
-      console.log(data);
     });
     socket.emit("EMIT_AVATAR");
     socket.on("ON_AVATAR", (avatar) => {
@@ -34,14 +33,10 @@ export default function Messenger() {
     // Lần đầu khi render ra  giao diện
     socket.emit("RENTING");
     socket.on("RENTING", (data) => {
-      console.log(data);
       setTime(data[data.length - 1].time);
     });
   }, []);
 
-  
-  console.log(time);
-  
   useEffect(() => {
     arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
@@ -62,12 +57,12 @@ export default function Messenger() {
     setNewMessage("");
     // setSender(true);
   };
+  const scrollRef = useRef();
 
   // Khi  scroll thanh messages
   // useEffect(() => {
   //   scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   // }, [arrivalMessage]);
-
 
   // Đếm ngược thời gian
   const convertHours = (t) => {
@@ -88,7 +83,9 @@ export default function Messenger() {
     return () => clearInterval(intervalRef.current);
   }, [time, decreaseNum]);
 
-  const scrollRef = useRef();
+  if (time === 0) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="messenger">
@@ -114,7 +111,11 @@ export default function Messenger() {
                   }}
                 ></textarea>
                 <button className="chatSubmitButton" onClick={handleSubmit}>
-                  <img src={iconplane} alt="icon" style={{width: "100%", height: "100%"}}/>
+                  <img
+                    src={iconplane}
+                    alt="icon"
+                    style={{ width: "100%", height: "100%" }}
+                  />
                 </button>
                 <div className="hours-renting">
                   <strong>{convertHours(time)}</strong>
