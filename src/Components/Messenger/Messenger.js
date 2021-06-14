@@ -73,8 +73,7 @@ export default function Messenger() {
 
   // Đếm ngược thời gian
   const convertHours = (t) => {
-    return new Date(t * 1000)
-      .toUTCString()
+    return new Date(t*1000).toLocaleTimeString()
       .replace(/.*(\d{2}):(\d{2}):(\d{2}).*/, "$1h $2m $3s");
   };
 

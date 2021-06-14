@@ -19,7 +19,6 @@ export default function Wallet(props) {
     watch,
     formState: { errors },
   } = useForm();
- 
 
   const { path, url } = useRouteMatch();
   const [next, setNext] = useState(false);
@@ -39,9 +38,10 @@ export default function Wallet(props) {
   return (
     <div className="wallet">
       <div className="container-wallet-form">
-        <h1>Digital Wallet</h1>
-        <h3>Add money</h3>
-        <p style={{ margin: "12px 0 12px" }}>Wallet balance: 0đ</p>
+        <h1 className="text-center" style={{ color: "#ea7c69" }}>
+          Ví điện tử
+        </h1>
+        <h3 style={{ color: "#ea7c69" }}>Nạp tiền</h3>
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
             style={{ width: "100%" }}
@@ -78,8 +78,8 @@ export default function Wallet(props) {
         </form>
         {next ? (
           <div className="link-to-payment">
-            <Link to="/wallet/payment">
-              <span className="payment-link text-center">Continue</span>
+            <Link to="/" >
+              <span className="payment-link text-center" style={{ color: "#ea7c69"}}>Continue</span>
             </Link>
           </div>
         ) : (

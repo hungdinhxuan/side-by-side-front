@@ -61,6 +61,9 @@ export default function Navbar({ children }) {
   const [room, setRoom] = useState("");
   const [time, setTime] = useState(null);
   const [price, setPrice] = useState(null);
+  const [chamDo, setChamDo] = useState(false);
+
+  
   useEffect(() => {
     socket.emit("GET_USERS");
 
@@ -181,7 +184,7 @@ export default function Navbar({ children }) {
                 <div className="col-md-4">
                   <Dropdown isOpen={dropdownOpen} toggle={toggle}>
                     <DropdownToggle caret>
-                      0 <i className="fas fa-bell"></i>
+                      <i className="fas fa-bell"></i>
                     </DropdownToggle>
                     <DropdownMenu>
                       <DropdownItem header>Header</DropdownItem>
