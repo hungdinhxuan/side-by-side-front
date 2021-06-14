@@ -22,6 +22,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
+import { Badge } from "antd";
 
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
@@ -63,29 +64,32 @@ export default function Navbar({ children }) {
   const [price, setPrice] = useState(null);
   const [chamDo, setChamDo] = useState(false);
 
-  
   useEffect(() => {
     socket.emit("GET_USERS");
 
     socket.on("SENDER_NOTIFICATION", (data) => {
       // Người thuê hiện thông báo
       // console.log(data);
-      alert(data.response); 
+      alert(data.response);
     });
     socket.on("RECEIVER_NOTIFICATION", (data) => {
       // Người đc thuê hiển thị thông báo
       // alert(data.response);
       setNotifications(data.response);
-      setSender(data.sender)
-      setTime(data.time)
-      setPrice(data.price)
+      setSender(data.sender);
+      setTime(data.time);
+      setPrice(data.price);
+      setChamDo(true);
+      console.log(chamDo);
     });
-    socket.on("CONFIRM_RENT_REQUEST", data => {
+    socket.on("CONFIRM_RENT_REQUEST", (data) => {
       console.log(data);
-      setRoom(data.room)
-     
-    })
+      setRoom(data.room);
+    });
+    
   }, [socket]);
+  console.log(chamDo);
+
 
   const [openNotifi, setNotifi] = useState(false);
   const handleCheckNotifications = () => {
@@ -101,6 +105,7 @@ export default function Navbar({ children }) {
 
   const handleClose = () => {
     setOpen(false);
+    setChamDo(false);
   };
 
   const [requestChat, setRequestChat] = useState(false);
@@ -108,25 +113,22 @@ export default function Navbar({ children }) {
   const handleAccept = () => {
     if (notifications !== "") {
       setRequestChat(true);
-      socket.emit("CONFIRM_RENT_REQUEST", {sender, time, price});
+      socket.emit("CONFIRM_RENT_REQUEST", { sender, time, price });
     }
     setOpen(false);
+    setChamDo(false);
     console.log(requestChat);
   };
-
-  
 
   // Dropdown thông báo giữa 2 client
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
 
   if (requestChat) {
-    console.log(sender)
-    
-
+    console.log(sender);
   }
- 
-  if(room !== ""){
+
+  if (room !== "") {
     return <Redirect to={`/room/${room}`} />;
   }
 
@@ -183,18 +185,28 @@ export default function Navbar({ children }) {
               <>
                 <div className="col-md-4">
                   <Dropdown isOpen={dropdownOpen} toggle={toggle}>
-                    <DropdownToggle caret>
-                      <i className="fas fa-bell"></i>
-                    </DropdownToggle>
+                    {chamDo ? (
+                      <Badge count={1}>
+                        <DropdownToggle caret>
+                          <i className="fas fa-bell"></i>
+                        </DropdownToggle>
+                      </Badge>
+                    ) : (
+                      <>
+                        <DropdownToggle caret>
+                          <i className="fas fa-bell"></i>
+                        </DropdownToggle>
+                      </>
+                    )}
                     <DropdownMenu>
-                      <DropdownItem header>Header</DropdownItem>
+                      <DropdownItem header>Nơi nhận thông báo</DropdownItem>
                       <DropdownItem>
                         <Button
                           variant="outlined"
                           color="primary"
                           onClick={handleClickOpen}
                         >
-                          Open alert dialog
+                          Hộp thư thông báo
                         </Button>
                         <Dialog
                           open={open}
@@ -231,7 +243,7 @@ export default function Navbar({ children }) {
                 <div className="col-md-4">
                   <div className="money">
                     <Link className="btn btn-secondary" to="/wallet">
-                      <i className="fa fa-wallet"></i> + 10,000,000 đ
+                      <i className="fa fa-wallet"></i> 10,000,000 đ
                     </Link>
                   </div>
                 </div>
