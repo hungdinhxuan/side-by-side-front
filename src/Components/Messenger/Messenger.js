@@ -6,7 +6,9 @@ import iconplane from '../../img/plane.png';
 
 import { socketContext } from "../socket";
 import CountdownTime from "../CountdownTime";
-
+import { getCookie } from "../../Services/handleCookie";
+import jwt_decode from "jwt-decode";
+import { Redirect } from "react-router-dom";
 export default function Messenger() {
   const [messages, setMessages] = useState([]);
   const [currentChat, setCurrentChat] = useState(true);
@@ -18,9 +20,14 @@ export default function Messenger() {
   //   Sử dụng socket
   const socket = useContext(socketContext);
   const { id } = useParams();
-
+  const {renterId} = jwt_decode(getCookie('token'))
+  
+  
   // Khi tham gia room
   useEffect(() => {
+    if(!(renterId in id.split('--with--'))){
+      return <Redirect to= "/" />;
+    }  
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({ data, flag: false });
@@ -35,7 +42,7 @@ export default function Messenger() {
     socket.emit("RENTING");
     socket.on("RENTING", (data) => {
       console.log(data);
-      setTime(data[data.length - 1].time);
+      setTime(data[data.length - 1]?.time);
     });
   }, []);
 
@@ -77,6 +84,7 @@ export default function Messenger() {
   };
 
   let intervalRef = useRef();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const decreaseNum = () => {
     if (time > 0) {
       setTime((prev) => prev - 1);

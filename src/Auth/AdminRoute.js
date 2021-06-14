@@ -2,7 +2,6 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import React from "react";
 
 export default function AdminRoute({ child, ...props }) {
   const { userInfo } = useSelector((state) => state.auth);
