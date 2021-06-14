@@ -20,6 +20,7 @@ import Page404 from "./Pages/Error/Page404";
 import ChatOnline from "./Pages/ChatOnline";
 import Update from "./Components/Update/index";
 import ChatClient from "./Pages/ChatClient";
+import Newsfeed from "./Pages/Newsfeed";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -42,6 +43,11 @@ function App(props) {
             <Route path="/streamhub">
               <Update />
             </Route>
+
+            <Route path="/newsfeed">
+              <Newsfeed />
+            </Route>
+
             <Route path="/streamer">
               <Streamer />
             </Route>
@@ -71,7 +77,7 @@ function App(props) {
             />
             <Route path="/room/:id">
               {/* <ChatOnline /> */}
-              <ChatClient/>
+              <ChatClient />
             </Route>
             <Switch>
               <Route path="/wallet" component={Wallet} exact />
@@ -84,7 +90,6 @@ function App(props) {
             <Page404 />
           </Route> */}
           </AppLayout>
-            
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>

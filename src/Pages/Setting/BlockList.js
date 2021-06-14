@@ -5,7 +5,7 @@ const BlockList = () => {
 
     return (
         <div>
-            This is block list
+            This is block list.(sẽ up date tính năng sau)
         </div>
     )
 }

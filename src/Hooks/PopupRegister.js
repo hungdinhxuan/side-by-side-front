@@ -103,29 +103,29 @@ const PopupRegister = () => {
                   />
                 </div>
                 {errors.username && (
-                  <Alert color="danger">{errors.username.message}</Alert>
+                  <Alert color="danger" className="alert-confirm">{errors.username.message}</Alert>
                 )}
-                              <div className="form-group"> 
-                <input
-                  type="email"
-                  placeholder="Vui lòng nhập email"
-                  className="form-control"
-                  {...register("email", {
-                    required: {
-                      value: true,
-                      message: "Email không được để trống",
-                    },
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                      message: "Email không đúng định dạng",
-                    },
-                  })}
-                />
-                {errors.email && (
-                  <Alert color="danger" >{errors.email.message}</Alert>
-                )}
+                <div className="form-group">
+                  <input
+                    type="email"
+                    placeholder="Vui lòng nhập email"
+                    className="form-control"
+                    {...register("email", {
+                      required: {
+                        value: true,
+                        message: "Email không được để trống",
+                      },
+                      pattern: {
+                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                        message: "Email không đúng định dạng",
+                      },
+                    })}
+                  />
+                  {errors.email && (
+                    <Alert color="danger">{errors.email.message}</Alert>
+                  )}
                 </div>
-                
+
                 <div className="form-group">
                   {/* <label>Họ và tên</label> */}
                   <input
@@ -151,9 +151,12 @@ const PopupRegister = () => {
                   />
                 </div>
                 {errors.name && (
-                  <Alert color="danger">{errors.name.message}</Alert>
+                  <Alert
+                    color="danger"
+                  >
+                    {errors.name.message}
+                  </Alert>
                 )}
-
 
                 <div className="form-group">
                   {/* <label>Mật khẩu</label> */}
@@ -175,7 +178,12 @@ const PopupRegister = () => {
                   />
                 </div>
                 {errors.password && (
-                  <Alert color="danger" style={{fontSize: "15px", padding: "3px"}}>{errors.password.message}</Alert>
+                  <Alert
+                    color="danger"
+                    
+                  >
+                    {errors.password.message}
+                  </Alert>
                 )}
                 <div className="form-group">
                   {/* <label>Nhập lại mật khẩu</label> */}
@@ -192,32 +200,31 @@ const PopupRegister = () => {
                 </div>
                 {errors.password_repeat &&
                   errors.password_repeat?.type === "validate" && (
-                    <Alert color="danger" style={{fontSize: "10px"}}>Mật khẩu không trùng khớp</Alert>
+                    <Alert color="danger" style={{ fontSize: "10px" }}>
+                      Mật khẩu không trùng khớp
+                    </Alert>
                   )}
 
-                
                 {/* <label>Email</label> */}
-                <div className="form-group" > 
-                <select
-                  style={{ display: "block", marginTop: "20px"}}
-                  {...register("gender")}
-                >
-                  <option value="none">Giới Tính</option>
-                  <option value="male">Nam</option>
-                  <option value="female">Nữ</option>
-                  <option value="other">Khác</option>
-                </select>
+                <div className="form-group">
+                  <select
+                    style={{ display: "block", marginTop: "20px" }}
+                    {...register("gender")}
+                  >
+                    <option value="none">Giới Tính</option>
+                    <option value="male">Nam</option>
+                    <option value="female">Nữ</option>
+                    <option value="other">Khác</option>
+                  </select>
 
-                {error && <Alert color="danger">{error.message}</Alert>}
+                  {error && <Alert color="danger">{error.message}</Alert>}
                 </div>
                 <div>
                   <button
                     className="btn btn-primary"
                     style={{
                       float: "left",
-                      // marginLeft: "auto",
-                      // marginRight: "0",
-                      backgroundColor:"rgb(244, 119, 34)" ,
+                      backgroundColor: "rgb(244, 119, 34)",
                       borderRadius: "14px",
                       width: "48%",
                     }}
@@ -225,13 +232,12 @@ const PopupRegister = () => {
                     Đăng ký
                   </button>
                   <button
-                  className="btn btn-primary"
+                    className="btn btn-primary"
                     onClick={toggle}
                     style={{
-                      backgroundColor:"rgb(39, 26, 36)" ,
+                      backgroundColor: "rgb(39, 26, 36)",
                       borderRadius: "14px",
                       float: "right",
-                      // marginRight: "0",
                       width: "48%",
                     }}
                   >
@@ -240,10 +246,8 @@ const PopupRegister = () => {
                 </div>
               </form>
             </div>
-            
           )}
-          <ModalFooter>
-            </ModalFooter>
+          <ModalFooter></ModalFooter>
         </ModalBody>
       </Modal>
     </div>

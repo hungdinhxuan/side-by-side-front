@@ -30,8 +30,8 @@ const SecuritySetting = () => {
     }
 
     return (
-        <div className={classes.root}>
-        <div className="text-center mt-5 security-password">
+        <div className={classes.root} style={{border: '1px solid #ea7c69',padding: "0 5px", marginTop: "20px"}}>
+        <div className="text-center mt-2 security-password">
             <button className="btn btn-primary ps1" onClick={handleChangePasswordClick}>Change Password</button>
             <button className="btn btn-primary ps2" style={{marginLeft: "10px"}} onClick={handleSettingPasswordLevel2}>SettingPasswordLevel2</button>
         </div>
