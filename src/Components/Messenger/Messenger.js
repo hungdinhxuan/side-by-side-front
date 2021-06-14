@@ -21,13 +21,10 @@ export default function Messenger() {
   const socket = useContext(socketContext);
   const { id } = useParams();
   const {renterId} = jwt_decode(getCookie('token'))
-  
-  
+
   // Khi tham gia room
   useEffect(() => {
-    if(!(renterId in id.split('--with--'))){
-      return <Redirect to= "/" />;
-    }  
+   
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({ data, flag: false });
@@ -39,13 +36,13 @@ export default function Messenger() {
     });
 
     // Lần đầu khi render ra  giao diện
-    socket.emit("RENTING");
-    socket.on("RENTING", (data) => {
+    socket.emit("GET_ROOM_INFO", id);
+    socket.on("GET_ROOM_INFO", (data) => {
       console.log(data);
-      setTime(data[data.length - 1]?.time);
+      setTime(data?.time);
     });
   }, []);
-
+  
   
   console.log(time);
   
@@ -95,7 +92,8 @@ export default function Messenger() {
 
     return () => clearInterval(intervalRef.current);
   }, [time, decreaseNum]);
-
+  
+  
   const scrollRef = useRef();
 
   return (
