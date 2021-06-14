@@ -36,13 +36,13 @@ export default function Messenger() {
     // Lần đầu khi render ra  giao diện
     socket.emit("GET_ROOM_INFO", id);
     socket.on("GET_ROOM_INFO", (data) => {
-      console.log(data);
-      setTime(data?.time);
+      console.log(new Date(data.time));
+      setTime((new Date(data.time).getTime() - new Date().getTime())/1000);
     });
   }, []);
   
-  
   console.log(time);
+ 
   
   useEffect(() => {
     arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
@@ -91,9 +91,9 @@ export default function Messenger() {
     return () => clearInterval(intervalRef.current);
   }, [time, decreaseNum]);
 
-  if (time === 0) {
-    return <Redirect to="/" />;
-  }
+  // if (time === 0) {
+  //   return <Redirect to="/" />;
+  // }
 
   return (
     <div className="messenger">

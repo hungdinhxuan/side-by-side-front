@@ -26,11 +26,12 @@
 
 .avt .avt-img {
     min-width: 25px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.avt img {
-    width: 100%;
-}
+
 
 .rent-time-wrap {
     margin-top: 20px;

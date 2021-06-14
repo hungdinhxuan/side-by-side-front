@@ -72,7 +72,6 @@ export default function Navbar({ children }) {
     socket.on("RECEIVER_NOTIFICATION", (data) => {
       // Người đc thuê hiển thị thông báo
       // alert(data.response);
-      console.log(data);
       setNotifications(data.response);
       setSender(data.sender)
       setTime(data.time)
