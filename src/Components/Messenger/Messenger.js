@@ -6,7 +6,8 @@ import iconplane from "../../img/plane.png";
 
 import { socketContext } from "../socket";
 import CountdownTime from "../CountdownTime";
-
+import { getCookie } from "../../Services/handleCookie";
+import jwt_decode from "jwt-decode";
 export default function Messenger() {
   const [messages, setMessages] = useState([]);
   const [currentChat, setCurrentChat] = useState(true);
@@ -18,9 +19,11 @@ export default function Messenger() {
   //   Sử dụng socket
   const socket = useContext(socketContext);
   const { id } = useParams();
+  const {renterId} = jwt_decode(getCookie('token'))
 
   // Khi tham gia room
   useEffect(() => {
+   
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({ data, flag: false });
@@ -31,12 +34,16 @@ export default function Messenger() {
     });
 
     // Lần đầu khi render ra  giao diện
-    socket.emit("RENTING");
-    socket.on("RENTING", (data) => {
-      setTime(data[data.length - 1].time);
+    socket.emit("GET_ROOM_INFO", id);
+    socket.on("GET_ROOM_INFO", (data) => {
+      console.log(data);
+      setTime(data?.time);
     });
   }, []);
-
+  
+  
+  console.log(time);
+  
   useEffect(() => {
     arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
@@ -72,6 +79,7 @@ export default function Messenger() {
   };
 
   let intervalRef = useRef();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const decreaseNum = () => {
     if (time > 0) {
       setTime((prev) => prev - 1);
