@@ -36,4 +36,5 @@
 .message.own .messageText {
     background-color: #1877f2;
     color: white;
+    overflow-wrap: break-word;
 }
