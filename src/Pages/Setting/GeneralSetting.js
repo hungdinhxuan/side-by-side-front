@@ -21,6 +21,7 @@ import Select from "@material-ui/core/Select";
 import {serverHost} from "../../config"
 
 import { Form, DropdownButton, Dropdown } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -271,8 +272,10 @@ const GeneralSetting = () => {
           </CardActionArea>
         </Card>
         <Card className={classes.cardSmall} style={{ display: "inline-block" }}>
-          <div className={classes.cardSmallLeft}>Renew Your ProAccount</div>
-          <Button className={classes.cardSmallRight}>Update Now </Button>
+          <div className={classes.cardSmallLeft} style={{background: "#ea7c69",textTransform: "uppercase", color: "#fff"}}>Renew Your ProAccount</div>
+          <Button className={classes.cardSmallRight} style={{background: "#d65b08"}}>
+            <Link to="/setting-streamer-profile" style={{color: "white"}} >Update Now </Link>
+          </Button>
         </Card>
       </div>
 
@@ -391,7 +394,7 @@ const GeneralSetting = () => {
               style={{
                 backgroundColor: "#271A24",
                 borderRadius: "14px",
-                color: "#EA7C69",
+                color: "#fff",
                 height: "48px",
                 width: "172px",
                 padding: "14px",

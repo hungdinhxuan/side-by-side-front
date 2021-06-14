@@ -62,7 +62,7 @@ const ChangePassword = () => {
 
   return (
     <div>
-      <Form>
+      <Form style={{padding: '15px'}}>
         <Form.Group controlId="formBasicPassword">
           <Form.Label>Mật khẩu hiện tại</Form.Label>
           <Form.Control type="password" value={currentPassword} onChange={handleCurrentPasswordChange}/>

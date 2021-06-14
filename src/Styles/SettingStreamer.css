@@ -1,4 +1,7 @@
 /* Border input */
+.setting-player {
+    background: #271a24;
+}
 .border-input {
     border-radius: 48px;
     height: 30px;
@@ -53,6 +56,7 @@
 .nav-tabs .nav-link:hover {
     border: 1px solid #ea7c69;
     cursor: pointer;
+    color: #ea7c69;
 }
 
 .tab-content {
