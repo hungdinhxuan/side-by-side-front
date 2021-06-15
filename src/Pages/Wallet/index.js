@@ -25,29 +25,19 @@ export default function Wallet(props) {
   } = useForm();
 
   const {paymentGet,isLoading,error} = useSelector((state) => state.paymentGet)
-  const [payment,setPayment] = useState([]);
+  const [payment,setPayment] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log('Hello');
-    dispatch(getPaymentByNumber());
-    if(paymentGet){
-      setPayment(paymentGet);
-      console.log(payment);
-    }
+    dispatch(getPaymentByNumber())
   },[])
   
-  
 
-  // useEffect(() => {
-  //   setPayment(paymentGet);
-  //   console.log(payment.payments[0]);
-  // },[payment])
 
   const { path, url } = useRouteMatch();
   const [next, setNext] = useState(false);
-
+ 
 
   const onSubmit = (values) => {
     setNext(true);
@@ -72,6 +62,10 @@ export default function Wallet(props) {
   const handlePayment = () => {
 
   }
+  if(isLoading){
+    return (<h1>Vui lòng đợi tí</h1>)
+  }
+
 
   return (
     <div className="wallet">
@@ -88,13 +82,19 @@ export default function Wallet(props) {
             </Label>
           </div>
           <div className="col-md-3">
-            <p style={{marginBottom: "0"}}>1</p>
+            {paymentGet.payments && paymentGet.payments.map(item => (
+              <p style={{marginBottom: "0"}}>{item.cardNumber}</p>
+            ))}
           </div>
           <div className="col-md-3">
-            <p style={{marginBottom: "0"}}>1</p>
+          {paymentGet.payments && paymentGet.payments.map(item => (
+              <p style={{marginBottom: "0"}}>{item.name}</p>
+            ))}
           </div>
           <div className="col-md-3">
-            <p style={{marginBottom: "0"}}>1</p>
+          {paymentGet.payments && paymentGet.payments.map(item => (
+              <p style={{marginBottom: "0"}}>{item.expiresDate}</p>
+            ))}
           </div>
         </div>
         <hr/>
