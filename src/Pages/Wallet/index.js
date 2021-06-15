@@ -62,9 +62,6 @@ export default function Wallet(props) {
   const handlePayment = () => {
 
   }
-  if(isLoading){
-    return (<h1>Vui lòng đợi tí</h1>)
-  }
 
 
   return (
