@@ -24,12 +24,15 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { Badge } from "antd";
 
+
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
+
 
   const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
   const data = userInfo ? userInfo : dataGoogle;
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const dispatch = useDispatch();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -49,6 +52,10 @@ export default function Navbar({ children }) {
     window.location.reload();
     setLogout(false);
   };
+
+  
+
+  
   useEffect(() => {
     if (data && data !== "undefined") {
       setLogout(true);

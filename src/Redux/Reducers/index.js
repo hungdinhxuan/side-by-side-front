@@ -1,7 +1,12 @@
 import { combineReducers } from "redux";
-import { authReducerGoogle, authReducerLogin, authReducerRegister } from './auth';
+import {
+  authReducerGoogle,
+  authReducerLogin,
+  authReducerRegister,
+} from "./auth";
+import { paymentPost, paymentGet } from "./payment";
 import playerReducer from "./player";
-import streamerReducer from './streamer'
+import streamerReducer from "./streamer";
 
 const rootReducer = combineReducers({
   //Chứa reducer child
@@ -9,7 +14,9 @@ const rootReducer = combineReducers({
   streamer: streamerReducer,
   authRe: authReducerRegister,
   authGooogle: authReducerGoogle,
-  player: playerReducer
+  player: playerReducer,
+  paymentGet,
+  paymentPost,
 });
 
 export default rootReducer;

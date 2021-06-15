@@ -297,6 +297,7 @@ const GeneralSetting = () => {
               style={{ borderRadius: "30px" }}
               value={name}
               onChange={handleNameChange}
+              className="text-wallet-setting"
             />
           </Form.Group>
           <Form.Group className={classes.formGroup}>
@@ -347,6 +348,7 @@ const GeneralSetting = () => {
               style={{ borderRadius: "30px" }}
               value={nickName}
               onChange={handleNickNameChange}
+              className="text-wallet-setting"
             />
           </Form.Group>
 
@@ -384,6 +386,7 @@ const GeneralSetting = () => {
               style={{ borderRadius: "30px" }}
               value={country}
               onChange={handleCountryChange}
+              className="text-wallet-setting"
             />
           </Form.Group>
 
