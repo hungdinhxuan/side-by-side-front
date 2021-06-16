@@ -40,7 +40,7 @@ function App(props) {
       <BrowserRouter>
         {/* Route Main */}
         <Switch>
-          {/* <AppLayout>
+          <AppLayout>
             <Route path="/" exact>
               <Home />
             </Route>
@@ -80,8 +80,7 @@ function App(props) {
               component={SettingStreamer}
             />
             <Route path="/room/:id">
-              {/* <ChatOnline /> */}
-          {/* <ChatClient />
+              <ChatClient />
             </Route>
             <Switch>
               <Route path="/wallet" component={Wallet} exact />
@@ -89,38 +88,26 @@ function App(props) {
                 <Napthe />
               </Route>
             </Switch>
-            <Route path="/admin/general">
-              <AdminApp/>
-            </Route> */}
-
-          {/* <Route
-              path="/admin/dashboard"
-              render={(props) => <AdminApp {...props} route="dashboard" />}
-            />
-            <Route
-              path="/admin/usermanagement"
-              render={(props) => <AdminApp {...props} route="usermanagement" />}
-            /> */}
-
-          {/* <Route path="**" >
+            {/* <Route path="**" >
             <Page404 />
           </Route> */}
-          {/* </AppLayout> */}
-          {/* <Route path="/streamer">
-            <Streamer />
-          </Route> */}
-          <Route
-            path="/admin/dashboard"
-            render={(props) => <Dashboard {...props} route="dashboard" />}
-          />
-          <Route
-            path="/admin/usermanagement"
-            render={(props) => <Dashboard {...props} route="usermanagement" />}
-          />
+          </AppLayout>
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>
   );
 }
+
+// {/* <Route path="/streamer">
+//             <Streamer />
+//           </Route> */}
+//           {/* <Route
+//             path="/admin/dashboard"
+//             render={(props) => <Dashboard {...props} route="dashboard" />}
+//           />
+//           <Route
+//             path="/admin/usermanagement"
+//             render={(props) => <Dashboard {...props} route="usermanagement" />}
+//           />
 
 export default App;
