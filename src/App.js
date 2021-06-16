@@ -21,6 +21,10 @@ import ChatOnline from "./Pages/ChatOnline";
 import Update from "./Components/Update/index";
 import ChatClient from "./Pages/ChatClient";
 import Newsfeed from "./Pages/Newsfeed";
+import Dashboard from "./Components/AdminApp/Dashboard";
+import Chart from "./Components/AdminApp/Chart";
+
+// import AdminApp from "./Components/AdminApp";
 
 function App(props) {
   const [token, setToken] = useState(false);
@@ -36,7 +40,7 @@ function App(props) {
       <BrowserRouter>
         {/* Route Main */}
         <Switch>
-          <AppLayout>
+          {/* <AppLayout>
             <Route path="/" exact>
               <Home />
             </Route>
@@ -77,7 +81,7 @@ function App(props) {
             />
             <Route path="/room/:id">
               {/* <ChatOnline /> */}
-              <ChatClient />
+          {/* <ChatClient />
             </Route>
             <Switch>
               <Route path="/wallet" component={Wallet} exact />
@@ -85,11 +89,34 @@ function App(props) {
                 <Napthe />
               </Route>
             </Switch>
+            <Route path="/admin/general">
+              <AdminApp/>
+            </Route> */}
 
-            {/* <Route path="**" >
+          {/* <Route
+              path="/admin/dashboard"
+              render={(props) => <AdminApp {...props} route="dashboard" />}
+            />
+            <Route
+              path="/admin/usermanagement"
+              render={(props) => <AdminApp {...props} route="usermanagement" />}
+            /> */}
+
+          {/* <Route path="**" >
             <Page404 />
           </Route> */}
-          </AppLayout>
+          {/* </AppLayout> */}
+          {/* <Route path="/streamer">
+            <Streamer />
+          </Route> */}
+          <Route
+            path="/admin/dashboard"
+            render={(props) => <Dashboard {...props} route="dashboard" />}
+          />
+          <Route
+            path="/admin/usermanagement"
+            render={(props) => <Dashboard {...props} route="usermanagement" />}
+          />
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>

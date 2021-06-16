@@ -9,9 +9,15 @@ export default function Message({ message, own }) {
   useEffect(() => {
     scroll.current?.scrollIntoView({ behavior: "smooth" });
   }, [own]);
+
+  const handleRefresh = (e) => {
+    if (e.keyCode === 116) {
+      e.preventDefault();
+    }
+  }
   return (
     <div className={own ? "message own" : "message"} ref={scroll} >
-      <div className="messageTop">
+      <div className="messageTop" onKeyDown={handleRefresh}>
         <img className="messageImg" src={message.avatar} alt="" />
         <p className="messageText" >{message.text}</p>
       </div>

@@ -7,6 +7,8 @@ import {
 import { paymentPost, paymentGet } from "./payment";
 import playerReducer from "./player";
 import streamerReducer from "./streamer";
+import {walletReducer,walletAddReducer}  from './wallet'
+import adminReducer from './admin'
 
 const rootReducer = combineReducers({
   //Chứa reducer child
@@ -17,6 +19,9 @@ const rootReducer = combineReducers({
   player: playerReducer,
   paymentGet,
   paymentPost,
+  wallet: walletReducer,
+  walletAddReducer,
+  admin: adminReducer
 });
 
 export default rootReducer;

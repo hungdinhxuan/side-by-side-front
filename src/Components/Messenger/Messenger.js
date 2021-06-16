@@ -19,11 +19,10 @@ export default function Messenger() {
   //   Sử dụng socket
   const socket = useContext(socketContext);
   const { id } = useParams();
-  const {renterId} = jwt_decode(getCookie('token'))
+  const { renterId } = jwt_decode(getCookie("token"));
 
   // Khi tham gia room
   useEffect(() => {
-   
     socket.emit("JOIN_ROOM", id);
     socket.on("ON_MESSEGES", (data) => {
       setArrivalMessage({ data, flag: false });
@@ -37,13 +36,12 @@ export default function Messenger() {
     socket.emit("GET_ROOM_INFO", id);
     socket.on("GET_ROOM_INFO", (data) => {
       console.log(new Date(data.time));
-      setTime((new Date(data.time).getTime() - new Date().getTime())/1000);
+      setTime((new Date(data.time).getTime() - new Date().getTime()) / 1000);
     });
   }, []);
-  
+
   console.log(time);
- 
-  
+
   useEffect(() => {
     arrivalMessage && setMessages((pre) => [...pre, arrivalMessage]);
   }, [arrivalMessage, currentChat]);
@@ -73,7 +71,8 @@ export default function Messenger() {
 
   // Đếm ngược thời gian
   const convertHours = (t) => {
-    return new Date(t*1000).toUTCString()
+    return new Date(t * 1000)
+      .toUTCString()
       .replace(/.*(\d{2}):(\d{2}):(\d{2}).*/, "$1h $2m $3s");
   };
 
@@ -93,6 +92,11 @@ export default function Messenger() {
   // if (time === 0) {
   //   return <Redirect to="/" />;
   // }
+
+  
+  // window.onbeforeunload = function () {
+  //   return "Dude, are you sure you want to leave? Think of the kittens!";
+  // };
 
   return (
     <div className="messenger">

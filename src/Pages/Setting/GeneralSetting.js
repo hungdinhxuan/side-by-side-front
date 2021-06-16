@@ -182,7 +182,7 @@ const GeneralSetting = () => {
       
       setFile(null);
       setOpenSucessDialog(true)
-      imageInputRef.current.value = "";
+      imageInputRef.current.value = ""; 
     } catch (error) {
       console.log(error.response.data.message)
       setOpenErrorDialog(true)

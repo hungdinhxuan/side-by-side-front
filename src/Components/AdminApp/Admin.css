@@ -1,0 +1,17 @@
+.Admin-pagination {
+    background: rgba(250, 250, 250, 1);
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.Admin-pagination button.MuiPaginationItem-textPrimary {
+    background: gray;
+}
+
+.MuiPaginationItem-page {
+    background: pink;
+}
+button.MuiPaginationItem-textPrimary.Mui-selected:focus{
+    background: #ea7c69;
+}

@@ -23,11 +23,14 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { Badge } from "antd";
-
+import { getWalletByNumber, patchWalletByNumber } from "../../actions/wallet";
+import { formatMoney } from "../../Services/mix";
 
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
-
+  const { money } = useSelector((state) => state.wallet);
+  // const {addMoney}  = useSelector((state) => state.patchWalletByNumber)
+  
 
   const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
   const data = userInfo ? userInfo : dataGoogle;
@@ -53,9 +56,15 @@ export default function Navbar({ children }) {
     setLogout(false);
   };
 
+
+  useEffect(() => {
+    dispatch(getWalletByNumber());
+  }, [dispatch]);
+
+  // Cap nhat state khi tien nap thanh cong
+  const [balance, setBalance] = useState(null);
   
 
-  
   useEffect(() => {
     if (data && data !== "undefined") {
       setLogout(true);
@@ -93,10 +102,8 @@ export default function Navbar({ children }) {
       console.log(data);
       setRoom(data.room);
     });
-    
   }, [socket]);
   console.log(chamDo);
-
 
   const [openNotifi, setNotifi] = useState(false);
   const handleCheckNotifications = () => {
@@ -250,7 +257,12 @@ export default function Navbar({ children }) {
                 <div className="col-md-4">
                   <div className="money">
                     <Link className="btn btn-secondary" to="/wallet">
-                      <i className="fa fa-wallet"></i> 10,000,000 đ
+                      {money.wallet && (
+                        <>
+                          <i className="fa fa-wallet"></i>{" "}
+                          {formatMoney(money.wallet.balance)}
+                        </>
+                      )}
                     </Link>
                   </div>
                 </div>
