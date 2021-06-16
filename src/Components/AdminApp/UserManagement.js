@@ -44,10 +44,19 @@ export default function UserManagement() {
   //   setEdit(true);
   // };
 
-  const handleEdit = () => {
-    setEdit(false);
+  const handleEdit = (id) => {
+    const oldData = [...userAccount.renters];
+    console.log(oldData);
+    oldData.map((item, index) => {
+      if (index === id) {
+        setEdit(false);
+      }
+    });
+    console.log('Helo');
   };
-  console.log(edit);
+
+  
+
   const handleCancelEdit = () => {
     setData(
       userAccount.renters?.map((item, index) => ({ ...item, isEdit: false }))
@@ -115,7 +124,7 @@ export default function UserManagement() {
                 <td scope="row">
                   <input type="checkbox" />
                 </td>
-                {!item.isEdit ? (
+                {edit ? (
                   <>
                     <td>{item.name}</td>
                     <td>
@@ -138,7 +147,7 @@ export default function UserManagement() {
                       <button
                         className="btn btn-success"
                         style={{ marginRight: "5px" }}
-                        onClick={handleEdit}
+                        onClick={() => {handleEdit(item._id)}}
                       >
                         <EditIcon />
                       </button>
@@ -149,94 +158,84 @@ export default function UserManagement() {
                   </>
                 ) : (
                   <>
-                    {edit ? (
-                      <></>
-                    ) : (
-                      <>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="name"
-                            value={item.name}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <img
-                            src={`https://rent-me-now.herokuapp.com/public/images/${
-                              item.avatar.split("/")[
-                                item.avatar.split("/").length - 1
-                              ]
-                            }`}
-                            style={{ width: "60px" }}
-                          />
-                          <input type="file" />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="city"
-                            value={item.city}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="userName"
-                            value={item.username}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="password"
-                            value={item.password}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="email"
-                            value={item.email}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="nickName"
-                            value={item.nickName}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="role"
-                            value={item.role}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-success"
-                            style={{ marginRight: "5px" }}
-                          >
-                            <CheckIcon />
-                          </button>
-                          <button
-                            className="btn btn-danger"
-                            onClick={() => {
-                              handleCancelEdit();
-                            }}
-                          >
-                            <CloseIcon />
-                          </button>
-                        </td>
-                      </>
-                    )}
+                    <td>
+                      <TextField
+                        type="text"
+                        name="name"
+                        value={item.name}
+                        onChange={handleChangeForm}
+                      />
+                    </td>
+                    <td>
+                      <img
+                        src={`https://rent-me-now.herokuapp.com/public/images/${
+                          item.avatar.split("/")[
+                            item.avatar.split("/").length - 1
+                          ]
+                        }`}
+                        style={{ width: "60px" }}
+                      />
+                      <input type="file" />
+                    </td>
+                    <td>
+                      <TextField type="text" name="city" value={item.city} />
+                    </td>
+                    <td>
+                      <TextField
+                        type="text"
+                        name="userName"
+                        value={item.username}
+                        onChange={handleChangeForm}
+                      />
+                    </td>
+                    <td>
+                      <TextField
+                        type="text"
+                        name="password"
+                        value={item.password}
+                        onChange={handleChangeForm}
+                      />
+                    </td>
+                    <td>
+                      <TextField
+                        type="text"
+                        name="email"
+                        value={item.email}
+                        onChange={handleChangeForm}
+                      />
+                    </td>
+                    <td>
+                      <TextField
+                        type="text"
+                        name="nickName"
+                        value={item.nickName}
+                        onChange={handleChangeForm}
+                      />
+                    </td>
+                    <td>
+                      <TextField
+                        type="text"
+                        name="role"
+                        value={item.role}
+                        onChange={handleChangeForm}
+                      />
+                    </td>
+                    <td>
+                      <button
+                        className="btn btn-success"
+                        style={{ marginRight: "5px" }}
+                      >
+                        <CheckIcon />
+                      </button>
+                      <button
+                        className="btn btn-danger"
+                        onClick={() => {
+                          handleCancelEdit();
+                        }}
+                      >
+                        <CloseIcon />
+                      </button>
+                    </td>
                   </>
                 )}
               </tr>
