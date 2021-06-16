@@ -2,6 +2,12 @@ import {
     ADMIN_USERINFOR_REQUEST,
     ADMIN_USERINFOR_SUCCESS,
     ADMIN_USERINFOR_FAILURE,
+    UPDATE_USERINFOR_REQUEST,
+    UPDATE_USERINFOR_SUCCESS,
+    UPDATE_USERINFOR_FAILURE,
+    DELETE_USERINFOR_REQUEST,
+    DELETE_USERINFOR_SUCCESS,
+    DELETE_USERINFOR_FAILURE
   } from "../../constants/admin.js";
   
   const initialState = {
@@ -10,7 +16,7 @@ import {
     error: null,
   };
   
-  function adminReducer(state = initialState, action) {
+export  function adminReducer(state = initialState, action) {
     switch (action.type) {
       case ADMIN_USERINFOR_REQUEST:
         return { ...state, isLoading: true, error: null };
@@ -22,6 +28,19 @@ import {
         return state;
     }
   }
+
+  export  function adminUpdateReducer(state = initialState, action) {
+    switch (action.type) {
+      case UPDATE_USERINFOR_REQUEST:
+        return { ...state, isLoading: true, error: null };
+      case UPDATE_USERINFOR_SUCCESS:
+        return { ...state, isLoading: false, uploadedRenter: action.payload.data };
+      case UPDATE_USERINFOR_FAILURE:
+        return { ...state, isLoading: false, error: action.payload.error };
+      default:
+        return state;
+    }
+  }
   
-  export default adminReducer;
+  // export default adminReducer;
   

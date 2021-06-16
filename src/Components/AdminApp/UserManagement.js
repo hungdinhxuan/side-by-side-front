@@ -1,22 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import EditIcon from "@material-ui/icons/Edit";
-import DeleteIcon from "@material-ui/icons/Delete";
+
 import AddIcon from "@material-ui/icons/Add";
-import CheckIcon from "@material-ui/icons/Check";
-import CloseIcon from "@material-ui/icons/Close";
+
 import getUserAccountByPage from "../../actions/admin";
-import { Input } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+
 import Pagination from "@material-ui/lab/Pagination";
 import BackToTop from "../../Hooks/BackToTop";
 import "./Admin.css";
 
+import ListUsers from "./ListUsers";
+
 export default function UserManagement() {
   const { userAccount, isLoading, error } = useSelector((state) => state.admin);
   const dispatch = useDispatch();
-  const [account, setAccount] = useState(true);
-  const [edit, setEdit] = useState(true);
+
   const [getData, setData] = useState([]);
 
   // Pagination
@@ -26,55 +24,20 @@ export default function UserManagement() {
   };
 
   useEffect(() => {
-    dispatch(getUserAccountByPage(page));
-  }, [page]);
-
-  // useEffect(() => {
-  //   setData(
-  //     userAccount.renters?.map((item, index) => ({ ...item, isEdit: false }))
-  //   );
-  // }, [userAccount]);
-  // const handleEdit = (rowCheck) => {
-  //   setData(
-  //     userAccount.renters?.map((item, index) => ({
-  //       ...item,
-  //       isEdit: rowCheck === index,
-  //     }))
-  //   );
-  //   setEdit(true);
-  // };
-
-  const handleEdit = () => {
-    setEdit(false);
-  };
-  console.log(edit);
-  const handleCancelEdit = () => {
-    setData(
-      userAccount.renters?.map((item, index) => ({ ...item, isEdit: false }))
-    );
-  };
-
-  const handleAdd = () => {
-    console.log(getData);
-    setData([
-      {
-        avatar: "",
-        isEdit: true,
-      },
-      ...getData,
-    ]);
-  };
-
-  const handleChangeForm = (event, id) => {
-    // console.log(event.target.name);
-    const oldData = [...getData];
-    oldData.forEach((item, index) => {
-      if (id === index) {
-        item[event.target.name] = event.target.value;
+    const fetchData = async () => {
+      const data = await dispatch(getUserAccountByPage(page));
+      if(data.payload.error){
+        alert(data.payload.error.message);
+        
+      }else{
+        // alert(data.payload.data.message);
+        setData(data.payload.data.renters)
       }
-    });
-    setData(oldData);
-  };
+    }
+    fetchData();
+  }, [dispatch, page, getData]);
+
+ 
 
   return (
     <div className="mt-3">
@@ -83,7 +46,7 @@ export default function UserManagement() {
           className="btn btn-success"
           style={{ padding: "15px", marginLeft: "25px", marginRight: "10px" }}
           onClick={() => {
-            handleAdd();
+            
           }}
         >
           <AddIcon />
@@ -109,137 +72,8 @@ export default function UserManagement() {
           </tr>
         </thead>
         <tbody>
-          {userAccount.renters &&
-            userAccount.renters.map((item, index) => (
-              <tr key={item._id}>
-                <td scope="row">
-                  <input type="checkbox" />
-                </td>
-                {!item.isEdit ? (
-                  <>
-                    <td>{item.name}</td>
-                    <td>
-                      <img
-                        src={`https://rent-me-now.herokuapp.com/public/images/${
-                          item.avatar.split("/")[
-                            item.avatar.split("/").length - 1
-                          ]
-                        }`}
-                        style={{ width: "60px" }}
-                      />
-                    </td>
-                    <td>{item.city}</td>
-                    <td>{item.username}</td>
-                    <td>{item.password}</td>
-                    <td>{item.email}</td>
-                    <td>{item.nickName}</td>
-                    <td>{item.role}</td>
-                    <td>
-                      <button
-                        className="btn btn-success"
-                        style={{ marginRight: "5px" }}
-                        onClick={handleEdit}
-                      >
-                        <EditIcon />
-                      </button>
-                      <button className="btn btn-danger">
-                        <DeleteIcon />
-                      </button>
-                    </td>
-                  </>
-                ) : (
-                  <>
-                    {edit ? (
-                      <></>
-                    ) : (
-                      <>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="name"
-                            value={item.name}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <img
-                            src={`https://rent-me-now.herokuapp.com/public/images/${
-                              item.avatar.split("/")[
-                                item.avatar.split("/").length - 1
-                              ]
-                            }`}
-                            style={{ width: "60px" }}
-                          />
-                          <input type="file" />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="city"
-                            value={item.city}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="userName"
-                            value={item.username}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="password"
-                            value={item.password}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="email"
-                            value={item.email}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="nickName"
-                            value={item.nickName}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <TextField
-                            type="text"
-                            name="role"
-                            value={item.role}
-                            onChange={handleChangeForm}
-                          />
-                        </td>
-                        <td>
-                          <button
-                            className="btn btn-success"
-                            style={{ marginRight: "5px" }}
-                          >
-                            <CheckIcon />
-                          </button>
-                          <button
-                            className="btn btn-danger"
-                            onClick={() => {
-                              handleCancelEdit();
-                            }}
-                          >
-                            <CloseIcon />
-                          </button>
-                        </td>
-                      </>
-                    )}
-                  </>
-                )}
-              </tr>
+          {getData.map((item, index) => (
+              <ListUsers item={item} id={index} />
             ))}
         </tbody>
       </table>

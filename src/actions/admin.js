@@ -2,6 +2,9 @@ import {
     ADMIN_USERINFOR_REQUEST,
     ADMIN_USERINFOR_SUCCESS,
     ADMIN_USERINFOR_FAILURE,
+    UPDATE_USERINFOR_REQUEST,
+    UPDATE_USERINFOR_SUCCESS,
+    UPDATE_USERINFOR_FAILURE
   } from "../constants/admin.js";
 
 import adminAPI from '../Services/admin';
@@ -11,10 +14,24 @@ export default function getUserAccountByPage(pages) {
         dispatch({type: ADMIN_USERINFOR_REQUEST});
         try {
             const {data} = await adminAPI.getUser(pages);
-            dispatch({type: ADMIN_USERINFOR_SUCCESS, payload: {data}})
+            return dispatch({type: ADMIN_USERINFOR_SUCCESS, payload: {data}})
         } catch (error) {
             // Báo lỗi
-            dispatch({type: ADMIN_USERINFOR_FAILURE, payload: {error: error.response.data}})
+            return dispatch({type: ADMIN_USERINFOR_FAILURE, payload: {error: error.response.data}})
+        }
+    }
+}
+
+export  function updateUserAccount(values) {
+    return async (dispatch) => {
+        dispatch({type: UPDATE_USERINFOR_REQUEST});
+        try {
+            const {data} = await adminAPI.updateUser(values);
+            return dispatch({type: UPDATE_USERINFOR_SUCCESS, payload: {data}})
+           
+        } catch (error) {
+            // Báo lỗi
+            return dispatch({type: UPDATE_USERINFOR_FAILURE, payload: {error: error.response.data}})
         }
     }
 }
