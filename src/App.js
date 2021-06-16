@@ -80,8 +80,7 @@ function App(props) {
               component={SettingStreamer}
             />
             <Route path="/room/:id">
-              <ChatOnline />
-           <ChatClient />
+              <ChatClient />
             </Route>
             <Switch>
               <Route path="/wallet" component={Wallet} exact />
@@ -89,12 +88,11 @@ function App(props) {
                 <Napthe />
               </Route>
             </Switch>
-          {/* <Route path="**" >
+            {/* <Route path="**" >
             <Page404 />
           </Route> */}
           </AppLayout>
-        </Switch> 
-        
+        </Switch>
       </BrowserRouter>
     </socketContext.Provider>
   );
