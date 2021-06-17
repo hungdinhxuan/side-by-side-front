@@ -27,17 +27,16 @@ export default function Wallet(props) {
   } = useForm();
 
   const { paymentGet, isLoading } = useSelector((state) => state.paymentGet);
-  const { addMoney, error } = useSelector((state) => state.walletAddReducer);
+  // const {money, updateMoney} = useSelector((state) => state.wallet)
+  // const { addMoney, error,updateMoney } = useSelector((state) => state.walletAddReducer);
   const [paymentId, setPaymentId] = useState(null);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getPaymentByNumber());
-    return () => {
-      dispatch(getPaymentByNumber());
-    };
-  }, []);
+    
+  }, [dispatch]);
 
   const { path, url } = useRouteMatch();
   const [next, setNext] = useState(false);
@@ -75,10 +74,10 @@ export default function Wallet(props) {
     setOpen(false);
   };
 
-  if (addMoney.success) {
-    alert("Nạp tiền thành công");
-    window.location.reload();
-  }
+  // if (addMoney.success) {
+  //   alert("Nạp tiền thành công");
+  //   window.location.reload();
+  // }
 
   return (
     <div className="wallet">

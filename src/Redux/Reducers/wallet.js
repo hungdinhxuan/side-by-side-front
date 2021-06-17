@@ -11,13 +11,9 @@ import {
     money: [],
     isLoading: false,
     error: null,
+    updateMoney: []
   };
 
-  const initialStateAddMoney = {
-    addMoney: [],
-    isLoading: false,
-    error: null,
-  };
 
 
 
@@ -36,19 +32,11 @@ import {
       case WALLET_FAILURE: {
         return { ...state, isLoading: false, error: action.payload.error };
       }
-      default:
-        return state;
-    }
-  }
-
-  //Xử lý NẠP TIỀN
-  export function walletAddReducer(state = initialStateAddMoney, action) {
-    switch (action.type) {
       case ADD_MONEY_REQUEST: {
         return { ...state, isLoading: true, error: null };
       }
       case ADD_MONEY_SUCCESS: {
-        return { ...state, isLoading: false, addMoney: action.payload.data };
+        return { ...state, isLoading: false, updateMoney: action.payload.data };
       }
       case ADD_MONEY_FAILURE: {
         return { ...state, isLoading: false, error: action.payload.error };

@@ -23,6 +23,8 @@ import ChatClient from "./Pages/ChatClient";
 import Newsfeed from "./Pages/Newsfeed";
 import Dashboard from "./Components/AdminApp/Dashboard";
 import Chart from "./Components/AdminApp/Chart";
+import AdminRoute from "./Auth/AdminRoute";
+import { Redirect } from "react-router-dom";
 
 // import AdminApp from "./Components/AdminApp";
 
@@ -40,6 +42,19 @@ function App(props) {
       <BrowserRouter>
         {/* Route Main */}
         <Switch>
+          <Route path="/admin">
+            <Redirect exact to="/admin" to="/admin/dashboard" />
+            <Route
+              path="/admin/dashboard"
+              render={(props) => <Dashboard {...props} route="dashboard" />}
+            />
+            <Route
+              path="/admin/usermanagement"
+              render={(props) => (
+                <Dashboard {...props} route="usermanagement" />
+              )}
+            />
+          </Route>
           <AppLayout>
             <Route path="/" exact>
               <Home />
@@ -88,10 +103,10 @@ function App(props) {
                 <Napthe />
               </Route>
             </Switch>
-            {/* <Route path="**" >
-            <Page404 />
-          </Route> */}
           </AppLayout>
+          {/* {/* <Route path="/streamer">
+//             <Streamer />
+//           </Route> */}
         </Switch>
       </BrowserRouter>
     </socketContext.Provider>

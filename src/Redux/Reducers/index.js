@@ -20,7 +20,7 @@ const rootReducer = combineReducers({
   paymentGet,
   paymentPost,
   wallet: walletReducer,
-  walletAddReducer,
+  // walletAddReducer,
   admin: adminReducer
 });
 

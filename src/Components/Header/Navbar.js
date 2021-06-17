@@ -28,9 +28,8 @@ import { formatMoney } from "../../Services/mix";
 
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
-  const { money } = useSelector((state) => state.wallet);
+  const { money, updateMoney } = useSelector((state) => state.wallet);
   // const {addMoney}  = useSelector((state) => state.patchWalletByNumber)
-  
 
   const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
   const data = userInfo ? userInfo : dataGoogle;
@@ -56,14 +55,20 @@ export default function Navbar({ children }) {
     setLogout(false);
   };
 
-
   useEffect(() => {
     dispatch(getWalletByNumber());
-  }, [dispatch]);
+    if (updateMoney.length != 0) {
+      if (updateMoney.success) {
+        alert("Thành công");
+      }
+      else{
+        alert("Thất bại");
+      }
+    }
+  }, [updateMoney]);
 
   // Cap nhat state khi tien nap thanh cong
   const [balance, setBalance] = useState(null);
-  
 
   useEffect(() => {
     if (data && data !== "undefined") {
