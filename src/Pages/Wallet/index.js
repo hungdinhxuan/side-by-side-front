@@ -26,7 +26,7 @@ export default function Wallet(props) {
     formState: { errors },
   } = useForm();
 
-  const { paymentGet, isLoading } = useSelector((state) => state.paymentGet);
+  const { paymentGet, isLoading, } = useSelector((state) => state.paymentGet);
   // const {money, updateMoney} = useSelector((state) => state.wallet)
   // const { addMoney, error,updateMoney } = useSelector((state) => state.walletAddReducer);
   const [paymentId, setPaymentId] = useState(null);

@@ -163,6 +163,7 @@ const GeneralSetting = () => {
     }
   };
 
+  const [fileAnh, setFileAnh] = useState(null);
   const handleSubmitAvatar = async (event) => {
     event.preventDefault();
     console.log('Submit avatar ', file)

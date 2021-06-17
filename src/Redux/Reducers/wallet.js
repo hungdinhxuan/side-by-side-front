@@ -39,7 +39,7 @@ import {
         return { ...state, isLoading: false, updateMoney: action.payload.data };
       }
       case ADD_MONEY_FAILURE: {
-        return { ...state, isLoading: false, error: action.payload.error };
+        return { ...state, isLoading: false, updateMoney: action.payload.error };
       }
       default:
         return state;

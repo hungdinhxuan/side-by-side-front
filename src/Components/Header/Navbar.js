@@ -25,12 +25,19 @@ import Slide from "@material-ui/core/Slide";
 import { Badge } from "antd";
 import { getWalletByNumber, patchWalletByNumber } from "../../actions/wallet";
 import { formatMoney } from "../../Services/mix";
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 export default function Navbar({ children }) {
   const { userInfo, isLoading, error } = useSelector((state) => state.auth);
   const { money, updateMoney } = useSelector((state) => state.wallet);
-  // const {addMoney}  = useSelector((state) => state.patchWalletByNumber)
-
+  const [openErrorDialog, setOpenErrorDialog] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('Server lỗi, vui lòng thử lại sau ít phút!!');
+  const [successMessage, setSuccessMessage] = useState('Cập nhật thành công');
+  const [openSucessDialog, setOpenSucessDialog] = useState(false);
   const dataGoogle = useSelector((state) => state.authGooogle.userInfo);
   const data = userInfo ? userInfo : dataGoogle;
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -59,13 +66,26 @@ export default function Navbar({ children }) {
     dispatch(getWalletByNumber());
     if (updateMoney.length != 0) {
       if (updateMoney.success) {
-        alert("Thành công");
+        setOpenSucessDialog(true);
+        setSuccessMessage(updateMoney.message);
+        // alert(updateMoney.message)
       }
       else{
-        alert("Thất bại");
+        if(!updateMoney.success){
+          setErrorMessage(updateMoney.message);
+          setOpenErrorDialog(true);
+        }
       }
     }
   }, [updateMoney]);
+  
+  const handleCloseDialog = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenSucessDialog(false);
+    setOpenErrorDialog(false);
+  }
 
   // Cap nhat state khi tien nap thanh cong
   const [balance, setBalance] = useState(null);
@@ -294,6 +314,28 @@ export default function Navbar({ children }) {
           </div>
         </div>
       </div>
+
+
+      {/* Khi nạp tiền thành công hoặc thất bại */}
+      <Snackbar
+              open={openSucessDialog}
+              autoHideDuration={2000}
+              onClose={handleCloseDialog}
+            >
+              <Alert onClose={handleCloseDialog} severity="success">
+                {successMessage}
+              </Alert>
+            </Snackbar>
+
+            <Snackbar
+              open={openErrorDialog}
+              autoHideDuration={2000}
+              onClose={handleCloseDialog}
+            >
+              <Alert onClose={handleCloseDialog} severity="error">
+                {errorMessage}
+              </Alert>
+            </Snackbar>
     </div>
   );
 }
