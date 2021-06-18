@@ -153,11 +153,11 @@ ul {
     border-color: #545b62;
 }
 
-.MuiMenu-paper {
+/* .MuiMenu-paper {
     max-height: calc(100% - 96px);
     top: 150px !important;
     left: 1446px !important;
-}
+} */
 .dropdown-menu.show {
     top: 5px !important;
     left: 15px !important;
