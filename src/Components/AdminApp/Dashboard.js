@@ -23,12 +23,17 @@ import Chart from "./Chart";
 import Deposits from "./Deposits";
 import Orders from "./Orders";
 import UserManagement from "./UserManagement";
+import PowerSettingsNewIcon from "@material-ui/icons/PowerSettingsNew";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSuccess" align="center">
       {"Đây là sản phẩm của Xuân Hùng, Đình Khang, Khánh Hà © "}
-      <Link color="inherit" target="_blank" href="http://side-by-side-front.vercel.app">
+      <Link
+        color="inherit"
+        target="_blank"
+        href="http://side-by-side-front.vercel.app"
+      >
         Website RenterMe
       </Link>{" "}
       {new Date().getFullYear()}
@@ -158,10 +163,8 @@ export default function Dashboard({ route }) {
           >
             Xin chào Admin
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
+          <IconButton color="inherit" onClick={() => {console.log('Đăng nhập');}}>
+            <PowerSettingsNewIcon />
           </IconButton>
         </Toolbar>
       </AppBar>

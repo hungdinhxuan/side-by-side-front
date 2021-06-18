@@ -14,8 +14,16 @@ import {
 } from "../constants/admin.js";
 
 import adminAPI from "../Services/admin";
+import Swal from "sweetalert2";
+const handleNoti = (icon, title, text) => {
+  Swal.fire({
+    icon: `${icon}`,
+    title: `${title}`,
+    text: `${text}`,
+  });
+};
 
-export default function getUserAccountByPage(pages) {
+export function getUserAccountByPage(pages) {
   return async (dispatch) => {
     dispatch({ type: ADMIN_USERINFOR_REQUEST });
     try {
@@ -36,9 +44,11 @@ export function updateUserAccount(values) {
     dispatch({ type: UPDATE_USERINFOR_REQUEST });
     try {
       const { data } = await adminAPI.updateUser(values);
+      handleNoti("success", "Update thành công","" );
       return dispatch({ type: UPDATE_USERINFOR_SUCCESS, payload: { data } });
     } catch (error) {
       // Báo lỗi
+      handleNoti("error", "Update thất bại","" );
       return dispatch({
         type: UPDATE_USERINFOR_FAILURE,
         payload: { error: error.response.data },

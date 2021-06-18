@@ -1,5 +1,5 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect,Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
@@ -11,5 +11,5 @@ export default function AdminRoute({ child, ...props }) {
   if(userInfo){
     return <Redirect to="/admin/dashboard"/>
   }
-  return <Redirect ></Redirect>
+  return <Route  {...props}>{child}</Route>
 }

@@ -10,7 +10,7 @@ import {
   DELETE_USERINFOR_FAILURE,
   ADD_USERINFOR_REQUEST,
   ADD_USERINFOR_SUCCESS,
-  ADD_USERINFOR_FAILURE
+  ADD_USERINFOR_FAILURE,
 } from "../../constants/admin.js";
 
 const initialState = {
@@ -48,20 +48,17 @@ export function adminReducer(state = initialState, action) {
       };
     case DELETE_USERINFOR_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
-      case ADD_USERINFOR_REQUEST:
-        return { ...state, isLoading: true, error: null };
-      case ADD_USERINFOR_SUCCESS:
-        return {
-          ...state,
-          isLoading: false,
-          updateUserAccount: action.payload.data,
-        };
-      case ADD_USERINFOR_FAILURE:
-        return { ...state, isLoading: false, error: action.payload.error };
-      default:
+    case ADD_USERINFOR_REQUEST:
+      return { ...state, isLoading: true, error: null };
+    case ADD_USERINFOR_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        updateUserAccount: action.payload.data,
+      };
+    case ADD_USERINFOR_FAILURE:
+      return { ...state, isLoading: false, error: action.payload.error };
+    default:
       return state;
   }
 }
-
-
-

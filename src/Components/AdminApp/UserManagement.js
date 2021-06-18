@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import AddIcon from "@material-ui/icons/Add";
 
-import getUserAccountByPage from "../../actions/admin";
+import {getUserAccountByPage, addUserAccount} from "../../actions/admin";
 
 import Pagination from "@material-ui/lab/Pagination";
 import BackToTop from "../../Hooks/BackToTop";
@@ -16,7 +16,6 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import TextField from "@material-ui/core/TextField";
 import CheckIcon from "@material-ui/icons/Check";
 import CloseIcon from "@material-ui/icons/Close";
-import addUserAccount from "../../actions/admin";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -83,7 +82,7 @@ export default function UserManagement() {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
 
-  const handleAddNewUser =  async () => {
+  const handleAddNewUser = async () => {
     const data = await dispatch(addUserAccount({...newUser}));
     if (data.payload.error) {
       setErrorMessage(data.payload.error.message);
@@ -93,7 +92,7 @@ export default function UserManagement() {
       setOpenSucessDialog(true);
     }
     setAddUser(!addUser);
-    console.log('Hello');
+    console.log(data);
   };
   console.log(getData);
 

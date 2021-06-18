@@ -23,10 +23,11 @@ export default function Wallet(props) {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const { paymentGet, isLoading, } = useSelector((state) => state.paymentGet);
+  const { paymentGet, isLoading } = useSelector((state) => state.paymentGet);
   // const {money, updateMoney} = useSelector((state) => state.wallet)
   // const { addMoney, error,updateMoney } = useSelector((state) => state.walletAddReducer);
   const [paymentId, setPaymentId] = useState(null);
@@ -35,7 +36,6 @@ export default function Wallet(props) {
 
   useEffect(() => {
     dispatch(getPaymentByNumber());
-    
   }, [dispatch]);
 
   const { path, url } = useRouteMatch();
@@ -61,6 +61,7 @@ export default function Wallet(props) {
 
   const handlePayment = () => {
     dispatch(patchWalletByNumber({ paymentId, amount }));
+    reset();
   };
 
   const [checkSuccess, setCheckSuccess] = useState(false);
@@ -88,25 +89,30 @@ export default function Wallet(props) {
         <hr />
         <div className="selection-options row" style={{ margin: "10px" }}>
           <div
-            className="col-md-3"
-            style={{ display: "flex", justifyContent: "center" }}
+            className="col-md-12"
+            style={{ display: "flex", justifyContent: "space-between" }}
           >
             {paymentGet.payments &&
               paymentGet.payments.map((item) => (
-                <Label check>
-                  <Input
-                    type="radio"
-                    name="radio2"
-                    value="1"
-                    onChange={(e) => {
-                      setRadioButton(!radioButton);
-                      setPaymentId(item._id);
-                    }}
-                  />
-                </Label>
+                <>
+                  <Label check>
+                    <Input
+                      type="radio"
+                      name="radio2"
+                      value="1"
+                      onChange={(e) => {
+                        setRadioButton(!radioButton);
+                        setPaymentId(item._id);
+                      }}
+                    />
+                  </Label>
+                  <p style={{ marginBottom: "0" }}>{item.cardNumber}</p>
+                  <p style={{ marginBottom: "0" }}>{item.name}</p>
+                  <p style={{ marginBottom: "0" }}>{item.expiresDate}</p>
+                </>
               ))}
           </div>
-          <div className="col-md-3">
+          {/* <div className="col-md-3">
             {paymentGet.payments &&
               paymentGet.payments.map((item) => (
                 <p style={{ marginBottom: "0" }}>{item.cardNumber}</p>
@@ -123,7 +129,7 @@ export default function Wallet(props) {
               paymentGet.payments.map((item) => (
                 <p style={{ marginBottom: "0" }}>{item.expiresDate}</p>
               ))}
-          </div>
+          </div> */}
         </div>
         <hr />
         <h3 style={{ color: "#ea7c69", padding: "15px 0" }}>Nạp tiền</h3>

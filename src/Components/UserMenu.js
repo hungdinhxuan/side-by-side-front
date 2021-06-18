@@ -4,6 +4,7 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { Link } from "react-router-dom";
 import logo from "../img/avatar49.png";
+import '../Styles/Navbar.css'
 
 function UserMenu(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);

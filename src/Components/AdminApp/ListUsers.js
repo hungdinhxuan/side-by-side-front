@@ -85,7 +85,7 @@ const ListUsers = ({ item, id }) => {
           <input type="checkbox" />
         </th>
         <td>
-          <TextField type="text" name="name" value={editValue.name} />
+          <TextField type="text" name="name" value={editValue.name} onChange={handleChange}/>
         </td>
         <td>
           <img

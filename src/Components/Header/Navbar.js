@@ -254,7 +254,7 @@ export default function Navbar({ children }) {
                           aria-describedby="alert-dialog-description"
                         >
                           <DialogTitle id="alert-dialog-title">
-                            {"Use Google's location service?"}
+                            {"Đang có người muốn thuê bạn"}
                           </DialogTitle>
                           <DialogContent>
                             <DialogContentText id="alert-dialog-description">
@@ -282,7 +282,7 @@ export default function Navbar({ children }) {
                 <div className="col-md-4">
                   <div className="money">
                     <Link className="btn btn-secondary" to="/wallet">
-                      {money.wallet && (
+                    {money.wallet && (
                         <>
                           <i className="fa fa-wallet"></i>{" "}
                           {formatMoney(money.wallet.balance)}

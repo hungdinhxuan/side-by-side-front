@@ -153,11 +153,12 @@ ul {
     border-color: #545b62;
 }
 
-/* Register alert
-.modal-body > div form .alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    font-size: 15px !important;
-    padding: 3px !important;
-} */
+.MuiMenu-paper {
+    max-height: calc(100% - 96px);
+    top: 150px !important;
+    left: 1446px !important;
+}
+.dropdown-menu.show {
+    top: 5px !important;
+    left: 15px !important;
+}
