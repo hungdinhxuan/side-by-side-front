@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "../../Styles/Navbar.css";
 import logo from "../../img/player-dou-a.jpg";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import PopupRegister from "../../Hooks/PopupRegister";
 import PopupLogin from "../../Hooks/PopupLogin";
 import { useDispatch, useSelector } from "react-redux";
@@ -42,7 +42,7 @@ export default function Navbar({ children }) {
   const data = userInfo ? userInfo : dataGoogle;
   const [isModalVisible, setIsModalVisible] = useState(false);
   const dispatch = useDispatch();
-
+  const history = useHistory()
   const showModal = () => {
     setIsModalVisible(true);
     console.log(isModalVisible);
@@ -125,7 +125,7 @@ export default function Navbar({ children }) {
     });
     socket.on("CONFIRM_RENT_REQUEST", (data) => {
       console.log(data);
-      setRoom(data.room);
+      history.push(`/room/${data.room}`)
     });
   }, [socket]);
   console.log(chamDo);
@@ -166,10 +166,8 @@ export default function Navbar({ children }) {
   if (requestChat) {
     console.log(sender);
   }
-
-  if (room !== "") {
-    return <Redirect to={`/room/${room}`} />;
-  }
+  
+  
 
   return (
     <div

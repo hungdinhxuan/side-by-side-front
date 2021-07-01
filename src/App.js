@@ -94,7 +94,7 @@ function App(props) {
               path="/setting-streamer-profile"
               component={SettingStreamer}
             />
-            <Route path="/room/:id">
+            <Route path="/room/:id" exact>
               <ChatClient />
             </Route>
             <Switch>
