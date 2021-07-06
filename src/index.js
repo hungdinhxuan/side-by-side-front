@@ -15,7 +15,7 @@ import rootReducer from "./Redux/Reducers/index";
 const middleware = applyMiddleware(thunk);
 const enhance = compose(
   middleware,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
 
