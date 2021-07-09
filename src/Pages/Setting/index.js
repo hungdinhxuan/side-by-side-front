@@ -31,7 +31,7 @@ export const Setting = ({route}) => {
         
       </div>
    
-      <div class="content" style={{background: 'pink'}}>
+      <div class="content" style={{background: 'rgb(39, 26, 36)'}}>
         {route === "general" && <GeneralSetting /> }
         {route === "security" && <SecuritySetting /> }
         {route === "wallet" && <WalletSetting /> }

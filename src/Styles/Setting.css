@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   width: 250px;
-  background-color: #271A24;
+  background-color: rgb(46, 39, 53);
   position: absolute;
   height: 114%;
   overflow: auto;
@@ -10,7 +10,7 @@
 
 .sidebar a {
   display: block;
-  color: #ff4800;
+  color: #fff;
   padding: 16px;
   text-decoration: none;
   text-transform: uppercase;

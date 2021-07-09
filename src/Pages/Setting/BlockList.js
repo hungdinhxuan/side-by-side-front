@@ -4,7 +4,7 @@ const BlockList = () => {
     
 
     return (
-        <div>
+        <div style={{color: "#fff"}}>
             This is block list.(sẽ up date tính năng sau)
         </div>
     )

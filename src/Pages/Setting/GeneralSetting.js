@@ -267,6 +267,7 @@ const GeneralSetting = () => {
               lineHeight: "140%",
               letterSpacing: "0em",
               textAlign: "left",
+              color: "white"
               // color: "white"
             }}
           >
@@ -306,7 +307,7 @@ const GeneralSetting = () => {
           </form>
         </Card>
         <Card className={classes.cardSmall} style={{ display: "inline-block" }}>
-          <div className={classes.cardSmallLeft} style={{background: "#ea7c69",textTransform: "uppercase", color: "#fff"}}>Renew Your ProAccount</div>
+          <div className={classes.cardSmallLeft} style={{background: "rgb(46, 39, 53)",textTransform: "uppercase", color: "#fff"}}>Renew Your ProAccount</div>
           <Button className={classes.cardSmallRight} style={{background: "#d65b08"}}>
             <Link to="/setting-streamer-profile" style={{color: "white"}} >Update Now </Link>
           </Button>
@@ -325,7 +326,7 @@ const GeneralSetting = () => {
       >
         <Form>
           <Form.Group className={classes.formGroup}>
-            <Form.Label>Họ và tên</Form.Label>
+            <Form.Label style={{color: "#fff"}}>Họ và tên</Form.Label>
             <Form.Control
               type="text"
               style={{ borderRadius: "30px" }}
@@ -335,9 +336,9 @@ const GeneralSetting = () => {
             />
           </Form.Group>
           <Form.Group className={classes.formGroup}>
-            <Form.Label>Giới tính</Form.Label>
+            <Form.Label style={{color: "#fff"}}>Giới tính</Form.Label>
             <br></br>
-            <FormControl className={classes.formGenderControl}>
+            <FormControl className={classes.formGenderControl} >
               <Select
                 labelId="demo-controlled-open-select-label"
                 id="demo-controlled-open-select"
@@ -346,17 +347,18 @@ const GeneralSetting = () => {
                 onOpen={handleGenderOpen}
                 value={gender}
                 onChange={handleGenderChange}
+                style={{color: "black", background: "white"}}
               >
-                <MenuItem value={"Nam"}>Nam</MenuItem>
-                <MenuItem value={"Nữ"}>Nữ</MenuItem>
+                <MenuItem value={"Nam"} >Nam</MenuItem>
+                <MenuItem value={"Nữ"} >Nữ</MenuItem>
                 <MenuItem value={"Khác"}>Khác</MenuItem>
               </Select>
             </FormControl>
           </Form.Group>
 
           <Form.Group className={classes.formGroup}>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <Form.Label>Ngày sinh</Form.Label>
+            <MuiPickersUtilsProvider utils={DateFnsUtils} style={{color: "black"}}>
+              <Form.Label style={{color: "white"}}>Ngày sinh</Form.Label>
               <Grid>
                 <KeyboardDatePicker
                   disableToolbar
@@ -364,19 +366,19 @@ const GeneralSetting = () => {
                   format="dd/MM/yyyy"
                   margin="normal"
                   id="date-picker-inline"
-                  label="Ngày / Tháng / Năm"
                   value={selectedBirthDate}
                   onChange={handleBirthDateChange}
                   KeyboardButtonProps={{
                     "aria-label": "change date",
                   }}
+                  style={{background: "white",color: "black"}}
                 />
               </Grid>
             </MuiPickersUtilsProvider>
           </Form.Group>
 
           <Form.Group className={classes.formGroup}>
-            <Form.Label>Nickname</Form.Label>
+            <Form.Label style={{color: "#fff"}}>Nickname</Form.Label>
             <Form.Control
               type="text"
               style={{ borderRadius: "30px" }}
@@ -387,9 +389,9 @@ const GeneralSetting = () => {
           </Form.Group>
 
           <Form.Group className={classes.formGroup}>
-            <Form.Label>Tỉnh / Thành phố</Form.Label>
+            <Form.Label style={{color: "#fff"}}>Tỉnh / Thành phố</Form.Label>
             <br></br>
-            <FormControl className={classes.formCityControl}>
+            <FormControl className={classes.formCityControl} style={{color: "#fff"}}>
               <Select
                 // labelId="demo-controlled-open-select-label"
                 // id="demo-controlled-open-select"
@@ -398,6 +400,7 @@ const GeneralSetting = () => {
                 onOpen={handleCityOpen}
                 value={city}
                 onChange={handleCityChange}
+                style={{background: "white"}}
               >
                 {listCities.map((item) => {
                   return (
@@ -414,7 +417,7 @@ const GeneralSetting = () => {
           </Form.Group>
 
           <Form.Group className={classes.formGroup}>
-            <Form.Label>Quốc Gia</Form.Label>
+            <Form.Label style={{color: "white"}}>Quốc Gia</Form.Label>
             <Form.Control
               type="text"
               style={{ borderRadius: "30px" }}
@@ -429,12 +432,13 @@ const GeneralSetting = () => {
               variant="secondary"
               type="submit"
               style={{
-                backgroundColor: "#271A24",
+                backgroundColor: "rgb(48, 38, 47)",
                 borderRadius: "14px",
                 color: "#fff",
                 height: "48px",
                 width: "172px",
                 padding: "14px",
+                border: "1px solid #EA7C69",
               }}
             >
               Hoàn tác
