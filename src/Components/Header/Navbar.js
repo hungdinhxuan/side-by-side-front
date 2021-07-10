@@ -236,7 +236,7 @@ export default function Navbar({ children }) {
                       </>
                     )}
                     <DropdownMenu>
-                      <DropdownItem header>Nơi nhận thông báo</DropdownItem>
+                      <DropdownItem header>Thông báo gần đây</DropdownItem>
                       <DropdownItem>
                         <Button
                           variant="outlined"
@@ -255,18 +255,19 @@ export default function Navbar({ children }) {
                             {"Đang có người muốn thuê bạn"}
                           </DialogTitle>
                           <DialogContent>
-                            <DialogContentText id="alert-dialog-description">
+                            <DialogContentText id="alert-dialog-description" style={{color: "#000"}}>
                               {notifications}
                             </DialogContentText>
                           </DialogContent>
                           <DialogActions>
-                            <Button onClick={handleClose} color="primary">
+                            <Button onClick={handleClose} color="primary" style={{color: "#000"}}>
                               Disagree
                             </Button>
                             <Button
                               onClick={handleAccept}
                               color="primary"
                               autoFocus
+                              style={{color: "#000"}}
                             >
                               Agree
                             </Button>
