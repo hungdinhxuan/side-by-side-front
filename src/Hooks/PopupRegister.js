@@ -212,9 +212,9 @@ const PopupRegister = () => {
                     {...register("gender")}
                   >
                     <option value="none">Giới Tính</option>
-                    <option value="male">Nam</option>
-                    <option value="female">Nữ</option>
-                    <option value="other">Khác</option>
+                    <option value="Nam">Nam</option>
+                    <option value="Nữ">Nữ</option>
+                    <option value="Khác">Khác</option>
                   </select>
 
                   {error && <Alert color="danger">{error.message}</Alert>}
