@@ -14,6 +14,8 @@ import {
 
 import {LOGIN_GOOGLE_REQUEST,LOGIN_GOOGLE_SUCCESS,LOGIN_GOOGLE_FAILURE} from '../../constants/auth';
 
+import Swal from "sweetalert2"
+
 const userInfo = getCookie("token") ? getCookie("token") : null; //Chỉnh sửa
 
 const initialState = {
@@ -49,6 +51,10 @@ export function authReducerRegister(state = initialState, action) {
       return { ...state, isLoading: true, error: null };
     }
     case REGISTER_SUCCESS: {
+      Swal.fire({
+        icon: 'success',
+        title: action.payload.data.message,
+      })
       return { ...state, isLoading: false, userInfo: action.payload.data };
     }
     case REGISTER_FAILURE: {

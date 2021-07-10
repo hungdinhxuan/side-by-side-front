@@ -5,9 +5,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  Form,
   Alert,
-  FormGroup,
 } from "reactstrap";
 
 import logo1 from "../img/player-dou-a.jpg";
@@ -15,8 +13,6 @@ import "../Styles/Login.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { Register } from "../actions/auth";
-import { useLocation } from "react-router-dom";
-import qs from "qs";
 import Loading from "../Components/Loading";
 import "../Styles/Navbar.css";
 
@@ -24,12 +20,10 @@ const PopupRegister = () => {
   const dispatch = useDispatch();
   const [modal, setModal] = useState(false);
   const { userInfo, isLoading, error } = useSelector((state) => state.authRe);
-  const location = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
     watch,
     reset,
   } = useForm();
@@ -53,6 +47,7 @@ const PopupRegister = () => {
     if (userInfo) {
       handleSetRegister();
     }
+    
   };
 
   // Kiểm tra mật khẩu

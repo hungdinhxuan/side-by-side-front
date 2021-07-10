@@ -4,6 +4,8 @@ import {
   PLAYER_FAILURE,
 } from "../../constants/player.js";
 
+import Swal from "sweetalert2"
+
 const initialState = {
   data: [],
   isLoading: false,
@@ -15,6 +17,10 @@ function playerReducer(state = initialState, action) {
     case PLAYER_REQUEST:
       return { ...state, isLoading: true, error: null };
     case PLAYER_SUCCESS:
+      Swal.fire({
+        icon: 'success',
+        title: 'Đăng ký thành công',
+      })
       return { ...state, isLoading: false, data: action.payload.data.profile };
     case PLAYER_FAILURE:
       return { ...state, isLoading: false, error: action.payload.error };
