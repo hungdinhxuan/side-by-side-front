@@ -31,9 +31,6 @@ const PopupRegister = () => {
   const toggle = () => {
     setModal(!modal);
     reset();
-    if (error) {
-      dispatch("CLEAR_STATE");
-    }
   };
 
   const handleSetRegister = () => {
@@ -41,13 +38,9 @@ const PopupRegister = () => {
   };
 
   const handleRegister = (values) => {
-    console.log(values);
     dispatch(Register(values));
     reset();
-    if (userInfo) {
-      handleSetRegister();
-    }
-    
+    setModal(!modal);
   };
 
   // Kiểm tra mật khẩu

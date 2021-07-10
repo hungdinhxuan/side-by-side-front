@@ -51,17 +51,14 @@ export function authReducerRegister(state = initialState, action) {
       return { ...state, isLoading: true, error: null };
     }
     case REGISTER_SUCCESS: {
-      Swal.fire({
-        icon: 'success',
-        title: action.payload.data.message,
-      })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: action.payload.data.message,
+      // })
       return { ...state, isLoading: false, userInfo: action.payload.data };
     }
     case REGISTER_FAILURE: {
       return { ...state, isLoading: false, error: action.payload.error };
-    }
-    case CLEAR_STATE: {
-      return state;
     }
     default:
       return state;

@@ -2,6 +2,14 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_REQUEST,REGISTER_SUCCESS, REGISTER_FAILURE,LOGIN_GOOGLE_REQUEST,LOGIN_GOOGLE_SUCCESS,LOGIN_GOOGLE_FAILURE, CLEAR_STATE } from "../constants/auth";
 import authAPI from "../Services/authAPI";
 import {setCookie} from "../Services/handleCookie"
+import Swal from "sweetalert2";
+const handleNoti = (icon, title, text) => {
+  Swal.fire({
+    icon: `${icon}`,
+    title: `${title}`,
+    text: `${text}`,
+  });
+};
 
 export function login(values) {
   
@@ -33,9 +41,9 @@ export function Register(values) {
     try {
       const { data } = await authAPI.register(values);
       dispatch({ type: REGISTER_SUCCESS, payload: { data } });
-      dispatch({type: CLEAR_STATE});
+      handleNoti("success", "Đăng ký thành công","" );
     } catch (error) {
-      console.log(error);
+      handleNoti("error", "Đăng ký thất bại","" );
       dispatch({
         type: REGISTER_FAILURE,
         payload: { error: error.response.data },
