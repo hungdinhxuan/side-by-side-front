@@ -2,7 +2,7 @@
   background-image: url(../img/footer_bg.jpg);
   background-position: top center;
   background-size: cover;
-  padding: 70px 0 20px;
+  padding: 50px 0 0;
 }
 
 .footer-arena .container .row .col-lg-3 .footer-widget {
@@ -32,7 +32,7 @@
   bottom: 0;
   width: 31px;
   height: 5px;
-  background: #ff5917;
+  background: #ea7c69;
   border-radius: 0px 0px 4px 4px;
 }
 

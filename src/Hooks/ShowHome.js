@@ -132,6 +132,7 @@ export default function ShowHome() {
             </a>
           </div>
         </div>
+      
       <div className={show ? "show-more mt-4" : "show-less d-none"}>
         <div className="show-more-list">
           <div className="show-more-game-items">

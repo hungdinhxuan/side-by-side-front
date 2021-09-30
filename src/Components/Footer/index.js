@@ -111,7 +111,10 @@ export default function Footer() {
             <div className="col-lg-6 col-md-6">
               <div className="copyright-text">
                 <p>
-                  Copyright © 2020 <a href="#">Vinom</a> All Rights Reserved.
+                  Sản phẩm © 2021 <a href="#">RentMe</a>
+                </p>
+                <p>
+                  Co-founder: Xuân Hùng, Đình Khang, Khánh Hà
                 </p>
               </div>
             </div>

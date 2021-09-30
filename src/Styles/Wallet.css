@@ -1,0 +1,42 @@
+.wallet {
+    background: #271a24;
+}
+
+.container-wallet-form {
+    height: 50vh;
+}
+
+.wallet .container-wallet-form {
+    background: #424242;
+    margin-left: 30%;
+    margin-right: 30%;
+    padding: 16px;
+    color: #fff;
+    padding-bottom: 25px;
+}
+.container-wallet-form form input {
+    color: black !important;
+    height: 40px;
+}
+
+.link-to-payment {
+    background: #545b62;
+    margin-top: 30px;
+    width: 60%;
+    margin-left: 20%;
+    padding: 10px;
+    text-align: center;
+}
+
+.link-to-payment button {
+    border: none;
+    background: #545b62;
+    transition: all 0.1s;
+}
+.link-to-payment button:hover {
+    color: #ea7c69;
+}
+
+.link-to-payment button span {
+    color: #fff !important;
+}

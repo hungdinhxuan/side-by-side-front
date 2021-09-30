@@ -1,10 +1,19 @@
+.container .MuiButton-text {
+    color: #000;
+}
+dl,
+ol,
+ul {
+    margin-bottom: 0;
+}
+
 .menu-wrap {
     background-image: url(../img/main_header_bg.png);
     background-position: center;
     background-size: cover;
     border-radius: 3px;
     margin-top: 7px;
-    box-shadow: 0px 3px 7px 0px rgb(128 18 40 / 15%);
+    box-shadow: 0px 3px 7px 0px #ea7c69;
 }
 
 .menu-wrap .col-sm-8 {
@@ -15,31 +24,39 @@
     align-items: center;
 }
 
-.menu-wrap .col-sm-8 .logo {
+.menu-wrap .col-sm-7 .logo {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
-.menu-wrap .col-sm-8 .logo .menu-text{
+.logo a img {
+    transform: rotate(45deg);
+    object-fit: contain;
+}
+.menu-wrap .col-sm-7 .logo .menu-text {
     color: #fff;
     font-size: 30px;
     line-height: 30px;
     padding-left: 10px;
     text-decoration: none;
-}
-.menu-wrap .col-sm-8 .logo .menu-text span{
-    color: #EA7C69;
+    text-shadow: 3px 5px 6px #ea7c69;
+    font-weight: 600;
 }
 
-.menu-wrap .col-sm-8 ul {
+.menu-wrap .col-sm-7 .logo .menu-text span {
+    color: #ea7c69;
+}
+
+.menu-wrap .col-sm-7 ul {
     display: flex;
 }
 
-.menu-wrap .col-sm-8 ul li {
+.menu-wrap .col-sm-7 ul li {
     padding-right: 12px;
 }
 
-.menu-wrap .col-sm-8 ul li a {
+.menu-wrap .col-sm-7 ul li a {
     color: #cfcdcd;
     text-transform: uppercase;
     display: block;
@@ -47,23 +64,101 @@
     z-index: 1;
 }
 
-.menu-wrap .col-sm-8 ul li a::before {
+.menu-wrap .col-sm-7 ul li a::before {
     content: "";
     position: absolute;
-    left: -2px;
-    top: 50%;
-    height: 36px;
-    width: 107%;
-    transform: translateY(-50%) skewX(-17deg);
-    background: #ff5917;
-    z-index: -1 ;
+    left: 0px;
+    bottom: -4px;
+    height: 4px;
+    width: 0%;
+    background: #ea7c69;
+    padding-left: 3px;
+    z-index: -1;
     opacity: 0;
+    transition: all 0.5s;
 }
 
-.menu-wrap .col-sm-8 ul li:active a::before, .menu-wrap .col-sm-8 ul li:hover a::before{
+.menu-wrap .col-sm-7 ul li:active a::before,
+.menu-wrap .col-sm-7 ul li:hover a::before {
     opacity: 1;
+    width: 100%;
 }
 
-.menu-wrap .col-sm-8 ul li a:hover {
+.menu-wrap .col-sm-7 ul li a:hover {
     text-decoration: none;
+}
+
+.col-sm-7 .row {
+    justify-content: space-around;
+    align-items: center;
+}
+
+.menu-wrap .menu-right {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-right__items {
+    display: flex;
+}
+.menu-right__items ul {
+    margin: 0;
+}
+
+.menu-right__items li {
+    padding: 0 10px;
+    align-items: center;
+}
+
+.header-top-login:hover {
+    background-color: #ff6b00 !important;
+}
+
+.menu-list-items {
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+/* CSS dropdown */
+
+.dropdown {
+    width: 100%;
+    margin: 0 auto;
+    text-align: right;
+}
+
+.dropdown button:first-child {
+    background: rgba(35, 38, 45, 1);
+    border: none;
+    font-size: 20px;
+}
+.dropdown button:first-child:hover {
+    background-color: #ea7c69;
+    border-color: #545b62;
+}
+
+.money {
+    text-align: center;
+    width: 130%;
+}
+
+.money .btn {
+    background: none;
+    border: none;
+}
+.money .btn:hover {
+    background-color: #ea7c69;
+    border-color: #545b62;
+}
+
+/* .MuiMenu-paper {
+    max-height: calc(100% - 96px);
+    top: 150px !important;
+    left: 1446px !important;
+} */
+.dropdown-menu.show {
+    top: 5px !important;
+    left: 15px !important;
 }

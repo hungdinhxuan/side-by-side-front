@@ -1,0 +1,119 @@
+.card {
+    background: #1f1d2b;
+    border: 1px solid #393c49;
+    width: 270px;
+    height: 362px !important;
+    position: relative;
+    margin-top: 71px;
+}
+.streamer {
+    background: #271a24;
+}
+
+.card img {
+    width: 200px;
+    height: 194px;
+    border-radius: 34px;
+    margin-left: 34px;
+    position: absolute;
+    top: -62px;
+}
+
+.card-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #ea7c69;
+}
+
+.card-text {
+    /* Chống xuống hàng thẻ p */
+    clear: both;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: white;
+    padding: 8px 0;
+}
+
+.card-body {
+    padding: 0;
+    margin: 0;
+    margin-top: 150px;
+}
+
+.card-body .btn-rent {
+    padding: 5px;
+    text-align: center;
+    background: #ea7c69;
+    color: white;
+    margin-top: 10px;
+}
+.card-body .btn-rent a {
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: white;
+}
+.card-body .btn-rent a:hover {
+    text-decoration: none;
+}
+
+.card-body .btn-rent:hover {
+    background: #ff4800;
+    cursor: pointer;
+}
+
+.price-right {
+    width: 50%;
+    float: right;
+    color: white !important;
+    padding: 4px 0;
+    background: #ea7c69;
+    border-radius: 21px 0px 0px 21px;
+    text-align: center;
+    font-weight: 700;
+}
+
+.game-card {
+    margin: 5px 0 24px 0;
+    font-size: 12px;
+}
+
+/* Pagination */
+
+button.MuiButtonBase-root {
+    color: white;
+}
+
+button.MuiPaginationItem-textPrimary.Mui-selected {
+    color: white !important;
+    background: gray;
+    transition: all 0.5s;
+}
+button.MuiPaginationItem-textPrimary.Mui-selected:hover,
+.MuiPaginationItem-textPrimary.Mui-selected.Mui-focusVisible {
+    background-color: #ff4800;
+}
+
+.dot-online {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(31, 231, 81);
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+    margin-right: 13px;
+    margin-top: 4px;
+}
+
+.dot-offline {
+    height: 10px;
+    width: 10px;
+    background-color: rgb(206, 20, 20);
+    border-radius: 50%;
+    display: inline-block;
+    float: right;
+    margin-right: 13px;
+    margin-top: 4px;
+}

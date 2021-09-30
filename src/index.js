@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import ReactDOM from "react-dom";
 import "./Styles";
 import App from "./App";
@@ -10,13 +10,16 @@ import { Provider } from "react-redux";
 import thunk from "redux-thunk";
 import rootReducer from "./Redux/Reducers/index";
 
+
+
 const middleware = applyMiddleware(thunk);
 const enhance = compose(
   middleware,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
 );
 
-const store = createStore(rootReducer,enhance);
+
+const store = createStore(rootReducer,enhance,);
 
 ReactDOM.render(
   <Provider store={store}>

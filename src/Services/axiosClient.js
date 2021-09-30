@@ -1,8 +1,10 @@
 import axios from 'axios';
 import qs from 'qs';
+import { getCookie } from './handleCookie';
+import {serverHost} from '../config'
 
 const axiosClient = axios.create({
-    baseURL: "https://elearning0706.cybersoft.edu.vn/api",
+    baseURL: serverHost,
     paramsSerializer: (params) => {
         return qs.stringify(params, {skipNulls: true});
     }
@@ -10,14 +12,13 @@ const axiosClient = axios.create({
 
 axiosClient.interceptors.request.use(
     (config) => {
-        //Xử lý trước khi gửi lên server
-        
-        const userInfo = localStorage.getItem("userInfor");
+        const userInfo = getCookie('token')
         if(userInfo){
-            const {accessToken} = JSON.parse(userInfo);
-            config.headers.Authorization = `Bearer ${accessToken}`;
+            // const {accessToken} = JSON.parse(userInfo); 
+            // config.headers.Authorization = `Bearer ${accessToken}`; 
+            config.headers.Authorization = userInfo;
         }
-        console.log(config);
+        // console.log(config); 
         return config;
     },
     (err) => {

@@ -1,0 +1,333 @@
+/* Border input */
+.setting-player {
+    background: #271a24;
+}
+.border-input {
+    border-radius: 48px;
+    height: 30px;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+}
+
+.container form {
+    margin-top: 15px !important;
+    margin-bottom: 15px !important;
+    transition: all 0.5s !important;
+}
+.container form input {
+    color: white !important;
+}
+
+.container form input:focus {
+    border: 1px solid #ea7c69 !important;
+}
+.form-control {
+    border: none;
+}
+.form-control:focus {
+    border: none;
+    box-shadow: none;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+}
+
+.setting-streamer {
+    justify-content: center !important;
+    align-items: center;
+}
+
+.setting-streamer .nav-item {
+    width: 50%;
+    text-align: center;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.nav-link {
+    color: #a1a1a1;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    color: #ff4800;
+    border: none;
+}
+
+.nav-tabs .nav-link:focus,
+.nav-tabs .nav-link:hover {
+    border: 1px solid #ea7c69;
+    cursor: pointer;
+    color: #ea7c69;
+}
+
+.tab-content {
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    padding: 0 10px;
+}
+
+.tab-content .nick-name {
+    color: white;
+    font-size: 48px;
+    text-transform: uppercase;
+    line-height: normal;
+}
+
+.nick-name .edit-icon {
+    font-size: 16px;
+    color: #ff4800;
+}
+
+.container {
+    padding: 0;
+}
+
+.container form {
+    margin: 25px 0;
+}
+
+.container .nickname input {
+    width: 50%;
+}
+
+.game {
+    display: flex;
+    align-items: center;
+}
+
+.game .game-title {
+    color: white;
+}
+.game form {
+    margin-left: 10px;
+    width: 75%;
+}
+
+.container .game input {
+    width: 44%;
+}
+
+.desc {
+    color: #fff;
+}
+
+.desc p {
+    margin: 0;
+}
+
+.desc input {
+    height: 80px;
+    width: 50%;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    border-radius: 20px;
+}
+
+.social {
+    color: #fff;
+}
+
+.social p {
+    margin: 0;
+}
+
+.social input {
+    height: 50px;
+    width: 50%;
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    border-radius: 10px;
+}
+
+.player-albums .setting-albums input {
+    height: 54px;
+    text-align: left;
+    font-size: 16px;
+    color: #354052;
+    border: 1px solid #e6eaee;
+    border-radius: 5px;
+    padding: 0 17px;
+    width: 100%;
+}
+.player-albums .setting-albums p {
+    text-transform: uppercase;
+    font-size: 11px;
+    margin-bottom: 10px;
+    color: #90959c;
+}
+.player-albums input {
+    opacity: 0;
+    position: absolute;
+    cursor: pointer;
+}
+
+.player-albums .btn-upload {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    border: 1px solid;
+    width: 100%;
+    justify-content: center;
+    border-radius: 5px;
+    background: #f0564a;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.album-title {
+    color: #fff;
+}
+
+#img-selected {
+    border: 1px solid #e6eaee;
+    margin-right: 5px;
+    position: relative;
+    background-color: rgba(12, 12, 12, 0.8);
+    text-align: center;
+    padding: 0;
+    height: 250px;
+    width: 250px;
+}
+.describe-title {
+    color: white;
+}
+.describe textarea {
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+    border-radius: 10px;
+    width: 50%;
+    height: 100px;
+    word-wrap: break-word;
+    color: #fff !important;
+}
+
+.describe textarea:focus {
+    border: 1px solid #ea7c69 !important;
+}
+
+/* Hilight */
+.highlight input {
+    width: 50%;
+}
+.highlight-title {
+    color: #fff;
+}
+
+/* Button formatting */
+.btn-setting-profile {
+    text-align: right;
+}
+
+.btn-setting-profile .col-md-6 {
+    padding: 0 !important;
+}
+.btn-setting-profile .col-md-6 button:first-child {
+    margin-right: 15px;
+}
+
+.btn-setting-profile .col-md-6 .btn-reset,
+.btn-save {
+    height: 34px;
+    width: 100px;
+    color: #fff;
+    border: 1px solid #ea7c69 !important;
+    transform: scale(1);
+}
+
+.btn-save {
+    background: #ff4800;
+}
+
+.btn-save:hover {
+    background: #f47722;
+    transform: scale(1.2);
+}
+
+.btn-reset {
+    background: linear-gradient(0deg, rgba(228, 228, 227, 0.1), rgba(228, 228, 227, 0.1));
+}
+
+.btn-reset:hover {
+    background: #2f2c2a;
+}
+
+/* Device */
+.device-title {
+    color: #fff;
+}
+
+.device .form-group .border-input {
+    width: 50%;
+    color: #fff;
+    cursor: pointer !important;
+    height: 35px;
+}
+
+.device .form-group .border-input:focus-visible {
+    border: none;
+    outline: none;
+}
+
+.device .form-group .border-input option {
+    color: #f47722 !important;
+}
+#SelectDevice:focus {
+    border: 1px solid #ea7c69 !important;
+}
+
+/* CSS Setting giờ thuê*/
+.price-title {
+    color: #fff;
+}
+
+.price-form input {
+    width: 50%;
+}
+
+.max-hours-title {
+    color: #fff;
+}
+
+#SelectHours {
+    width: 50%;
+    color: #fff;
+    cursor: pointer !important;
+}
+
+#SelectHours.border-input:focus-visible {
+    border: none;
+    outline: none;
+}
+
+#SelectHours:focus {
+    border: 1px solid #ea7c69 !important;
+}
+
+#SelectHours.border-input option {
+    color: #f47722 !important;
+}
+
+/* Request yêu cầu giờ thuê */
+
+.request-hours .row {
+    padding: 0 20px;
+}
+
+.request-left,
+.request-right {
+    color: #fff;
+}
+
+.request-right {
+    text-align: right;
+    margin-left: 40px;
+    border-left: 1px solid gray;
+}
+
+.request-hours .request-right input[type="checkbox"]:checked {
+    color: red !important;
+    background-color: red !important;
+}
+
+/* Button right */
+.setting-right-button .btn-setting-profile {
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 15px;
+}

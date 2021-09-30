@@ -8,30 +8,33 @@ import {
 } from "reactstrap";
 
 import "../../Styles/Home.css";
-import ShowHome from '../../Hooks/ShowHome';
+import ShowHome from "../../Hooks/ShowHome";
+import lolImg from "../../img/Carousel/league-of-legends.jpg";
+import { v4 as uuidv4 } from "uuid";
+import Anh1 from "../../img/Carousel/1.gif";
+import Anh2 from "../../img/Carousel/2.gif";
+import Anh3 from "../../img/Carousel/3.gif";
+import Anh4 from "../../img/Carousel/4.gif";
+import Slick from "../../Hooks/Slick";
 
 const items = [
   {
-    src:
-      "https://img.ibxk.com.br///2019/08/05/05163458021048-t1200x480.jpg",
+    src: Anh4,
     // altText: "Slide 1",
     // caption: "Slide 1",
   },
   {
-    src:
-      "https://dl.lolwallpapers.net/?id=8887",
+    src: Anh1,
     // altText: "Slide 2",
     // caption: "Slide 2",
   },
   {
-    src:
-      "https://preview.redd.it/46vbxutg18561.png?width=1920&format=png&auto=webp&s=3a9cf233b1ac6647baa7dd7324b6b0f36e37d057",
+    src: Anh2,
     // altText: "Slide 3",
     // caption: "Slide 3",
   },
   {
-    src:
-      "https://preview.redd.it/46vbxutg18561.png?width=1920&format=png&auto=webp&s=3a9cf233b1ac6647baa7dd7324b6b0f36e37d057",
+    src: Anh3,
     // altText: "Slide 4",
     // caption: "Slide 4",
   },
@@ -63,9 +66,9 @@ const Home = (props) => {
       <CarouselItem
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
-        key={item.src}
+        key={uuidv4()}
       >
-        <img src={item.src} alt={item.altText} />
+        <img src={item.src} alt={item.altText} style={{width: "100vw", height: "50vh"}} />
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
@@ -75,33 +78,34 @@ const Home = (props) => {
   });
 
   return (
-    <div className='Home-main'>
+    <div className="Home-main">
+      <div>
+        <Carousel activeIndex={activeIndex} next={next} previous={previous}>
+          <CarouselIndicators
+            items={items}
+            activeIndex={activeIndex}
+            onClickHandler={goToIndex}
+          />
+          {slides}
+          <CarouselControl
+            direction="prev"
+            directionText="Previous"
+            onClickHandler={previous}
+          />
+          <CarouselControl
+            direction="next"
+            directionText="Next"
+            onClickHandler={next}
+          />
+        </Carousel>
+
         <div className="container">
-          <Carousel activeIndex={activeIndex} next={next} previous={previous}>
-            <CarouselIndicators
-              items={items}
-              activeIndex={activeIndex}
-              onClickHandler={goToIndex}
-            />
-            {slides}
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={previous}
-            />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={next}
-            />
-          </Carousel>
-
+          <Slick></Slick>
           <ShowHome></ShowHome>
-
         </div>
+      </div>
     </div>
   );
 };
 
 export default Home;
-

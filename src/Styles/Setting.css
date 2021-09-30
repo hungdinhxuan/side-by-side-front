@@ -1,0 +1,75 @@
+.sidebar {
+  margin: 0;
+  padding: 0;
+  width: 250px;
+  background-color: rgb(46, 39, 53);
+  position: absolute;
+  height: 114%;
+  overflow: auto;
+}
+
+.sidebar a {
+  display: block;
+  color: #fff;
+  padding: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 20px;
+}
+ 
+.sidebar a.active {
+  background-color:  #ea7c69;
+  color: #ff4800;
+}
+
+.sidebar a:hover:not(.active) {
+  background-color:  #ea7c69 ;
+  color: #ff4800;
+
+}
+
+div.content {
+  margin-left: 250px;
+  padding: 1px 16px;
+  height: 900px;
+}
+
+.content .makeStyles-root-1 {
+  background-color: white;
+}
+
+.security-password {
+  display: flex;
+  padding: 0 15px;
+}
+
+.security-password button{
+  width: 100%;
+  opacity: 0.5;
+}
+
+.security-password button:focus {
+  opacity: 1;
+}
+
+
+@media screen and (max-width: 700px) {
+  .sidebar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+@media screen and (max-width: 400px) {
+  .sidebar a {
+    text-align: center;
+    float: none;
+  }
+}
+
+.text-wallet-setting.form-control:focus{
+  background: #fff !important;
+}

@@ -1,19 +1,15 @@
 import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Redirect,Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import React from "react";
 
 export default function AdminRoute({ child, ...props }) {
   const { userInfo } = useSelector((state) => state.auth);
   if(!userInfo){
-      return <Redirect to={`/login?redirectTo${props.path}`} />
+      return <Redirect to="/streamer" />
   }
-
-  //Login but not admin
-  if(userInfo.maLoaiNguoiDung !== "GV"){
-    return <Redirect to="/"/>
+  if(userInfo){
+    return <Redirect to="/admin/dashboard"/>
   }
-
-  return <Redirect ></Redirect>
+  return <Route  {...props}>{child}</Route>
 }
